@@ -7,6 +7,19 @@ Public website for Loadline, advanced planning and scheduling for make-to-order 
 - `auth.js`: shared sign-in, role access, branding and license check
 - `media/`: tour video, captions and cover image
 
+## Sales order, work order, production order
+
+Planner › **Work orders** lists every sales order that has been through MRP with how many bought parts are already in stores. A planner with the work order right creates one work order per sales order (with a tick to confirm if parts are short). Planner › **Production orders** splits each work order into one order per line: Winding, Machining, VPI, Assembly and Testing. The sales order, work order and production orders link to each other on every screen and in the order details.
+
+## With or without ERP
+
+Each customer runs Loadline one of two ways, set in Admin › Integrations:
+
+- **Connected to ERP**: Send to ERP starts the MRP run, WMS syncs stock moves, and work orders and production orders go both ways: made here and sent to ERP, or made in ERP (for example SAP CO01) and pulled in with Sync from ERP, with shop floor status updates.
+- **Standalone, no ERP**: Release to Purchase runs MRP inside Loadline, buyers create POs from To buy, stores post stock moves straight away, and work orders and production orders live in Loadline.
+
+ERP integration is also a license feature: a key issued with ERP not included keeps the customer on standalone. The ERP side is simulated in this demo.
+
 ## Demo accounts
 
 | Workspace | User name | Password |

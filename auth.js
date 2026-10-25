@@ -14,7 +14,7 @@
     admin: { label: 'Admin', ws: 'admin' }
   };
   const TABS = {
-    plan: [['upload', 'Upload plan'], ['orders', 'Orders'], ['dashboard', 'Factory loading'], ['calendar', 'Factory calendar'], ['shop', 'Shop floor'], ['masters', 'Masters & rules']],
+    plan: [['upload', 'Upload plan'], ['orders', 'Orders'], ['wos', 'Work orders'], ['prods', 'Production orders'], ['dashboard', 'Factory loading'], ['calendar', 'Factory calendar'], ['shop', 'Shop floor'], ['masters', 'Masters & rules']],
     buy: [['bom', 'BOM by work order'], ['matsum', 'Material summary'], ['pos', 'Purchase orders'], ['suppliers', 'Supplier master'], ['products', 'Product master'], ['groups', 'Material groups'], ['forecast', 'Forecast & safety stock']],
     wms: [['stock', 'Stock by part'], ['grn', 'GRN'], ['iqc', 'IQC'], ['stores', 'Stores'], ['wip', 'WIP'], ['blocked', 'Blocked'], ['scrap', 'Scrap']]
   };
@@ -53,7 +53,7 @@
     wms: { wms: TABS.wms.map(t => t[0]) }
   });
   const defaults = () => ({
-    v: 1,
+    v: 1, accessV: 2,
     accounts: DEMO.map(d => ({ u: d.u, name: d.name, role: d.role, appUser: d.appUser, pw: pwHash(d.u, d.pw), active: true, demo: true, last: null })),
     access: defaultAccess(),
     brand: { company: '', welcome: '', accent: 'cobalt', hours: 8 },
@@ -73,6 +73,8 @@
     const d = defaults();
     c.access = c.access || d.access; c.license = c.license || DEMO_LICENSE; c.brand = Object.assign(d.brand, c.brand || {}); c.log = c.log || [];
     ['planner', 'purchase', 'wms'].forEach(r => { c.access[r] = c.access[r] || {}; });
+    // access v2 adds Work orders and Production orders to the Planner tabs
+    if ((c.accessV || 1) < 2) { const pl = c.access.planner.plan; if (Array.isArray(pl) && pl.includes('orders')) ['prods', 'wos'].forEach(t => { if (!pl.includes(t)) pl.splice(pl.indexOf('orders') + 1, 0, t); }); c.accessV = 2; write(CFG_KEY, c); }
     CFG = c; return CFG;
   }
   function save() { if (CFG) { if (CFG.log.length > 60) CFG.log.length = 60; write(CFG_KEY, CFG); } }
@@ -104,6 +106,8 @@
     if (Date.now() <= graceEnd) return { state: 'grace', p, daysLeft: left, graceLeft: Math.ceil((graceEnd - Date.now()) / DAY) };
     return { state: 'expired', p, daysLeft: left };
   }
+  // ERP integration is a licensed feature; keys without the field include it
+  const licErp = () => { const st = licStatus(); return !st.p || st.p.erp !== false; };
   const licUsable = () => ['ok', 'grace'].includes(licStatus().state);
   const seats = role => { const st = licStatus(); return st.p && st.p.seats ? Math.max(0, +st.p.seats[role] || 0) : 0; };
   const activeOf = role => cfg().accounts.filter(a => a.active && a.role === role);
@@ -165,7 +169,7 @@
 :root[data-theme="dark"]{--accent:${a.dark};--accent-soft:${a.softDark}}`;
   }
 
-  window.LoadlineAuth = { ready, licStatus, licUsable, seats, seatsLeft, hasSeat, activeOf, applyLicense, verifyLicense, DEMO_LICENSE, ROLES, TABS, WS_LABEL, ACCENTS, DEMO, cfg, save, find, login, session, logout, isAdmin, canTab, takeEntry, applyBrand, pwHash, defaultAccess,
+  window.LoadlineAuth = { ready, licStatus, licUsable, licErp, seats, seatsLeft, hasSeat, activeOf, applyLicense, verifyLicense, DEMO_LICENSE, ROLES, TABS, WS_LABEL, ACCENTS, DEMO, cfg, save, find, login, session, logout, isAdmin, canTab, takeEntry, applyBrand, pwHash, defaultAccess,
     reset() { CFG = defaults(); save(); } };
 
   // <script src="../auth.js" data-gate="../index.html#signin"> sends anyone without a session back to sign in
