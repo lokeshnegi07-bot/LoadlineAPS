@@ -741,7 +741,7 @@ const ADM_TABS = [['admUsers','Users<span class="tx"> &amp; sign-in</span>'],['a
 const wsTabsAll = ws => ({ buy:BUY_TABS, wms:WMS_TABS, admin:ADM_TABS })[ws] || TABS;
 // with sign-in (hosted site) only the tabs the person's role is given; without it every tab, and no admin workspace
 const wsTabs = ws => AUTH ? wsTabsAll(ws).filter(([k]) => AUTH.canTab(ws, k)) : ws === 'admin' ? [] : wsTabsAll(ws);
-const TABS = [['upload','Upload<span class="tx"> plan</span>'],['orders','Orders'],['wos','<span class="tx">Work orders</span><span class="mx">WOs</span>'],['prods','<span class="tx">Production orders</span><span class="mx">Prod.</span>'],['dashboard','<span class="tx">Factory loading</span><span class="mx">Loading</span>'],['calendar','<span class="tx">Factory calendar</span><span class="mx">Calendar</span>'],['shop','Shop<span class="tp"> floor</span>'],['masters','Masters<span class="tx"> & rules</span>']];
+const TABS = [['upload','Upload<span class="tx"> plan</span>'],['orders','<span class="tx">Sales orders</span><span class="mx">SOs</span>'],['wos','<span class="tx">Work orders</span><span class="mx">WOs</span>'],['prods','<span class="tx">Production orders</span><span class="mx">Prod.</span>'],['dashboard','<span class="tx">Factory loading</span><span class="mx">Loading</span>'],['calendar','<span class="tx">Factory calendar</span><span class="mx">Calendar</span>'],['shop','Shop<span class="tp"> floor</span>'],['masters','Masters<span class="tx"> & rules</span>']];
 let rendering = false;
 function render() {
   // a focused input removed by innerHTML can fire change/blur mid-render; run that render afterwards
@@ -842,7 +842,7 @@ function viewOrders() {
   const lu = S.lastUpload;
   return `<section class="panel tight">
   <div class="spread">
-    <div class="row ordhead" style="gap:10px"><h2>Orders</h2>
+    <div class="row ordhead" style="gap:10px"><h2>Sales orders</h2>
       <details class="info"><summary>How dates are calculated</summary><div class="pop">
         <div><b>Planned date (marketing):</b> the date assumed by marketing in the Excel.</div>
         <div><b>Start and FG date (system):</b> calculated from the factory calendar, current factory loading (including machine and manpower availability) and the motor configuration (lead time by frame, KW and volts). Each order aims for the marketing date and moves later when the shop floor is full.</div>
@@ -1128,7 +1128,7 @@ function erpCard() {
   const sel = (k, label, opts) => `<label class="field"><span>${label}</span><select data-erp="${k}" ${dis}>${opts.map(([v, l]) => `<option value="${esc(v)}" ${S.erp[k] === v ? 'selected' : ''}>${esc(l)}</option>`).join('')}</select></label>`;
   const last = S.erpSends[0];
   return `<div class="card">
-    <div class="chead"><h3>ERP connection</h3>${info('<div>Set once by an authorized person. <b>Send to ERP</b> on the Orders screen uses it to send the plan and start the MRP run.</div><div>Your SAP team gives the endpoint: an API, an IDoc, or middleware such as SAP Integration Suite. In the live app the APS server makes the call and keeps the sign-in credentials, so they are never typed or stored on this screen. In this prototype the connection is simulated.</div><div><b>MRP run:</b> NETCH plans only materials changed since the last run, NETPL does the same within the planning horizon, NEUPL replans every material.</div>')}
+    <div class="chead"><h3>ERP connection</h3>${info('<div>Set once by an authorized person. <b>Send to ERP</b> on the Sales orders screen uses it to send the plan and start the MRP run.</div><div>Your SAP team gives the endpoint: an API, an IDoc, or middleware such as SAP Integration Suite. In the live app the APS server makes the call and keeps the sign-in credentials, so they are never typed or stored on this screen. In this prototype the connection is simulated.</div><div><b>MRP run:</b> NETCH plans only materials changed since the last run, NETPL does the same within the planning horizon, NEUPL replans every material.</div>')}
       <div class="tools">${canIntegrate() ? '' : '<span class="pill info">View only</span>'}${last ? `<span class="muted small" title="${esc(last.id)} · ${last.n} orders · ${txStage(last)[0]}">Last sent ${fmtAt(last.at).slice(0, 6)}</span>` : ''}${erpOn() ? '<button class="btn sm" data-act="erptest">Test</button>' : ''}</div></div>
     <label class="field"><span>How this customer runs Loadline</span><select data-erp="mode" ${dis} aria-label="ERP mode"><option value="erp" ${erpOn() ? 'selected' : ''} ${erpAllowed() ? '' : 'disabled'}>Connected to ERP: send plan, sync stock, work orders both ways</option><option value="local" ${erpOn() ? '' : 'selected'}>Standalone, no ERP: MRP, POs, stock and work orders in Loadline</option></select></label>
     ${erpAllowed() ? '' : '<p class="note">This license does not include ERP integration, so Loadline runs standalone. Ask your Loadline vendor to add it.</p>'}
@@ -1240,7 +1240,7 @@ function mrpHead(list) {
   const done = S.erpSends.filter(txDone), run = S.erpSends.filter(t => !txDone(t));
   return `${list.length} work order${list.length === 1 ? '' : 's'} after MRP${done[0] ? ` · last MRP run ${fmtAt(done[0].at)} (${esc(done[0].id)})` : ''}${run.length ? ` · ${run.length} send${run.length > 1 ? 's' : ''} still running` : ''}`;
 }
-const noMrp = () => `<div class="card" style="display:grid;gap:8px;justify-items:start"><h3>No work orders have been through MRP yet</h3><p class="muted">The planner ${erpOn() ? 'sends the finalised plan from Orders with <b>Send to ERP</b>' : 'releases the finalised plan from Orders with <b>Release to Purchase</b>'}. Once the MRP run is complete, the BOM of every work order shows here.</p><button class="btn sm" data-tab="orders">Go to Orders</button></div>`;
+const noMrp = () => `<div class="card" style="display:grid;gap:8px;justify-items:start"><h3>No work orders have been through MRP yet</h3><p class="muted">The planner ${erpOn() ? 'sends the finalised plan from Sales orders with <b>Send to ERP</b>' : 'releases the finalised plan from Sales orders with <b>Release to Purchase</b>'}. Once the MRP run is complete, the BOM of every work order shows here.</p><button class="btn sm" data-tab="orders">Go to Sales orders</button></div>`;
 function viewBom() {
   const list = buyOrders();
   if (!list.some(x => x.o.so === UI.selWo)) UI.selWo = list[0] ? list[0].o.so : null;
@@ -3620,7 +3620,7 @@ function viewWos() {
   const ed = canWo(), on = erpOn(), q = woQueue().sort((a, b) => b.rd.ready - a.rd.ready || a.s.start.localeCompare(b.s.start)), f = UI.woF || '';
   const mrp = new Set(buyOrders(true).map(x => x.o.so)), waitMrp = planOrders().filter(o => R.res[o.so] && !R.res[o.so].error && !mrp.has(o.so)).length;
   const all = woList().slice().sort((a, b) => (a.status === 'Completed') - (b.status === 'Completed') || a.start.localeCompare(b.start) || a.no.localeCompare(b.no)), wos = all.filter(w => !f || w.status === f), uns = unsentOf(all), ready = q.filter(x => x.rd.ready).length, sy = (S.woSyncs || [])[0];
-  const help = `<div>One work order per sales order. It can be made once the sales order has been through MRP${on ? ' (Send to ERP on Orders)' : ' (Release to Purchase on Orders)'} and is best made when every bought part is in stores. A planner with the work order right can still make it with parts short, with a tick to confirm.</div>`
+  const help = `<div>One work order per sales order. It can be made once the sales order has been through MRP${on ? ' (Send to ERP on Sales orders)' : ' (Release to Purchase on Sales orders)'} and is best made when every bought part is in stores. A planner with the work order right can still make it with parts short, with a tick to confirm.</div>`
     + (on ? `<div><b>Two ways:</b> make it here and <b>Send to ERP</b>, or make it in ${esc(S.erp.system)} and <b>Sync from ERP</b> pulls it in, with status updates from the shop floor. Each order shows where it was made.</div><div class="muted">In this prototype the ERP side is simulated.</div>` : '<div><b>Standalone:</b> no ERP is connected, so work orders live only in Loadline. An admin can connect an ERP in Integrations.</div>');
   const tools = (on && ed ? `<button class="btn sm" data-act="wosync" title="Pull work orders made in ERP and the latest status">Sync from ERP</button><button class="btn sm primary" data-act="wosend" data-kind="wo" ${uns.length ? '' : 'disabled'}>Send ${uns.length} to ERP</button>` : '') + (ed ? '' : '<span class="pill info">View only</span>') + `<button class="btn sm" data-dl="wos" ${all.length ? '' : 'disabled'}>Download</button>`;
   return `<section class="panel tight">${pageHead('Work orders', `${plural(all.length, 'work order', 'work orders')} · ${q.length} sales order${q.length === 1 ? '' : 's'} waiting for one${on ? ` · ${sy ? `last ERP sync ${fmtAt(sy.at)}` : 'not synced with ERP yet'}` : ' · standalone, no ERP'}`, info(help), tools)}

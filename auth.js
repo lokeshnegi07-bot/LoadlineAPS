@@ -14,7 +14,7 @@
     admin: { label: 'Admin', ws: 'admin' }
   };
   const TABS = {
-    plan: [['upload', 'Upload plan'], ['orders', 'Orders'], ['wos', 'Work orders'], ['prods', 'Production orders'], ['dashboard', 'Factory loading'], ['calendar', 'Factory calendar'], ['shop', 'Shop floor'], ['masters', 'Masters & rules']],
+    plan: [['upload', 'Upload plan'], ['orders', 'Sales orders'], ['wos', 'Work orders'], ['prods', 'Production orders'], ['dashboard', 'Factory loading'], ['calendar', 'Factory calendar'], ['shop', 'Shop floor'], ['masters', 'Masters & rules']],
     buy: [['bom', 'BOM by work order'], ['matsum', 'Material summary'], ['pos', 'Purchase orders'], ['suppliers', 'Supplier master'], ['products', 'Product master'], ['groups', 'Material groups'], ['forecast', 'Forecast & safety stock']],
     wms: [['stock', 'Stock by part'], ['grn', 'GRN'], ['iqc', 'IQC'], ['stores', 'Stores'], ['wip', 'WIP'], ['blocked', 'Blocked'], ['scrap', 'Scrap']]
   };
