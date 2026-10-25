@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Loadline APS</title>
+<meta name="description" content="Loadline is advanced planning and scheduling for make-to-order manufacturers: sales plan, shop floor, purchasing and stores in one connected system.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<meta property="og:title" content="Loadline APS">
+<meta property="og:description" content="Advanced planning and scheduling for make-to-order manufacturers.">
+<meta property="og:image" content="media/loadline-cover.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Manrope:wght@700;800&display=swap">
+<style>
+:root{--bg:#f1f4f8;--surface:#fff;--ink:#0f1b2d;--muted:#586a80;--line:#dbe2ea;--accent:#1d5bd6;--accent-ink:#fff;--nav:#0b1a2e;--nav-ink:#eaf0f8;--nav-muted:#9fb1c8;--signal:#ffb020}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0a111b;--surface:#121b27;--ink:#e4eaf2;--muted:#93a4ba;--line:#253245;--accent:#5b8ef0;--accent-ink:#06101f}}
+:root[data-theme="dark"]{--bg:#0a111b;--surface:#121b27;--ink:#e4eaf2;--muted:#93a4ba;--line:#253245;--accent:#5b8ef0;--accent-ink:#06101f}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 Inter,system-ui,sans-serif}
+a{color:inherit}
+header{background:var(--nav);color:var(--nav-ink)}
+.wrap{max-width:1080px;margin:0 auto;padding:0 16px}
+.bar{display:flex;align-items:center;justify-content:space-between;height:60px}
+.brand{display:flex;align-items:center;gap:10px;font:800 19px Manrope,sans-serif;text-decoration:none}
+.brand svg{width:30px;height:30px}
+.brand small{font:600 11px Inter,sans-serif;letter-spacing:.08em;color:var(--nav-muted);border:1px solid #22385a;border-radius:5px;padding:2px 6px}
+.hero{padding:56px 0 64px}
+.hero h1{font:800 clamp(30px,5vw,48px)/1.1 Manrope,sans-serif;margin:0 0 16px;max-width:760px;letter-spacing:-.01em}
+.hero p{color:var(--nav-muted);font-size:18px;max-width:640px;margin:0 0 28px}
+.btns{display:flex;gap:12px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:12px 20px;border-radius:8px;font-weight:600;text-decoration:none;font-size:15px}
+.btn.primary{background:var(--signal);color:#0b1a2e}
+.btn.ghost{border:1px solid #22385a;color:var(--nav-ink)}
+.btn:hover{filter:brightness(1.08)}
+.video{margin:-36px auto 0;max-width:1080px;padding:0 16px}
+video{width:100%;display:block;border-radius:12px;border:1px solid var(--line);background:#000;box-shadow:0 12px 40px rgba(11,26,46,.18)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px;padding:56px 0}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:20px}
+.card h3{font:700 17px Manrope,sans-serif;margin:0 0 6px}
+.card p{margin:0;color:var(--muted);font-size:14.5px}
+.card i{display:block;width:28px;height:4px;border-radius:2px;background:var(--accent);margin-bottom:14px}
+.note{color:var(--muted);font-size:14px;padding-bottom:40px;border-top:1px solid var(--line);padding-top:20px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap bar">
+    <a class="brand" href="./"><svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7" fill="#1d5bd6"/><rect x="7" y="17" width="4" height="8" rx="1.2" fill="#fff" opacity=".7"/><rect x="14" y="12" width="4" height="13" rx="1.2" fill="#fff" opacity=".85"/><rect x="21" y="8" width="4" height="17" rx="1.2" fill="#fff"/><path d="M4.5 14.5H27.5" stroke="#ffb020" stroke-width="2.2" stroke-linecap="round"/><circle cx="27.5" cy="14.5" r="2.1" fill="#ffb020"/></svg>Loadline <small>APS</small></a>
+    <a class="btn ghost" href="app/" style="padding:8px 14px">Open the app</a>
+  </div>
+  <div class="wrap hero">
+    <h1>Plan every order against real shop-floor capacity.</h1>
+    <p>Loadline is advanced planning and scheduling for make-to-order manufacturers. One connected system from the sales plan to the shop floor, purchasing and the stores.</p>
+    <div class="btns">
+      <a class="btn primary" href="app/">Try the live demo</a>
+      <a class="btn ghost" href="#tour">Watch the 3-minute tour</a>
+    </div>
+  </div>
+</header>
+<div class="video" id="tour">
+  <video controls preload="metadata" poster="media/loadline-cover.jpg">
+    <source src="media/loadline-tour.mp4" type="video/mp4">
+    <track kind="captions" src="media/loadline-tour.vtt" srclang="en" label="English">
+  </video>
+</div>
+<main class="wrap">
+  <section class="grid">
+    <div class="card"><i></i><h3>Planner</h3><p>Upload the marketing plan and schedule each sales order backward from its date, within plant slots, machine availability and manpower.</p></div>
+    <div class="card"><i></i><h3>Shop floor</h3><p>Day-wise loading chart, machine breakdowns and automatic carry-over of daily shortfalls.</p></div>
+    <div class="card"><i></i><h3>Purchase</h3><p>Send the plan to ERP for MRP, see BOMs by material group and buyer, and download them to Excel.</p></div>
+    <div class="card"><i></i><h3>WMS and forecast</h3><p>Stock-aware BOM status, ERP stock sync, consumption forecast and suggested safety stock.</p></div>
+  </section>
+  <div class="note"><span>The demo runs in your browser with sample data. Nothing you enter leaves your device.</span><span>© 2026 Loadline</span></div>
+</main>
+</body>
+</html>

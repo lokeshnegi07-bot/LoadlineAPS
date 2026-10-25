@@ -1,0 +1,189 @@
+WEBVTT
+
+1
+00:00:00.000 --> 00:00:01.069
+This is Loadline:
+
+2
+00:00:01.069 --> 00:00:05.155
+advanced planning and scheduling for make-to-order manufacturers.
+
+3
+00:00:05.155 --> 00:00:10.624
+One connected system, from the sales plan to the shop floor, purchasing and the stores.
+
+4
+00:00:11.533 --> 00:00:14.976
+In most plants, planning still lives in spreadsheets.
+
+5
+00:00:14.976 --> 00:00:22.315
+Planners re-key sales orders, check capacity by hand, chase buyers for parts, and walk the stores to count stock.
+
+6
+00:00:22.315 --> 00:00:27.576
+That is hours of manual effort every day, and decisions made on yesterday's data.
+
+7
+00:00:28.476 --> 00:00:30.660
+It starts with the marketing plan.
+
+8
+00:00:30.660 --> 00:00:38.755
+Upload the Excel file, and Loadline checks every row, flags duplicates and missing data, and keeps backups of earlier uploads.
+
+9
+00:00:38.755 --> 00:00:39.911
+No more re-typing.
+
+10
+00:00:40.843 --> 00:00:49.852
+Every sales order gets a start date and a finished-goods date automatically, scheduled backward from the customer date against real capacity.
+
+11
+00:00:49.852 --> 00:00:54.070
+When the plan is right, one click sends it to ERP for the MRP run.
+
+12
+00:00:54.976 --> 00:01:01.349
+Factory loading shows units in process per day against capacity, so overloads are visible weeks ahead.
+
+13
+00:01:01.349 --> 00:01:08.472
+The factory calendar holds holidays and shutdowns, and the shop floor screen records breakdowns and actual output.
+
+14
+00:01:08.472 --> 00:01:11.659
+Shortfalls carry over to the next day on their own.
+
+15
+00:01:12.576 --> 00:01:17.025
+After MRP, purchasing sees the bill of materials of every work order:
+
+16
+00:01:17.025 --> 00:01:23.022
+what stores, inspection and open purchase orders cover, and exactly what to buy, and by when.
+
+17
+00:01:23.022 --> 00:01:29.856
+Each buyer sees their own material groups, and late purchase orders are flagged before they stop the line.
+
+18
+00:01:30.776 --> 00:01:34.319
+The forecast tab learns from six months of plan history.
+
+19
+00:01:34.319 --> 00:01:42.544
+It forecasts order volume, then sets safety stock and reorder points for every part, from demand variation and supplier lead time.
+
+20
+00:01:42.544 --> 00:01:45.518
+Any shortfall flows straight into the buy list.
+
+21
+00:01:46.417 --> 00:01:54.836
+In the warehouse, goods receipt, incoming inspection, stores by bin, work in progress, blocked stock and scrap are all live.
+
+22
+00:01:54.836 --> 00:02:01.287
+Consumables are issued first-expiry, first-out, and expired stock moves to scrap automatically.
+
+23
+00:02:02.217 --> 00:02:05.915
+Loadline fits any make-to-order or engineer-to-order plant:
+
+24
+00:02:05.915 --> 00:02:15.380
+electric motors and generators, transformers and switchgear, pumps and compressors, heavy fabrication, automotive components, and industrial machinery.
+
+25
+00:02:16.284 --> 00:02:19.737
+Loadline is measured the way plants measure themselves.
+
+26
+00:02:19.737 --> 00:02:20.553
+Productivity:
+
+27
+00:02:20.553 --> 00:02:23.064
+hours of planning work, done in minutes.
+
+28
+00:02:23.064 --> 00:02:23.566
+Quality:
+
+29
+00:02:23.566 --> 00:02:28.149
+one source of truth, no copy errors, and no expired material on the line.
+
+30
+00:02:28.149 --> 00:02:28.463
+Cost:
+
+31
+00:02:28.463 --> 00:02:32.104
+less manual effort, less expediting, and leaner inventory.
+
+32
+00:02:32.104 --> 00:02:32.669
+Delivery:
+
+33
+00:02:32.669 --> 00:02:35.683
+realistic dates, and early warning of shortages.
+
+34
+00:02:35.683 --> 00:02:36.122
+Safety:
+
+35
+00:02:36.122 --> 00:02:38.257
+fewer rush jobs and less overtime.
+
+36
+00:02:38.257 --> 00:02:38.696
+Morale:
+
+37
+00:02:38.696 --> 00:02:41.270
+people work on decisions, not data entry.
+
+38
+00:02:41.270 --> 00:02:42.024
+Environment:
+
+39
+00:02:42.024 --> 00:02:43.719
+less scrap, and less paper.
+
+40
+00:02:44.651 --> 00:02:48.275
+Here is the cost case for a typical two-hundred-person plant.
+
+41
+00:02:48.275 --> 00:02:53.918
+Planning, purchasing and stores spend about one hundred and twenty hours a week on manual work.
+
+42
+00:02:53.918 --> 00:02:56.592
+Loadline removes around eighty percent of it:
+
+43
+00:02:56.592 --> 00:02:59.443
+more than four and a half thousand hours a year.
+
+44
+00:02:59.443 --> 00:03:06.453
+Add leaner inventory and half the expediting, and the saving is around four hundred and fifty thousand dollars a year.
+
+45
+00:03:07.354 --> 00:03:07.912
+Loadline.
+
+46
+00:03:07.912 --> 00:03:09.400
+Every load, on the line.
+
+47
+00:03:09.400 --> 00:03:13.306
+Plan with confidence, buy on time, and deliver on your promise.
