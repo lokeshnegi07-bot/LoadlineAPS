@@ -20,6 +20,10 @@ Each customer runs Loadline one of two ways, set in Admin › Integrations:
 
 ERP integration is also a license feature: a key issued with ERP not included keeps the customer on standalone. The ERP side is simulated in this demo.
 
+## Desktop app for Windows
+
+`desktop/` holds a Windows installer: copy the site files into `desktop/site/`, zip the folder and run `Install Loadline.cmd`. It installs for the current user, hosts the app on the PC at `http://localhost:8765` with a small PowerShell server, opens it in an Edge or Chrome app window, and adds desktop and Start menu shortcuts plus an entry in Settings › Apps. Each time it opens it compares `version.json` on `main` and downloads newer files, so **bump `version.json` with every change merged to `main`**.
+
 ## Demo accounts
 
 | Workspace | User name | Password |
