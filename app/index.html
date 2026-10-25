@@ -1,5 +1,10 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Loadline APS</title>
 <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<script src="../auth.js" data-gate="../#signin"></script>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Manrope:wght@600;700;800&display=swap">
@@ -263,16 +268,29 @@ i.sw{display:inline-block;width:9px;height:9px;border-radius:2px;margin-right:6p
 #tblFc tr>:nth-child(10){display:none} @media (max-width:1799px){#tblFc tr>:nth-child(n+4):nth-child(-n+9){display:none} #tblFc tr>:nth-child(10){display:table-cell}} @media (max-width:1439px){#tblFc td.clip{max-width:130px} #tblFc tr>:nth-child(3),#tblFc tr>:nth-child(12){display:none}} @media (max-width:1365px){#tblFc td.clip{max-width:100px}}
 @media (min-width:1280px) and (max-width:1365px){#tblSum td.clip{max-width:200px}}
 .formgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+.brand .co{font:600 12px/1 var(--body);color:var(--signal);white-space:nowrap}
+.acct{display:flex;align-items:center;gap:8px}.acct[hidden],#licBar[hidden],#wsSeg[hidden],#wsSeg button[hidden]{display:none}
+.acct .who{display:inline-flex;align-items:center;gap:7px;color:var(--nav-ink);font-size:12.5px;font-weight:600}
+.acct .av{width:24px;height:24px;border-radius:50%;background:var(--accent);color:#fff;display:grid;place-items:center;font-size:10.5px;font-weight:700}
+.licbar{background:var(--warn-soft);color:var(--warn);font-size:12.5px;font-weight:500;padding:6px 0;border-bottom:1px solid var(--line)}
+.licbar.bad{background:var(--bad-soft);color:var(--bad)}
+.linkbtn{appearance:none;border:0;background:none;color:inherit;font:inherit;font-weight:700;text-decoration:underline;cursor:pointer;padding:0}
+.seatbar{height:6px;border-radius:3px;background:var(--line);overflow:hidden;min-width:60px}.seatbar i{display:block;height:100%;background:var(--accent)}
+.swatch{width:30px;height:30px;border-radius:8px;border:2px solid var(--surface);box-shadow:0 0 0 1px var(--line);cursor:pointer}.swatch[aria-pressed="true"]{box-shadow:0 0 0 2px var(--ink)}
+input.cell{font:inherit;border:1px solid transparent;background:transparent;color:inherit;padding:3px 5px;border-radius:4px;width:150px}input.cell:hover,input.cell:focus{border-color:var(--line);background:var(--surface)}
+tr.grp td{background:var(--surface-2)}
+@media (max-width:760px){.acct .nm,.brand .co{display:none}}
 @media (prefers-reduced-motion:no-preference){.tab,.btn,.day{transition:color .15s,background-color .15s,border-color .15s}}
 </style>
 
 <header>
   <div class="appbar"><div class="wrap hbar">
-    <div class="brand"><svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7" fill="var(--accent)"/><rect x="7" y="17" width="4" height="8" rx="1.2" fill="#fff" opacity=".7"/><rect x="14" y="12" width="4" height="13" rx="1.2" fill="#fff" opacity=".85"/><rect x="21" y="8" width="4" height="17" rx="1.2" fill="#fff"/><path d="M4.5 14.5H27.5" stroke="var(--signal)" stroke-width="2.2" stroke-linecap="round"/><circle cx="27.5" cy="14.5" r="2.1" fill="var(--signal)"/></svg><h1>Loadline</h1><span class="prod">APS</span><span class="env" title="Prototype with dummy data">Demo data</span></div>
-    <div class="seg ws" role="group" aria-label="Workspace" id="wsSeg"><button data-ws="plan"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 3v18h18"/><path d="M7 15l4-4 3 3 5-6"/></svg>Planner</button><button data-ws="buy"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>Purchase</button><button data-ws="wms"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 21V8l9-5 9 5v13"/><path d="M7 21v-8h10v8"/><path d="M7 17h10"/></svg>WMS</button></div>
-    <div class="hctl"><button id="bellBtn" class="btn sm bell" data-act="notes" hidden></button><label class="inline" for="userSel"><span class="lbl">User</span> <select id="userSel" class="sm-sel"></select></label><label class="inline" for="plantSel"><span class="lbl">Plant</span> <select id="plantSel" class="sm-sel"></select></label></div>
+    <div class="brand"><svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7" fill="var(--accent)"/><rect x="7" y="17" width="4" height="8" rx="1.2" fill="#fff" opacity=".7"/><rect x="14" y="12" width="4" height="13" rx="1.2" fill="#fff" opacity=".85"/><rect x="21" y="8" width="4" height="17" rx="1.2" fill="#fff"/><path d="M4.5 14.5H27.5" stroke="var(--signal)" stroke-width="2.2" stroke-linecap="round"/><circle cx="27.5" cy="14.5" r="2.1" fill="var(--signal)"/></svg><h1>Loadline</h1><span class="prod">APS</span><span class="co" id="coName"></span><span class="env" title="Prototype with dummy data">Demo data</span></div>
+    <div class="seg ws" role="group" aria-label="Workspace" id="wsSeg"><button data-ws="plan"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 3v18h18"/><path d="M7 15l4-4 3 3 5-6"/></svg>Planner</button><button data-ws="buy"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>Purchase</button><button data-ws="wms"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 21V8l9-5 9 5v13"/><path d="M7 21v-8h10v8"/><path d="M7 17h10"/></svg>WMS</button><button data-ws="admin" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 2l8 3v6c0 5-3.4 9.4-8 11-4.6-1.6-8-6-8-11V5z"/><path d="M9 12l2 2 4-4"/></svg>Admin</button></div>
+    <div class="hctl"><div class="acct" id="acctBox" hidden></div><button id="bellBtn" class="btn sm bell" data-act="notes" hidden></button><label class="inline" for="userSel"><span class="lbl">User</span> <select id="userSel" class="sm-sel"></select></label><label class="inline" for="plantSel"><span class="lbl">Plant</span> <select id="plantSel" class="sm-sel"></select></label></div>
   </div></div>
   <div class="subbar"><div class="wrap"><nav class="tabs" role="tablist" id="tabs"></nav></div></div>
+  <div id="licBar" class="licbar" hidden></div>
 </header>
 <main class="wrap" id="main"></main>
 <div id="modalRoot"></div>
@@ -700,7 +718,10 @@ function chartSVG(fids) {
 /* ---------- views ---------- */
 const BUY_TABS = [['bom','BOM<span class="tx"> by work order</span>'],['matsum','Material<span class="tx"> summary</span>'],['pos','<span class="tx">Purchase orders</span><span class="mx">POs</span>'],['suppliers','Supplier<span class="tx"> master</span>'],['products','Product<span class="tx"> master</span>'],['groups','<span class="tx">Material groups</span><span class="mx">Groups</span>'],['forecast','Forecast<span class="tx"> &amp; safety stock</span>']];
 const WMS_TABS = [['stock','Stock<span class="tx"> by part</span>'],['grn','GRN'],['iqc','IQC'],['stores','Stores'],['wip','WIP'],['blocked','Blocked'],['scrap','Scrap']];
-const wsTabs = ws => ({ buy:BUY_TABS, wms:WMS_TABS })[ws] || TABS;
+const ADM_TABS = [['admUsers','Users<span class="tx"> &amp; sign-in</span>'],['admAccess','Role access'],['admLicense','License'],['admBrand','Branding'],['admLog','Sign-in log']];
+const wsTabsAll = ws => ({ buy:BUY_TABS, wms:WMS_TABS, admin:ADM_TABS })[ws] || TABS;
+// with sign-in (hosted site) only the tabs the person's role is given; without it every tab, and no admin workspace
+const wsTabs = ws => AUTH ? wsTabsAll(ws).filter(([k]) => AUTH.canTab(ws, k)) : ws === 'admin' ? [] : wsTabsAll(ws);
 const TABS = [['upload','Upload<span class="tx"> plan</span>'],['orders','Orders'],['dashboard','<span class="tx">Factory loading</span><span class="mx">Loading</span>'],['calendar','<span class="tx">Factory calendar</span><span class="mx">Calendar</span>'],['shop','Shop<span class="tp"> floor</span>'],['masters','Masters<span class="tx"> & rules</span>']];
 let rendering = false;
 function render() {
@@ -711,6 +732,10 @@ function render() {
 }
 function renderNow() {
   MIX = null; if (S.wms) expiryCheck(); schedule(); save(); saveUI();
+  const allow = wsAllowed();
+  if (!allow.includes(UI.ws)) UI.ws = allow[0] || 'plan';
+  authHeader();
+  if (!allow.length || AUTH && !AUTH.isAdmin() && !AUTH.licUsable() && AUTH.licStatus().state !== 'checking') { document.getElementById('tabs').innerHTML = ''; document.getElementById('main').innerHTML = lockView(); return; }
   const tabs = wsTabs(UI.ws);
   if (!tabs.some(([k]) => k === UI.tab)) UI.tab = UI.wsTab[UI.ws] || tabs[0][0];
   UI.wsTab[UI.ws] = UI.tab;
@@ -726,9 +751,9 @@ function renderNow() {
   if (UI.plant !== 'ALL' && !S.factories.some(f => f.id === UI.plant)) UI.plant = 'ALL';
   ps.value = UI.plant;
   const m = document.getElementById('main');
-  document.body.classList.toggle('wide', ['orders', 'bom', 'matsum', 'suppliers', 'products', 'groups', 'pos', 'stock', 'stores', 'wip', 'iqc', 'scrap', 'blocked', 'forecast'].includes(UI.tab));
+  document.body.classList.toggle('wide', ['orders', 'bom', 'matsum', 'suppliers', 'products', 'groups', 'pos', 'stock', 'stores', 'wip', 'iqc', 'scrap', 'blocked', 'forecast', 'admUsers', 'admLicense', 'admLog'].includes(UI.tab));
   const sx = UI.rescroll ? null : m.querySelector('.chartbox')?.scrollLeft, gy = m.querySelector('#grpSide')?.scrollTop;
-  m.innerHTML = ({ dashboard:viewDashboard, orders:viewOrders, upload:viewUpload, calendar:viewCalendar, shop:viewShop, masters:viewMasters, bom:viewBom, matsum:viewMatSum, suppliers:viewSuppliers, products:viewProducts, groups:viewGroups, pos:viewPos, stock:viewStock, grn:viewGrn, stores:viewStores, wip:viewWip, iqc:viewIqc, scrap:viewScrap, blocked:viewBlocked, forecast:viewForecast })[UI.tab]();
+  m.innerHTML = ({ dashboard:viewDashboard, orders:viewOrders, upload:viewUpload, calendar:viewCalendar, shop:viewShop, masters:viewMasters, bom:viewBom, matsum:viewMatSum, suppliers:viewSuppliers, products:viewProducts, groups:viewGroups, pos:viewPos, stock:viewStock, grn:viewGrn, stores:viewStores, wip:viewWip, iqc:viewIqc, scrap:viewScrap, blocked:viewBlocked, forecast:viewForecast, admUsers:viewAdmUsers, admAccess:viewAdmAccess, admLicense:viewAdmLicense, admBrand:viewAdmBrand, admLog:viewAdmLog })[UI.tab]();
   const cb = m.querySelector('.chartbox'); if (cb && sx != null) cb.scrollLeft = sx;
   else if (cb) { const { lo } = rangeFor(plantIds()); cb.scrollLeft = Math.max(0, diffDays(lo, localToday()) - 3) * (chartSVG.dw || 26); }
   UI.rescroll = false;
@@ -2660,6 +2685,198 @@ function openOrder(so) {
 const closeModal = () => document.getElementById('modalRoot').innerHTML = '';
 function overloadIn(fid, a, b) { let n = 0; for (let d = a; d <= b; d = addDays(d, 1)) if ((R.load[fid + '|' + d] || 0) > capOn(fid, d)) n++; return n; }
 
+/* ---------- sign-in, role access, licensing and admin (hosted site) ----------
+   On the hosted site ../auth.js sets window.LoadlineAuth: each person signs in to one workspace, sees only the tabs
+   their role is given, and their rights follow the account's rights profile. Opened on its own the app has no
+   sign-in and keeps the User picker and every workspace. */
+const AUTH = window.LoadlineAuth && window.LoadlineAuth.session() ? window.LoadlineAuth : null;
+const ADM_ROLES = ['planner', 'purchase', 'wms', 'admin'];
+const wsAllowed = () => ['plan', 'buy', 'wms', 'admin'].filter(w => wsTabs(w).length);
+const initials = n => String(n || '?').split(/\s+/).map(w => w[0]).join('').slice(0, 2).toUpperCase();
+const licDate = d => new Date(d + 'T00:00:00').toLocaleDateString(undefined, { day:'numeric', month:'short', year:'numeric' });
+function authHeader() {
+  const allow = wsAllowed();
+  document.querySelectorAll('#wsSeg button').forEach(b => b.hidden = !allow.includes(b.dataset.ws));
+  document.getElementById('wsSeg').hidden = !allow.length;
+  const box = document.getElementById('acctBox'), us = document.getElementById('userSel'), lb = document.getElementById('licBar');
+  if (!AUTH) { box.hidden = true; lb.hidden = true; return; }
+  const s = AUTH.session();
+  if (!s) { location.replace('../#signin'); return; }
+  box.hidden = false;
+  box.innerHTML = `<span class="who" title="${esc(s.name)} · ${esc(AUTH.ROLES[s.role].label)}"><span class="av">${esc(initials(s.name))}</span><span class="nm">${esc(s.name)}</span></span><button class="btn sm" data-adm="signout">Sign out</button>`;
+  // rights inside the app follow the account's rights profile; only admin can switch profiles to test
+  if (!AUTH.isAdmin()) { const i = S.users.findIndex(u => u.name === s.appUser); if (i >= 0) S.user = i; us.disabled = true; us.title = 'Set by your sign-in'; }
+  else { us.disabled = false; us.title = 'Admin: try the app with another rights profile'; }
+  document.getElementById('coName').textContent = AUTH.cfg().brand.company || '';
+  const L = AUTH.licStatus(), adm = AUTH.isAdmin(), fix = adm ? ' <button class="linkbtn" data-adm="golic">Enter a new key</button>' : ' Ask your admin.';
+  const msg = L.state === 'invalid' ? ['bad', `No valid license on this site. ${esc(L.err || '')}${fix}`]
+    : L.state === 'expired' ? ['bad', `The license expired on ${licDate(L.p.expires)}.${fix}`]
+    : L.state === 'grace' ? ['bad', `The license expired on ${licDate(L.p.expires)}. Sign-in stops in ${L.graceLeft} day${L.graceLeft === 1 ? '' : 's'}.${fix}`]
+    : L.state === 'ok' && L.daysLeft <= 30 && adm ? ['', `The license ends on ${licDate(L.p.expires)} (${L.daysLeft} day${L.daysLeft === 1 ? '' : 's'}). Ask Loadline for a renewal key.${fix}`] : null;
+  lb.hidden = !msg; if (msg) { lb.className = 'licbar ' + msg[0]; lb.innerHTML = `<div class="wrap">${msg[1]}</div>`; }
+}
+// shown instead of the tabs when a role has nothing to open or the license is no longer usable
+function lockView() {
+  const L = AUTH && AUTH.licStatus(), lic = AUTH && !AUTH.licUsable();
+  return `<section class="panel"><div class="card" style="max-width:560px;margin:40px auto;display:grid;gap:10px;text-align:center;padding:28px">
+    <h2 style="margin:0">${lic ? 'License needed' : 'No tabs for your role yet'}</h2>
+    <p class="muted" style="margin:0">${lic ? (L.state === 'expired' ? `Your company's Loadline license expired on ${licDate(L.p.expires)}.` : 'This site has no valid Loadline license.') + ' Your admin can enter a new license key.' : 'Your admin has not given your role any tabs. Ask them to open Admin › Role access.'}</p>
+    <div><button class="btn" data-adm="signout">Sign out</button></div></div></section>`;
+}
+const seatPill = r => { const n = AUTH.seats(r), u = AUTH.activeOf(r).length; return `<span class="pill ${!n ? 'info' : u > n ? 'bad' : u === n ? 'warn' : 'ok'}" title="${u} active of ${n} licensed">${AUTH.ROLES[r].label} ${u}/${n}</span>`; };
+const rightsPills = name => { const u = S.users.find(x => x.name === name); if (!u) return '<span class="pill bad">Missing profile</span>';
+  const p = [u.canEdit && 'FG date', u.canSend && 'ERP send', u.canBuy && 'Purchase', u.canWms && 'Stock moves'].filter(Boolean);
+  return p.length ? p.map(x => `<span class="pill info">${x}</span>`).join(' ') : '<span class="pill info">View only</span>'; };
+function viewAdmUsers() {
+  const c = AUTH.cfg(), me = AUTH.session();
+  return `<section class="panel tight">
+  ${pageHead('Users & sign-in', '', info('<div>Each person signs in to the workspace of their role and sees only the tabs that role is given (Role access). Admin sees everything.</div><div><b>Rights profile</b> sets what they may change inside the app (edit FG dates, send to ERP, purchase masters, stock moves); edit the profiles in Planner › Masters › Who can do what.</div><div><b>Seats:</b> the license sets how many people per workspace can be active. The first active accounts of a role in this list hold its seats.</div>'),
+    `${ADM_ROLES.map(seatPill).join(' ')}<button class="btn sm primary" data-adm="add">Add person</button>`)}
+  <div class="tablewrap"><table id="tblAdmUsers"><thead><tr><th>Name</th><th>User name</th><th>Workspace (role)</th><th>Rights profile</th><th>Active</th><th>License</th><th>Last sign-in</th><th></th></tr></thead><tbody>
+  ${c.accounts.map((a, i) => { const self = a.u === me.u, seat = a.active && AUTH.hasSeat(a);
+    return `<tr><td><input class="cell" data-admf="name" data-i="${i}" value="${esc(a.name)}" aria-label="Name"> ${self ? '<span class="pill acc">you</span>' : ''}</td>
+    <td class="mono">${esc(a.u)}</td>
+    <td><select class="sm-sel" data-admf="role" data-i="${i}" ${self ? 'disabled title="You can\'t change your own role"' : ''} aria-label="Role">${ADM_ROLES.map(r => `<option value="${r}" ${a.role === r ? 'selected' : ''}>${AUTH.ROLES[r].label}</option>`).join('')}</select></td>
+    <td><div class="row" style="gap:6px;flex-wrap:nowrap"><select class="sm-sel" data-admf="appUser" data-i="${i}" aria-label="Rights profile">${S.users.map(u => `<option ${u.name === a.appUser ? 'selected' : ''}>${esc(u.name)}</option>`).join('')}${S.users.some(u => u.name === a.appUser) ? '' : `<option selected>${esc(a.appUser)}</option>`}</select></div><div style="margin-top:4px">${rightsPills(a.appUser)}</div></td>
+    <td><input type="checkbox" data-admf="active" data-i="${i}" ${a.active ? 'checked' : ''} ${self ? 'disabled' : ''} aria-label="${esc(a.name)} active"></td>
+    <td>${!a.active ? '<span class="pill info">Off</span>' : seat ? '<span class="pill ok">Seat</span>' : AUTH.seats(a.role) ? '<span class="pill bad">No free seat</span>' : '<span class="pill bad">Not licensed</span>'}</td>
+    <td class="num">${a.last ? fmtAt(a.last) : '<span class="muted">Never</span>'}</td>
+    <td><div class="row" style="gap:6px;flex-wrap:nowrap"><button class="btn sm" data-adm="pw" data-i="${i}">Reset password</button>${self ? '' : `<button class="btn sm danger" data-adm="del" data-i="${i}">${UI.admDel === a.u ? 'Click again' : 'Remove'}</button>`}</div></td></tr>`; }).join('')}
+  </tbody></table></div></section>`;
+}
+function viewAdmAccess() {
+  const acc = AUTH.cfg().access, R = ['planner', 'purchase', 'wms'];
+  const cnt = r => Object.values(acc[r] || {}).reduce((n, a) => n + a.length, 0);
+  return `<section class="panel tight">
+  ${pageHead('Role access', '', info('Tick the tabs each role can open. A role sees a workspace in its header only when it has at least one tab there. Admin always sees everything. What people may change inside a tab is set by their rights profile.'),
+    `<button class="btn sm" data-adm="accreset">Back to defaults</button>`)}
+  <div class="tablewrap cmp" style="max-width:900px"><table><thead><tr><th>Tab</th>${R.map(r => `<th style="text-align:center">${AUTH.ROLES[r].label}<div class="muted small" style="font-weight:400">${cnt(r)} tab${cnt(r) === 1 ? '' : 's'}${AUTH.seats(r) ? '' : ' · not licensed'}</div></th>`).join('')}<th style="text-align:center">Admin</th></tr></thead><tbody>
+  ${['plan', 'buy', 'wms'].map(ws => `<tr class="grp"><td colspan="5"><b>${AUTH.WS_LABEL[ws]}</b></td></tr>` + AUTH.TABS[ws].map(([k, l]) => `<tr><td>${esc(l)}</td>${R.map(r => `<td style="text-align:center"><input type="checkbox" data-acc="${r}|${ws}|${k}" ${((acc[r] || {})[ws] || []).includes(k) ? 'checked' : ''} aria-label="${AUTH.ROLES[r].label} can open ${esc(l)}"></td>`).join('')}<td style="text-align:center"><input type="checkbox" checked disabled aria-label="Admin can open ${esc(l)}"></td></tr>`).join('')).join('')}
+  </tbody></table></div></section>`;
+}
+function viewAdmLicense() {
+  const L = AUTH.licStatus(), p = L.p || {}, st = { ok:['ok', 'Active'], grace:['warn', 'Expired · grace period'], expired:['bad', 'Expired'], invalid:['bad', 'Not valid'], checking:['info', 'Checking…'] }[L.state];
+  const row = (k, v) => `<tr><td class="muted">${k}</td><td>${v}</td></tr>`;
+  return `<section class="panel tight">
+  ${pageHead('License', '', info('<div>Loadline is licensed per named user and per workspace. The license key is signed by Loadline, so seats and dates can only change with a new key.</div><div>When a key expires there is a short grace period; after that only admins can sign in, to enter a renewal key.</div>'), `<span class="pill ${st[0]}">${st[1]}</span>`)}
+  <div class="mcols" style="grid-template-columns:repeat(auto-fit,minmax(320px,1fr))"><div class="card" style="display:grid;gap:10px">
+    <div class="chead"><h3>This site's license</h3></div>
+    ${L.p ? `<div class="tablewrap cmp"><table><tbody>${row('Licensed to', `<b>${esc(p.customer)}</b>`)}${row('Edition', esc(p.edition || 'Standard'))}${row('License ID', `<span class="mono">${esc(p.lid)}</span>`)}${row('Issued', licDate(p.issued))}${row('Valid until', `${licDate(p.expires)}${L.state === 'ok' ? ` <span class="muted">· ${L.daysLeft} days left</span>` : ''}`)}${row('Grace period', `${+p.grace || 0} days`)}${row('Site', p.domain ? esc(p.domain) : 'Any site')}</tbody></table></div>` : `<p class="note">${esc(L.err || 'No license key.')}</p>`}
+    <div class="tablewrap cmp"><table><thead><tr><th>Workspace</th><th class="num">Licensed</th><th class="num">Active</th><th class="num">Free</th><th style="width:30%"></th></tr></thead><tbody>
+    ${ADM_ROLES.map(r => { const n = AUTH.seats(r), u = AUTH.activeOf(r).length; return `<tr><td>${AUTH.ROLES[r].label}</td><td class="num">${n}</td><td class="num">${u}</td><td class="num">${u > n ? `<span class="pill bad">${u - n} over</span>` : n - u}</td><td><div class="seatbar"><i style="width:${n ? Math.min(100, u / n * 100) : 0}%;${u > n ? 'background:var(--bad)' : ''}"></i></div></td></tr>`; }).join('')}
+    </tbody></table></div></div>
+  <div class="card" style="display:grid;gap:10px;align-content:start">
+    <div class="chead"><h3>Apply a new license key</h3></div>
+    <p class="muted small" style="margin:0">Paste the key from Loadline (starts with <span class="mono">LL1.</span>). It replaces the current license straight away.</p>
+    <textarea id="admLicKey" rows="6" class="mono" style="width:100%;font-size:12px;padding:8px;border:1px solid var(--line);border-radius:5px;background:var(--surface);color:var(--ink);resize:vertical" placeholder="LL1.…" aria-label="License key">${esc(UI.admLicKey || '')}</textarea>
+    <div class="row" style="gap:8px"><button class="btn primary" data-adm="licapply">Check and apply</button>${UI.admLicMsg ? `<span class="pill ${UI.admLicMsg[0]}" style="white-space:normal">${esc(UI.admLicMsg[1])}</span>` : ''}</div>
+  </div></div></section>`;
+}
+function viewAdmBrand() {
+  const b = AUTH.cfg().brand;
+  return `<section class="panel tight">
+  ${pageHead('Branding', '', info('Applies to the landing page, the sign-in pages and the app in this browser.'))}
+  <div class="card" style="display:grid;gap:14px;max-width:720px">
+    <div class="formgrid">
+      <label class="field"><span>Company name (shown next to the logo)</span><input data-brand="company" value="${esc(b.company)}" maxlength="40" placeholder="e.g. Australia Motors Pty Ltd"></label>
+      <label class="field"><span>Sign-in page message</span><input data-brand="welcome" value="${esc(b.welcome)}" maxlength="90" placeholder="e.g. Use your plant account"></label>
+      <label class="field"><span>Stay signed in for</span><select data-brand="hours">${[1, 4, 8, 12, 24].map(h => `<option value="${h}" ${+b.hours === h ? 'selected' : ''}>${h} hour${h === 1 ? '' : 's'}</option>`).join('')}</select></label>
+    </div>
+    <div class="field"><span>Accent colour</span><div class="row" style="gap:8px">${Object.entries(AUTH.ACCENTS).map(([k, a]) => `<button class="swatch" style="background:${a.light}" data-adm="accent" data-name="${k}" aria-pressed="${b.accent === k}" title="${a.name}" aria-label="${a.name}"></button>`).join('')}</div></div>
+    <div class="row" style="border-top:1px solid var(--line);padding-top:12px"><span class="muted small" style="flex:1">Bring back the demo accounts, role access and look. The license key is kept.</span><button class="btn sm danger" data-adm="authreset">${UI.admReset ? 'Click again to reset' : 'Reset sign-in settings'}</button></div>
+  </div></section>`;
+}
+function viewAdmLog() {
+  const L = AUTH.cfg().log;
+  return `<section class="panel tight">${pageHead('Sign-in log', `Last ${L.length} attempts in this browser`)}
+  <div class="tablewrap"><table><thead><tr><th>When</th><th>User name</th><th>Workspace</th><th>Result</th><th>Why</th></tr></thead><tbody>
+  ${L.map(e => `<tr><td class="num">${fmtAt(e.at)}</td><td class="mono">${esc(e.u)}</td><td>${esc((AUTH.ROLES[e.entry] || {}).label || e.entry || '')}</td><td>${e.ok ? '<span class="pill ok">Signed in</span>' : '<span class="pill bad">Refused</span>'}</td><td>${esc(e.why)}</td></tr>`).join('') || '<tr><td colspan="5" class="muted">No sign-ins yet.</td></tr>'}
+  </tbody></table></div></section>`;
+}
+function admAccountModal(i) {
+  const a = i == null ? null : AUTH.cfg().accounts[i];
+  document.getElementById('modalRoot').innerHTML = `<div class="overlay" data-close="1"><div class="modal" role="dialog" aria-modal="true" aria-label="${a ? 'Reset password' : 'Add person'}" style="width:min(560px,100%)">
+    <div class="spread"><div><div class="eyebrow">Admin</div><h2>${a ? 'Reset password for ' + esc(a.name) : 'Add person'}</h2></div><button class="btn sm" data-close="1">Close</button></div>
+    <div class="formgrid">${a ? '' : `<label class="field"><span>Name</span><input id="ad_name" maxlength="40"></label>
+      <label class="field"><span>User name (to sign in)</span><input id="ad_u" maxlength="30" autocapitalize="none" spellcheck="false"></label>
+      <label class="field"><span>Workspace (role)</span><select id="ad_role">${ADM_ROLES.map(r => { const l = AUTH.seatsLeft(r); return `<option value="${r}" ${l > 0 ? '' : 'disabled'}>${AUTH.ROLES[r].label} · ${l > 0 ? l + ' seat' + (l === 1 ? '' : 's') + ' free' : 'no free seat'}</option>`; }).join('')}</select></label>
+      <label class="field"><span>Rights profile</span><select id="ad_app">${S.users.map(u => `<option>${esc(u.name)}</option>`).join('')}</select></label>`}
+      <label class="field"><span>${a ? 'New password' : 'Password'} (8+ characters)</span><input id="ad_pw" type="text" autocomplete="new-password" spellcheck="false"></label></div>
+    <div id="adErr"></div>
+    <div class="row"><button class="btn primary" data-adm="${a ? 'pwsave' : 'addsave'}" ${a ? `data-i="${i}"` : ''}>${a ? 'Set password' : 'Add person'}</button><button class="btn" data-close="1">Cancel</button></div>
+  </div></div>`;
+  const r = document.getElementById('ad_role'); if (r) { const f = [...r.options].find(o => !o.disabled); if (f) r.value = f.value; }
+  document.querySelector('#modalRoot input').focus();
+}
+const admErr = m => { document.getElementById('adErr').innerHTML = `<p class="note" style="color:var(--bad);border-color:var(--bad)">${esc(m)}</p>`; };
+document.addEventListener('click', ev => {
+  const t = ev.target.closest('[data-adm]'); if (!t || !AUTH) return;
+  const act = t.dataset.adm, c = AUTH.cfg(), i = +t.dataset.i, a = c.accounts[i], me = AUTH.session();
+  if (act === 'signout') { AUTH.logout(); location.href = '../'; return; }
+  if (!AUTH.isAdmin()) return;
+  if (act === 'golic') { UI.ws = 'admin'; UI.tab = 'admLicense'; render(); return; }
+  if (act === 'add') { admAccountModal(null); return; }
+  if (act === 'pw') { admAccountModal(i); return; }
+  if (act === 'pwsave' || act === 'addsave') {
+    const pw = document.getElementById('ad_pw').value;
+    if (act === 'addsave') {
+      const name = document.getElementById('ad_name').value.trim(), u = lc(document.getElementById('ad_u').value), role = document.getElementById('ad_role').value;
+      if (!name) return admErr('Type the person\'s name.');
+      if (!/^[a-z0-9._-]{3,30}$/.test(u)) return admErr('User name: 3 to 30 letters, numbers, dots, dashes or underscores.');
+      if (AUTH.find(u)) return admErr('That user name is taken.');
+      if (AUTH.seatsLeft(role) <= 0) return admErr(`No free ${AUTH.ROLES[role].label} seat. Switch someone off or get more licenses.`);
+      if (pw.length < 8) return admErr('Use a password of 8 or more characters.');
+      c.accounts.push({ u, name, role, appUser:document.getElementById('ad_app').value, pw:AUTH.pwHash(u, pw), active:true, last:null });
+      AUTH.save(); closeModal(); render(); toast(`${name} can now sign in to ${AUTH.ROLES[role].label} as ${u}.`); return;
+    }
+    if (pw.length < 8) return admErr('Use a password of 8 or more characters.');
+    a.pw = AUTH.pwHash(a.u, pw); delete a.demo; AUTH.save(); closeModal(); render(); toast(`Password changed for ${a.name}.`); return;
+  }
+  if (act === 'del') {
+    if (a.u === me.u) return;
+    if (UI.admDel !== a.u) { UI.admDel = a.u; render(); setTimeout(() => { if (UI.admDel === a.u) { UI.admDel = null; render(); } }, 4000); return; }
+    UI.admDel = null; c.accounts.splice(i, 1); AUTH.save(); render(); toast(`${a.name} removed. Their seat is free.`); return;
+  }
+  if (act === 'accreset') { c.access = AUTH.defaultAccess(); AUTH.save(); render(); toast('Role access is back to the defaults.'); return; }
+  if (act === 'accent') { c.brand.accent = t.dataset.name; AUTH.save(); AUTH.applyBrand(); render(); return; }
+  if (act === 'authreset') {
+    if (!UI.admReset) { UI.admReset = true; render(); setTimeout(() => { UI.admReset = false; if (UI.tab === 'admBrand') render(); }, 4000); return; }
+    UI.admReset = false; const key = c.license; AUTH.reset(); AUTH.cfg().license = key; AUTH.save(); AUTH.applyBrand(); toast('Sign-in settings reset. Sign in again with a demo account.'); setTimeout(() => location.href = '../#signin/admin', 900); return;
+  }
+  if (act === 'licapply') {
+    const k = document.getElementById('admLicKey').value; UI.admLicKey = k; UI.admLicMsg = ['info', 'Checking…']; render();
+    AUTH.applyLicense(k).then(r => { UI.admLicMsg = r.ok ? ['ok', `Applied: ${r.status.p.customer}, valid until ${licDate(r.status.p.expires)}.`] : ['bad', r.err]; if (r.ok) UI.admLicKey = ''; render(); });
+    return;
+  }
+});
+document.addEventListener('change', ev => {
+  const t = ev.target; if (!AUTH || !AUTH.isAdmin()) return;
+  const c = AUTH.cfg(), ds = t.dataset;
+  if (ds.admf) {
+    const a = c.accounts[+ds.i], f = ds.admf;
+    const admins = c.accounts.filter(x => x.active && x.role === 'admin');
+    if (f === 'name') { if (t.value.trim()) a.name = t.value.trim(); }
+    else if (f === 'appUser') a.appUser = t.value;
+    else if (f === 'role') {
+      if (a.role === 'admin' && a.active && admins.length < 2) { toast('Keep at least one active admin.'); render(); return; }
+      if (a.active && AUTH.seatsLeft(t.value) <= 0) { toast(`No free ${AUTH.ROLES[t.value].label} seat. Switch someone off or get more licenses.`); render(); return; }
+      a.role = t.value;
+    } else if (f === 'active') {
+      if (t.checked && AUTH.seatsLeft(a.role) <= 0) { toast(`No free ${AUTH.ROLES[a.role].label} seat. Switch someone else off or get more licenses.`); render(); return; }
+      if (!t.checked && a.role === 'admin' && admins.length < 2) { toast('Keep at least one active admin.'); render(); return; }
+      a.active = t.checked;
+    }
+    AUTH.save(); render(); return;
+  }
+  if (ds.acc) {
+    const [r, ws, k] = ds.acc.split('|'), m = c.access[r] || (c.access[r] = {}), l = m[ws] || (m[ws] = []);
+    if (t.checked) { if (!l.includes(k)) l.push(k); } else m[ws] = l.filter(x => x !== k);
+    AUTH.save(); render(); return;
+  }
+  if (ds.brand) { c.brand[ds.brand] = ds.brand === 'hours' ? +t.value : t.value.trim(); AUTH.save(); render(); return; }
+});
+if (AUTH) AUTH.ready.then(() => render());
+
 /* ---------- events ---------- */
 document.addEventListener('click', ev => {
   const t = ev.target.closest('[data-clearcolf],[data-tab],[data-zoom],[data-filter],[data-day],[data-open],[data-act],[data-close],[data-ov],[data-clearov],[data-restore],[data-cal],[data-dellead],[data-actsave],[data-actdel],[data-actday],[data-mdel],[data-ws],[data-erpscope],[data-wo],[data-dl],[data-medit]');
@@ -2668,7 +2885,7 @@ document.addEventListener('click', ev => {
   if (ds.close !== undefined && ev.target !== t && !ev.target.closest('button[data-close]')) return;
   if (ds.clearcolf) { UI.colf[ds.clearcolf] = {}; render(); return; }
   if (ds.ws) { if (ds.ws !== UI.ws) { UI.ws = ds.ws; UI.tab = UI.wsTab[ds.ws] || wsTabs(ds.ws)[0][0]; UI.rescroll = true; render(); window.scrollTo(0, 0); } return; }
-  if (ds.tab) { if (ds.close !== undefined) closeModal(); if (!wsTabs(UI.ws).some(([k]) => k === ds.tab)) UI.ws = ['plan', 'buy', 'wms'].find(w => wsTabs(w).some(([k]) => k === ds.tab)) || 'plan'; UI.tab = ds.tab; UI.rescroll = true; render(); window.scrollTo(0, 0); return; }
+  if (ds.tab) { if (ds.close !== undefined) closeModal(); if (!wsTabs(UI.ws).some(([k]) => k === ds.tab)) UI.ws = ['plan', 'buy', 'wms', 'admin'].find(w => wsTabs(w).some(([k]) => k === ds.tab)) || 'plan'; UI.tab = ds.tab; UI.rescroll = true; render(); window.scrollTo(0, 0); return; }
   if (ds.erpscope) { UI.erpScope = ds.erpscope; openErp(); return; }
   if (ds.wo) { UI.selWo = ds.wo; render(); if (matchMedia('(max-width:1000px)').matches) document.getElementById('bomCard')?.scrollIntoView({ block:'start', behavior:'smooth' }); return; }
   if (ds.dl) { download(ds.dl, ds.arg); return; }
@@ -2976,5 +3193,7 @@ if (!S || S.v !== 11) { S = seedState(); seedErpSend(); addDemoActual(); }
 S.machines = S.machines || []; S.actuals = S.actuals || {}; S.suppliers = S.suppliers || []; S.products = S.products || []; S.groups = S.groups || [];
 if (!S.wms) S.wms = seedWms(S); ['stores', 'wip', 'iqc', 'scrap', 'blocked', 'moves', 'syncs'].forEach(k => S.wms[k] = S.wms[k] || []); S.wms.n = S.wms.n || 0; S.erp.stockSync = S.erp.stockSync || '15'; S.pos = S.pos || []; S.notes = S.notes || []; S.grns = S.grns || []; S.safety = S.safety || {}; fcCfg();
 MIX = null; freezeExp();
+// open the workspace picked on the landing page
+if (AUTH) { const i = S.users.findIndex(u => u.name === AUTH.session().appUser); if (i >= 0) S.user = i; const e = AUTH.takeEntry(); if (e && wsAllowed().includes(e)) { UI.ws = e; UI.tab = wsTabs(e)[0][0]; } }
 render();
 </script>
