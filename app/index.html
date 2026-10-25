@@ -1,5 +1,10 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Loadline APS</title>
 <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<script src="../auth.js" data-gate="../index.html#signin"></script>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Manrope:wght@600;700;800&display=swap">
@@ -263,16 +268,48 @@ i.sw{display:inline-block;width:9px;height:9px;border-radius:2px;margin-right:6p
 #tblFc tr>:nth-child(10){display:none} @media (max-width:1799px){#tblFc tr>:nth-child(n+4):nth-child(-n+9){display:none} #tblFc tr>:nth-child(10){display:table-cell}} @media (max-width:1439px){#tblFc td.clip{max-width:130px} #tblFc tr>:nth-child(3),#tblFc tr>:nth-child(12){display:none}} @media (max-width:1365px){#tblFc td.clip{max-width:100px}}
 @media (min-width:1280px) and (max-width:1365px){#tblSum td.clip{max-width:200px}}
 .formgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+.ai-fab{position:fixed;right:18px;bottom:18px;z-index:15;display:inline-flex;align-items:center;gap:8px;padding:11px 16px 11px 13px;border-radius:999px;border:0;cursor:pointer;color:#fff;font:600 13.5px var(--body);background:linear-gradient(135deg,var(--accent),#7a5af0);box-shadow:0 10px 28px rgb(29 91 214 / .38)}
+.ai-fab svg{width:18px;height:18px}.ai-fab:hover{filter:brightness(1.08)}.ai-fab[hidden],.ai-panel[hidden]{display:none}
+@media (prefers-reduced-motion:no-preference){.ai-fab svg{animation:aispark 3s ease-in-out infinite}@keyframes aispark{50%{transform:rotate(18deg) scale(1.12)}}.ai-panel{animation:aiin .22s ease-out}@keyframes aiin{from{opacity:0;transform:translateY(12px)}}}
+.ai-panel{position:fixed;right:16px;bottom:16px;z-index:16;width:min(430px,calc(100vw - 32px));height:min(640px,calc(100dvh - 90px));background:var(--surface);border:1px solid var(--line);border-radius:12px;box-shadow:0 22px 60px rgb(6 12 21 / .3);display:grid;grid-template-rows:auto 1fr auto auto;overflow:hidden}
+.ai-head{display:flex;align-items:center;gap:10px;padding:12px 14px;border-bottom:1px solid var(--line);background:linear-gradient(135deg,var(--accent-soft),var(--surface))}.ai-head>div{flex:1;min-width:0}
+.ai-body{overflow:auto;padding:12px 14px;display:grid;gap:10px;align-content:start}
+.ai-msg{font-size:13px;line-height:1.5;max-width:100%}.ai-msg p{margin:0 0 6px}.ai-msg p:last-child{margin-bottom:0}
+.ai-msg.me{justify-self:end;background:var(--accent);color:#fff;padding:7px 11px;border-radius:12px 12px 3px 12px;max-width:85%}
+.ai-msg.ai{background:var(--surface-2);border:1px solid var(--line);padding:10px 12px;border-radius:12px 12px 12px 3px;display:grid;gap:6px}
+.ai-msg .row{gap:6px}.ai-t{max-height:220px}.ai-t td,.ai-t th{font-size:12px}
+.ai-quick{padding:8px 12px 0;border-top:1px solid var(--line)}
+.ai-chips{display:flex;flex-wrap:wrap;gap:6px}
+.ai-chip{appearance:none;border:1px solid var(--line);background:var(--surface);color:var(--ink);font:500 12px var(--body);padding:5px 10px;border-radius:999px;cursor:pointer;display:inline-flex;align-items:center;gap:5px}
+.ai-chip:hover{border-color:var(--accent);color:var(--accent)}.ai-chip.warn{border-color:color-mix(in srgb,var(--warn) 45%,var(--line));color:var(--warn)}.ai-chip svg{width:13px;height:13px}
+.ai-in{display:flex;gap:8px;padding:10px 12px}.ai-in input{flex:1;min-width:0;font:inherit;padding:8px 10px;border:1px solid var(--line);border-radius:6px;background:var(--surface);color:var(--ink)}
+.ai-checks{display:grid;gap:8px}.ai-chk{display:grid;grid-template-columns:auto 1fr;gap:8px;align-items:start}
+.ai-src summary{cursor:pointer;font-size:12px;color:var(--muted)}
+.ai-dots{display:inline-flex;gap:4px}.ai-dots i{width:6px;height:6px;border-radius:50%;background:var(--muted);animation:aidot 1s infinite}.ai-dots i:nth-child(2){animation-delay:.15s}.ai-dots i:nth-child(3){animation-delay:.3s}@keyframes aidot{50%{opacity:.25}}
+@media print{.ai-fab,.ai-panel{display:none}}
+.brand .co{font:600 12px/1 var(--body);color:var(--signal);white-space:nowrap}
+.acct{display:flex;align-items:center;gap:8px}.acct[hidden],#licBar[hidden],#wsSeg[hidden],#wsSeg button[hidden]{display:none}
+.acct .who{display:inline-flex;align-items:center;gap:7px;color:var(--nav-ink);font-size:12.5px;font-weight:600}
+.acct .av{width:24px;height:24px;border-radius:50%;background:var(--accent);color:#fff;display:grid;place-items:center;font-size:10.5px;font-weight:700}
+.licbar{background:var(--warn-soft);color:var(--warn);font-size:12.5px;font-weight:500;padding:6px 0;border-bottom:1px solid var(--line)}
+.licbar.bad{background:var(--bad-soft);color:var(--bad)}
+.linkbtn{appearance:none;border:0;background:none;color:inherit;font:inherit;font-weight:700;text-decoration:underline;cursor:pointer;padding:0}
+.seatbar{height:6px;border-radius:3px;background:var(--line);overflow:hidden;min-width:60px}.seatbar i{display:block;height:100%;background:var(--accent)}
+.swatch{width:30px;height:30px;border-radius:8px;border:2px solid var(--surface);box-shadow:0 0 0 1px var(--line);cursor:pointer}.swatch[aria-pressed="true"]{box-shadow:0 0 0 2px var(--ink)}
+input.cell{font:inherit;border:1px solid transparent;background:transparent;color:inherit;padding:3px 5px;border-radius:4px;width:150px}input.cell:hover,input.cell:focus{border-color:var(--line);background:var(--surface)}
+tr.grp td{background:var(--surface-2)}
+@media (max-width:760px){.acct .nm,.brand .co{display:none}}
 @media (prefers-reduced-motion:no-preference){.tab,.btn,.day{transition:color .15s,background-color .15s,border-color .15s}}
 </style>
 
 <header>
   <div class="appbar"><div class="wrap hbar">
-    <div class="brand"><svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7" fill="var(--accent)"/><rect x="7" y="17" width="4" height="8" rx="1.2" fill="#fff" opacity=".7"/><rect x="14" y="12" width="4" height="13" rx="1.2" fill="#fff" opacity=".85"/><rect x="21" y="8" width="4" height="17" rx="1.2" fill="#fff"/><path d="M4.5 14.5H27.5" stroke="var(--signal)" stroke-width="2.2" stroke-linecap="round"/><circle cx="27.5" cy="14.5" r="2.1" fill="var(--signal)"/></svg><h1>Loadline</h1><span class="prod">APS</span><span class="env" title="Prototype with dummy data">Demo data</span></div>
-    <div class="seg ws" role="group" aria-label="Workspace" id="wsSeg"><button data-ws="plan"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 3v18h18"/><path d="M7 15l4-4 3 3 5-6"/></svg>Planner</button><button data-ws="buy"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>Purchase</button><button data-ws="wms"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 21V8l9-5 9 5v13"/><path d="M7 21v-8h10v8"/><path d="M7 17h10"/></svg>WMS</button></div>
-    <div class="hctl"><button id="bellBtn" class="btn sm bell" data-act="notes" hidden></button><label class="inline" for="userSel"><span class="lbl">User</span> <select id="userSel" class="sm-sel"></select></label><label class="inline" for="plantSel"><span class="lbl">Plant</span> <select id="plantSel" class="sm-sel"></select></label></div>
+    <div class="brand"><svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7" fill="var(--accent)"/><rect x="7" y="17" width="4" height="8" rx="1.2" fill="#fff" opacity=".7"/><rect x="14" y="12" width="4" height="13" rx="1.2" fill="#fff" opacity=".85"/><rect x="21" y="8" width="4" height="17" rx="1.2" fill="#fff"/><path d="M4.5 14.5H27.5" stroke="var(--signal)" stroke-width="2.2" stroke-linecap="round"/><circle cx="27.5" cy="14.5" r="2.1" fill="var(--signal)"/></svg><h1>Loadline</h1><span class="prod">APS</span><span class="co" id="coName"></span><span class="env" title="Prototype with dummy data">Demo data</span></div>
+    <div class="seg ws" role="group" aria-label="Workspace" id="wsSeg"><button data-ws="plan"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 3v18h18"/><path d="M7 15l4-4 3 3 5-6"/></svg>Planner</button><button data-ws="buy"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>Purchase</button><button data-ws="wms"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 21V8l9-5 9 5v13"/><path d="M7 21v-8h10v8"/><path d="M7 17h10"/></svg>WMS</button><button data-ws="admin" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 2l8 3v6c0 5-3.4 9.4-8 11-4.6-1.6-8-6-8-11V5z"/><path d="M9 12l2 2 4-4"/></svg>Admin</button></div>
+    <div class="hctl"><div class="acct" id="acctBox" hidden></div><button id="bellBtn" class="btn sm bell" data-act="notes" hidden></button><label class="inline" for="userSel"><span class="lbl">User</span> <select id="userSel" class="sm-sel"></select></label><label class="inline" for="plantSel"><span class="lbl">Plant</span> <select id="plantSel" class="sm-sel"></select></label></div>
   </div></div>
   <div class="subbar"><div class="wrap"><nav class="tabs" role="tablist" id="tabs"></nav></div></div>
+  <div id="licBar" class="licbar" hidden></div>
 </header>
 <main class="wrap" id="main"></main>
 <div id="modalRoot"></div>
@@ -324,7 +361,7 @@ function seedState() {
     adders:{ kwOver:1000, kwDays:1, hvVolts:6600, hvDays:1 },
     bomBufferDays:10,
     shopFloor:{ machinePct:90, manpowerPct:90, riskDays:1 },
-    users:[{ name:'Plant planning head', canEdit:true, canSend:true, canBuy:true, canWms:true, home:'plan' }, { name:'Production planner', canEdit:false, canSend:true, canBuy:false, home:'plan' }, { name:'Marketing', canEdit:false, canSend:false, canBuy:false, home:'plan' }, { name:'Purchase buyer', canEdit:false, canSend:false, canBuy:true, home:'buy' }, { name:'Stores in-charge', canEdit:false, canSend:false, canBuy:false, canWms:true, home:'wms' }],
+    users:[{ name:'Plant planning head', canEdit:true, canSend:true, canBuy:true, canWms:true, canWo:true, home:'plan' }, { name:'Production planner', canEdit:false, canSend:true, canBuy:false, canWo:true, home:'plan' }, { name:'Marketing', canEdit:false, canSend:false, canBuy:false, home:'plan' }, { name:'Purchase buyer', canEdit:false, canSend:false, canBuy:true, home:'buy' }, { name:'Stores in-charge', canEdit:false, canSend:false, canBuy:false, canWms:true, home:'wms' }],
     erp:{ system:'SAP S/4HANA', url:'https://aps-gateway.example.com.au/erp/mrp-trigger', auth:'OAuth 2.0 (client credentials)', format:'JSON', procKey:'NETCH', scope:'changed', stockSync:'15' },
     erpSends:[], sent:{},
     user:0,
@@ -700,17 +737,25 @@ function chartSVG(fids) {
 /* ---------- views ---------- */
 const BUY_TABS = [['bom','BOM<span class="tx"> by work order</span>'],['matsum','Material<span class="tx"> summary</span>'],['pos','<span class="tx">Purchase orders</span><span class="mx">POs</span>'],['suppliers','Supplier<span class="tx"> master</span>'],['products','Product<span class="tx"> master</span>'],['groups','<span class="tx">Material groups</span><span class="mx">Groups</span>'],['forecast','Forecast<span class="tx"> &amp; safety stock</span>']];
 const WMS_TABS = [['stock','Stock<span class="tx"> by part</span>'],['grn','GRN'],['iqc','IQC'],['stores','Stores'],['wip','WIP'],['blocked','Blocked'],['scrap','Scrap']];
-const wsTabs = ws => ({ buy:BUY_TABS, wms:WMS_TABS })[ws] || TABS;
-const TABS = [['upload','Upload<span class="tx"> plan</span>'],['orders','Orders'],['dashboard','<span class="tx">Factory loading</span><span class="mx">Loading</span>'],['calendar','<span class="tx">Factory calendar</span><span class="mx">Calendar</span>'],['shop','Shop<span class="tp"> floor</span>'],['masters','Masters<span class="tx"> & rules</span>']];
+const ADM_TABS = [['admUsers','Users<span class="tx"> &amp; sign-in</span>'],['admAccess','Role access'],['admLicense','License'],['admInteg','Integrations'],['admAi','AI assistant'],['admBrand','Branding'],['admLog','Sign-in log']];
+const wsTabsAll = ws => ({ buy:BUY_TABS, wms:WMS_TABS, admin:ADM_TABS })[ws] || TABS;
+// with sign-in (hosted site) only the tabs the person's role is given; without it every tab, and no admin workspace
+const wsTabs = ws => AUTH ? wsTabsAll(ws).filter(([k]) => AUTH.canTab(ws, k)) : ws === 'admin' ? [] : wsTabsAll(ws);
+const TABS = [['upload','Upload<span class="tx"> plan</span>'],['orders','<span class="tx">Sales orders</span><span class="mx">SOs</span>'],['wos','<span class="tx">Work orders</span><span class="mx">WOs</span>'],['prods','<span class="tx">Production orders</span><span class="mx">Prod.</span>'],['dashboard','<span class="tx">Factory loading</span><span class="mx">Loading</span>'],['calendar','<span class="tx">Factory calendar</span><span class="mx">Calendar</span>'],['shop','Shop<span class="tp"> floor</span>'],['masters','Masters<span class="tx"> & rules</span>']];
 let rendering = false;
 function render() {
   // a focused input removed by innerHTML can fire change/blur mid-render; run that render afterwards
   if (rendering) { setTimeout(render, 0); return; }
   rendering = true;
   try { renderNow(); } finally { rendering = false; }
+  aiRender();
 }
 function renderNow() {
   MIX = null; if (S.wms) expiryCheck(); schedule(); save(); saveUI();
+  const allow = wsAllowed();
+  if (!allow.includes(UI.ws)) UI.ws = allow[0] || 'plan';
+  authHeader();
+  if (!allow.length || AUTH && !AUTH.isAdmin() && !AUTH.licUsable() && AUTH.licStatus().state !== 'checking') { document.getElementById('tabs').innerHTML = ''; document.getElementById('main').innerHTML = lockView(); return; }
   const tabs = wsTabs(UI.ws);
   if (!tabs.some(([k]) => k === UI.tab)) UI.tab = UI.wsTab[UI.ws] || tabs[0][0];
   UI.wsTab[UI.ws] = UI.tab;
@@ -720,15 +765,15 @@ function renderNow() {
   bb.hidden = !canBuy(); bb.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 8a6 6 0 1 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg>${unread ? `<span class="cnt">${unread}</span>` : ''}`;
   bb.setAttribute('aria-label', `Notifications${unread ? `, ${unread} unread` : ''}`); bb.title = unread ? `${unread} unread notification${unread > 1 ? 's' : ''} for purchase` : 'Notifications for purchase';
   const us = document.getElementById('userSel');
-  us.innerHTML = S.users.map((u, i) => `<option value="${i}">${esc(u.name)}${u.canEdit || u.canSend || u.canBuy || u.canWms ? '' : ' (view only)'}</option>`).join(''); us.value = S.user;
+  us.innerHTML = S.users.map((u, i) => `<option value="${i}">${esc(u.name)}${u.canEdit || u.canSend || u.canBuy || u.canWms || u.canWo ? '' : ' (view only)'}</option>`).join(''); us.value = S.user;
   const ps = document.getElementById('plantSel');
   ps.innerHTML = `<option value="ALL">All plants (${S.factories.length})</option>` + S.factories.map(f => `<option value="${f.id}">${esc(f.name)}</option>`).join('');
   if (UI.plant !== 'ALL' && !S.factories.some(f => f.id === UI.plant)) UI.plant = 'ALL';
   ps.value = UI.plant;
   const m = document.getElementById('main');
-  document.body.classList.toggle('wide', ['orders', 'bom', 'matsum', 'suppliers', 'products', 'groups', 'pos', 'stock', 'stores', 'wip', 'iqc', 'scrap', 'blocked', 'forecast'].includes(UI.tab));
+  document.body.classList.toggle('wide', ['orders', 'wos', 'prods', 'bom', 'matsum', 'suppliers', 'products', 'groups', 'pos', 'stock', 'stores', 'wip', 'iqc', 'scrap', 'blocked', 'forecast', 'admUsers', 'admLicense', 'admLog'].includes(UI.tab));
   const sx = UI.rescroll ? null : m.querySelector('.chartbox')?.scrollLeft, gy = m.querySelector('#grpSide')?.scrollTop;
-  m.innerHTML = ({ dashboard:viewDashboard, orders:viewOrders, upload:viewUpload, calendar:viewCalendar, shop:viewShop, masters:viewMasters, bom:viewBom, matsum:viewMatSum, suppliers:viewSuppliers, products:viewProducts, groups:viewGroups, pos:viewPos, stock:viewStock, grn:viewGrn, stores:viewStores, wip:viewWip, iqc:viewIqc, scrap:viewScrap, blocked:viewBlocked, forecast:viewForecast })[UI.tab]();
+  m.innerHTML = ({ dashboard:viewDashboard, orders:viewOrders, wos:viewWos, prods:viewProds, upload:viewUpload, calendar:viewCalendar, shop:viewShop, masters:viewMasters, bom:viewBom, matsum:viewMatSum, suppliers:viewSuppliers, products:viewProducts, groups:viewGroups, pos:viewPos, stock:viewStock, grn:viewGrn, stores:viewStores, wip:viewWip, iqc:viewIqc, scrap:viewScrap, blocked:viewBlocked, forecast:viewForecast, admUsers:viewAdmUsers, admAccess:viewAdmAccess, admLicense:viewAdmLicense, admBrand:viewAdmBrand, admLog:viewAdmLog, admInteg:viewAdmInteg, admAi:viewAdmAi })[UI.tab]();
   const cb = m.querySelector('.chartbox'); if (cb && sx != null) cb.scrollLeft = sx;
   else if (cb) { const { lo } = rangeFor(plantIds()); cb.scrollLeft = Math.max(0, diffDays(lo, localToday()) - 3) * (chartSVG.dw || 26); }
   UI.rescroll = false;
@@ -797,7 +842,7 @@ function viewOrders() {
   const lu = S.lastUpload;
   return `<section class="panel tight">
   <div class="spread">
-    <div class="row ordhead" style="gap:10px"><h2>Orders</h2>
+    <div class="row ordhead" style="gap:10px"><h2>Sales orders</h2>
       <details class="info"><summary>How dates are calculated</summary><div class="pop">
         <div><b>Planned date (marketing):</b> the date assumed by marketing in the Excel.</div>
         <div><b>Start and FG date (system):</b> calculated from the factory calendar, current factory loading (including machine and manpower availability) and the motor configuration (lead time by frame, KW and volts). Each order aims for the marketing date and moves later when the shop floor is full.</div>
@@ -806,13 +851,13 @@ function viewOrders() {
       ${lu && lu.dup.length ? `<span class="pill warn" title="Last upload (${esc(lu.file)}) had duplicate sales orders. Only the first row was kept.">${lu.dup.length} duplicate${lu.dup.length > 1 ? 's' : ''} in last upload: ${lu.dup.map(esc).join(', ')}</span>` : ''}
     </div>
     <div class="row toolbar" style="gap:8px"><span class="muted row" data-count-for="tblOrders" style="gap:8px"></span>
-      <div class="seg" role="group" aria-label="Filter">${[['all','All'],['ovr','FG date edited'],['erp','To send to ERP']].map(([k, l]) => `<button data-filter="${k}" aria-pressed="${UI.filter === k}">${l} <span class="num">${n(k)}</span></button>`).join('')}</div>
+      <div class="seg" role="group" aria-label="Filter">${[['all','All'],['ovr','FG date edited'],['erp', erpOn() ? 'To send to ERP' : 'To release']].map(([k, l]) => `<button data-filter="${k}" aria-pressed="${UI.filter === k}">${l} <span class="num">${n(k)}</span></button>`).join('')}</div>
       <input id="q" type="search" placeholder="Search order, type, frame, region" value="${esc(UI.q)}">
-      <button class="btn sm primary" data-act="erpopen" title="Send the finalised plan to ERP and trigger the MRP run">Send to ERP${n('erp') ? ` · ${n('erp')}` : ''}</button></div>
+      <button class="btn sm primary" data-act="erpopen" title="${erpOn() ? 'Send the finalised plan to ERP and trigger the MRP run' : 'Run MRP in Loadline and release the plan to Purchase'}">${erpOn() ? 'Send to ERP' : 'Release to Purchase'}${n('erp') ? ` · ${n('erp')}` : ''}</button></div>
   </div>
   <div class="tablewrap gridfill"><table class="filterable dense" id="tblOrders"><thead><tr>
     <th>Sales order</th><th>Work order</th><th>Type</th><th>Frame</th><th>KW</th><th>Volts</th><th>MR</th><th>Qty</th><th>Region</th>${multiPlant() ? '<th>Plant</th>' : ''}<th>Lead time</th>
-    <th class="grp-s">Planned date (marketing)</th><th title="Calculated by the system">Start date (system)</th><th>Inspection date</th><th class="grp-p" title="Calculated from factory calendar, factory loading and motor configuration">FG date (system)</th><th title="Sent to ERP for the MRP run">ERP</th><th>Remarks</th></tr></thead><tbody>
+    <th class="grp-s">Planned date (marketing)</th><th title="Calculated by the system">Start date (system)</th><th>Inspection date</th><th class="grp-p" title="Calculated from factory calendar, factory loading and motor configuration">FG date (system)</th><th title="${erpOn() ? 'Sent to ERP for the MRP run' : 'Released to Purchase (MRP in Loadline)'}">${erpOn() ? 'ERP' : 'MRP'}</th><th>Remarks</th></tr></thead><tbody>
   ${list.map(o => { const r = R.res[o.so] || {}; return `<tr class="click" data-open="${esc(o.so)}">
     <td class="mono">${esc(o.so)}</td><td class="mono">${esc(o.wo)}</td><td>${esc(o.type)}</td><td class="num">${o.frame}</td><td class="num">${o.kw}</td><td class="num">${o.volts}</td><td class="num">${esc(o.mr)}</td><td class="num">${o.qty}</td><td>${esc(o.region)}</td>
     ${multiPlant() ? `<td>${r.fid ? esc(factoryName(r.fid)) : '—'}</td>` : ''}<td class="num">${r.L ? r.L + ' d/unit' : '—'}</td>
@@ -864,7 +909,7 @@ function viewUpload() {
         <td class="wrapcell muted">${esc(o.remarks)}</td></tr>`; }).join('') || '<tr><td colspan="14" class="muted">No orders from this plan are left.</td></tr>'}
       </tbody></table></div></div>`;
   }
-  return `<section class="panel tight">${pageHead('Upload plan', 'Monthly sales plan from marketing and project management')}${body}</section>`;
+  return `<section class="panel tight">${pageHead('Upload plan', 'Monthly sales plan from marketing and project management')}${mktBar()}${body}</section>`;
 }
 
 function viewCalendar() {
@@ -944,9 +989,9 @@ function viewMasters() {
     <div class="card">
       <div class="chead"><h3>Who can do what</h3>${info('Only people ticked can change a system FG date, send the plan to ERP, change the purchase masters (suppliers, products and material groups), or move stock and sync it with ERP in WMS. Everyone else sees them read-only. In the real app this comes from company logins; here, switch person with the user selector at the top.')}
         ${canEdit() ? '' : '<div class="tools"><span class="pill info">View only</span></div>'}</div>
-      ${cmpTable(['Person / role', 'Edit FG date', 'Send to ERP', 'Purchase masters', 'Stores moves (WMS)'], S.users.map((u, i) => `<tr><td>${esc(u.name)}${i === S.user ? ' <span class="pill info">you</span>' : ''}</td><td><input type="checkbox" data-ucan="${i}" ${u.canEdit ? 'checked' : ''} ${canEdit() ? '' : 'disabled'} aria-label="${esc(u.name)} can edit FG date"></td><td><input type="checkbox" data-usend="${i}" ${u.canSend ? 'checked' : ''} ${canEdit() ? '' : 'disabled'} aria-label="${esc(u.name)} can send to ERP"></td><td><input type="checkbox" data-ubuy="${i}" ${u.canBuy ? 'checked' : ''} ${canEdit() ? '' : 'disabled'} aria-label="${esc(u.name)} can edit purchase masters"></td><td><input type="checkbox" data-uwms="${i}" ${u.canWms ? 'checked' : ''} ${canEdit() ? '' : 'disabled'} aria-label="${esc(u.name)} can move stock in WMS"></td></tr>`).join(''), 'wraph')}
+      ${cmpTable(['Person / role', 'Edit FG date', 'Send to ERP', 'Work & production orders', 'Purchase masters', 'Stores moves (WMS)'], S.users.map((u, i) => `<tr><td>${esc(u.name)}${i === S.user ? ' <span class="pill info">you</span>' : ''}</td><td><input type="checkbox" data-ucan="${i}" ${u.canEdit ? 'checked' : ''} ${canEdit() ? '' : 'disabled'} aria-label="${esc(u.name)} can edit FG date"></td><td><input type="checkbox" data-usend="${i}" ${u.canSend ? 'checked' : ''} ${canEdit() ? '' : 'disabled'} aria-label="${esc(u.name)} can send to ERP"></td><td><input type="checkbox" data-uwo="${i}" ${u.canWo ? 'checked' : ''} ${canEdit() ? '' : 'disabled'} aria-label="${esc(u.name)} can create work and production orders"></td><td><input type="checkbox" data-ubuy="${i}" ${u.canBuy ? 'checked' : ''} ${canEdit() ? '' : 'disabled'} aria-label="${esc(u.name)} can edit purchase masters"></td><td><input type="checkbox" data-uwms="${i}" ${u.canWms ? 'checked' : ''} ${canEdit() ? '' : 'disabled'} aria-label="${esc(u.name)} can move stock in WMS"></td></tr>`).join(''), 'wraph')}
     </div>
-    ${erpCard()}
+    ${AUTH ? '' : erpCard() + mktCard()}
   </div>
   <div class="card mrun" style="display:grid;gap:8px">
     <div class="chead"><h3>Already running in the factory</h3>${info('Jobs already on the floor. They are fixed and use capacity before anything new is scheduled.')}<div class="tools"><span class="muted small">${S.running.length} jobs · ${S.running.reduce((a, j) => a + j.qty, 0)} motors</span></div></div>
@@ -999,9 +1044,14 @@ const sigOf = (o, r) => [o.wo, o.qty, o.type, o.frame, o.kw, o.volts, o.region |
 // what went through MRP, so Purchase shows that and not later edits
 const specOf = (o, r) => ({ wo:o.wo, qty:o.qty, type:o.type, frame:o.frame, kw:o.kw, volts:o.volts, region:o.region, fid:r.fid });
 const ERP_URL_OK = u => /^https:\/\/[^\s/?#]+\S*$/.test(String(u || '').trim());
+// ERP mode, set per customer: connected (Send to ERP, syncs, work orders both ways) or standalone, where Loadline runs MRP, POs and stock on its own.
+// The license can leave ERP integration out; then the app always runs standalone.
+const erpAllowed = () => !AUTH || !AUTH.licErp || AUTH.licErp();
+const erpOn = () => S.erp.mode !== 'local' && erpAllowed();
+const mvSt = () => erpOn() ? 'pending' : 'local';
 const PROC_KEYS = [['NETCH', 'NETCH · Net change'], ['NETPL', 'NETPL · Net change in planning horizon'], ['NEUPL', 'NEUPL · Regenerative (all materials)']];
 // The ERP reply is simulated in the prototype: sent, then received with MRP running, then MRP complete.
-function txStage(tx) { const e = Date.now() - Date.parse(tx.at); return e < 1500 ? ['Sending', 'info'] : e < 4500 ? ['Received · MRP running', 'warn'] : ['MRP complete', 'ok']; }
+function txStage(tx) { const e = Date.now() - Date.parse(tx.at); if (tx.local) return e < 1200 ? ['Running MRP in Loadline', 'warn'] : ['MRP complete', 'ok']; return e < 1500 ? ['Sending', 'info'] : e < 4500 ? ['Received · MRP running', 'warn'] : ['MRP complete', 'ok']; }
 const txDone = tx => !!tx && txStage(tx)[0] === 'MRP complete';
 const txById = id => S.erpSends.find(t => t.id === id);
 // sends trimmed from the history are long finished
@@ -1015,11 +1065,11 @@ function erpState(o) {
 function erpPill(o) {
   const st = erpState(o);
   if (st.k === 'na') return '<span class="muted">—</span>';
-  if (st.k === 'new') return '<span class="pill info">Not sent</span>';
+  if (st.k === 'new') return `<span class="pill info">${erpOn() ? 'Not sent' : 'Not released'}</span>`;
   if (st.k === 'lost') return `<span class="pill bad" title="Sent to ERP ${fmtAt(st.s.at)} with start ${fmt(st.s.start)} and FG ${fmt(st.s.end)}, but it can no longer be scheduled${st.r && st.r.error ? ': ' + esc(st.r.error) : ''}. ERP still has the old dates. Fix the cause, then send again.">Can't schedule</span>`;
   if (st.k === 'changed') return `<span class="pill warn" title="Changed since sent. Sent ${fmtAt(st.s.at)} with start ${fmt(st.s.start)} and FG ${fmt(st.s.end)}. Now start ${fmt(st.r.start)}, FG ${fmt(st.r.end)}.">Changed</span>`;
   if (st.tx && !txDone(st.tx)) return `<span class="pill warn">${txStage(st.tx)[0]}</span>`;
-  return `<span class="pill ok" title="${esc(st.s.tx)}${st.tx ? ' · ERP ref ' + esc(st.tx.ref) : ''}">Sent ${fmtAt(st.s.at).slice(0, 6)}</span>`;
+  return `<span class="pill ok" title="${esc(st.s.tx)}${st.tx ? ' · ERP ref ' + esc(st.tx.ref) : ''}">${st.tx && st.tx.local ? 'Released' : 'Sent'} ${fmtAt(st.s.at).slice(0, 6)}</span>`;
 }
 function erpLines(scope) {
   return planOrders().map(o => ({ o, r:R.res[o.so], st:erpState(o) })).filter(l => l.st.k !== 'na' && l.st.k !== 'lost')
@@ -1030,7 +1080,7 @@ function erpLines(scope) {
 function recordSend(lines, meta) {
   const num = (S.erpSends[0] ? parseInt(S.erpSends[0].id.slice(3), 10) : 0) + 1, id = 'TX-' + String(num).padStart(4, '0');
   const cs = lines.map(l => l.change || (!S.sent[l.o.so] ? 'New' : S.sent[l.o.so].sig === sigOf(l.o, l.r) ? 'Unchanged' : 'Changed')), cn = k => cs.filter(c => c === k).length;
-  const tx = { id, ...meta, n:lines.length, newN:cn('New'), chgN:cn('Changed'), sameN:cn('Unchanged'), ref:'MRP-' + (2450000 + num * 37), procKey:S.erp.procKey, system:S.erp.system, sos:lines.map(l => l.o.so) };
+  const tx = { id, ...meta, n:lines.length, newN:cn('New'), chgN:cn('Changed'), sameN:cn('Unchanged'), ref:(meta.local ? 'LL-MRP-' : 'MRP-') + (2450000 + num * 37), procKey:S.erp.procKey, system:S.erp.system, sos:lines.map(l => l.o.so) };
   S.erpSends.unshift(tx); if (S.erpSends.length > 25) S.erpSends.length = 25;
   lines.forEach(l => {
     // keep the last finished MRP result so Purchase still sees the work order while the new run is going
@@ -1055,36 +1105,39 @@ function openErp() {
   const cnt = k => all.filter(l => l.change === k).length;
   const notSched = planOrders().filter(o => { const r = R.res[o.so]; return !r || r.error; }).length;
   const plants = [...new Set(all.map(l => sapPlantOf(l.r.fid)))].join(', ') || sapPlantOf(S.factories[0].id);
-  const pk = (PROC_KEYS.find(k => k[0] === S.erp.procKey) || [S.erp.procKey, S.erp.procKey])[1];
-  document.getElementById('modalRoot').innerHTML = `<div class="overlay" data-close="1"><div class="modal" id="erpModal" role="dialog" aria-modal="true" aria-label="Send plan to ERP" style="width:min(1000px,100%)">
-    <div class="spread"><div><div class="eyebrow">Outbound to ERP</div><h2>Send plan for MRP run</h2></div><div class="row" style="gap:8px">${info('<div>Sends the finalised start and FG dates of each work order to the ERP, which then runs MRP and creates the purchase requisitions. Purchase sees the BOMs once MRP is complete.</div><div>In this prototype nothing leaves your browser and the ERP reply is simulated. In the live app the APS server sends it to the endpoint set in Masters & rules, using credentials kept on the server.</div>')}<button class="btn sm" data-close="1">Close</button></div></div>
-    <div class="erpkv"><div><span>ERP system</span><b>${esc(S.erp.system)}</b></div><div style="grid-column:span 2"><span>Endpoint</span><b class="mono" title="${esc(S.erp.url)}">${esc(S.erp.url || 'Not set')}</b></div>
-      <div><span>SAP plant</span><b>${esc(plants)}</b></div><div><span>MRP run</span><b title="${esc(pk)}">${esc(pk)}</b></div><div><span>Format</span><b>${esc(S.erp.format)}</b></div></div>
+  const pk = (PROC_KEYS.find(k => k[0] === S.erp.procKey) || [S.erp.procKey, S.erp.procKey])[1], on = erpOn();
+  document.getElementById('modalRoot').innerHTML = `<div class="overlay" data-close="1"><div class="modal" id="erpModal" role="dialog" aria-modal="true" aria-label="${on ? 'Send plan to ERP' : 'Release plan to Purchase'}" style="width:min(1000px,100%)">
+    <div class="spread"><div>${on ? '<div class="eyebrow">Outbound to ERP</div><h2>Send plan for MRP run</h2>' : '<div class="eyebrow">Standalone · MRP in Loadline</div><h2>Release plan to Purchase</h2>'}</div><div class="row" style="gap:8px">${info(on ? '<div>Sends the finalised start and FG dates of each work order to the ERP, which then runs MRP and creates the purchase requisitions. Purchase sees the BOMs once MRP is complete.</div><div>In this prototype nothing leaves your browser and the ERP reply is simulated. In the live app the APS server sends it to the endpoint set in Masters & rules, using credentials kept on the server.</div>' : '<div>No ERP is connected, so Loadline runs MRP itself: the BOM of each released order is checked against stores, IQC and open POs, and Purchase sees what to buy straight away. Buyers raise the POs in Loadline.</div>')}<button class="btn sm" data-close="1">Close</button></div></div>
+    ${on ? `<div class="erpkv"><div><span>ERP system</span><b>${esc(S.erp.system)}</b></div><div style="grid-column:span 2"><span>Endpoint</span><b class="mono" title="${esc(S.erp.url)}">${esc(S.erp.url || 'Not set')}</b></div>
+      <div><span>SAP plant</span><b>${esc(plants)}</b></div><div><span>MRP run</span><b title="${esc(pk)}">${esc(pk)}</b></div><div><span>Format</span><b>${esc(S.erp.format)}</b></div></div>` : `<div class="erpkv"><div><span>Mode</span><b>Standalone, no ERP</b></div><div><span>Plant</span><b>${esc(plants)}</b></div><div style="grid-column:span 2"><span>MRP</span><b>Run in Loadline from BOMs, stock and open POs</b></div></div>`}
     <div class="row" style="gap:8px"><div class="seg" role="group" aria-label="What to send"><button data-erpscope="changed" aria-pressed="${scope !== 'all'}">New and changed <span class="num">${cnt('New') + cnt('Changed')}</span></button><button data-erpscope="all" aria-pressed="${scope === 'all'}">All scheduled <span class="num">${all.length}</span></button></div>
       <span class="pill info">${cnt('New')} new</span><span class="pill warn">${cnt('Changed')} changed</span><span class="pill ok">${cnt('Unchanged')} already sent</span>${notSched ? `<span class="pill bad">${notSched} not scheduled, left out</span>` : ''}
-      <button class="lnk small" data-tab="masters" data-close="1">Change connection</button></div>
+      ${on ? '<button class="lnk small" data-tab="masters" data-close="1">Change connection</button>' : ''}</div>
     <div class="tablewrap" style="max-height:min(300px,40vh)"><table><thead><tr><th>Sales order</th><th>Work order</th><th>Material</th><th>Qty</th><th>Start date</th><th>FG date</th><th>Change</th></tr></thead><tbody>
       ${lines.map(({ o, r, change, st }) => `<tr><td class="mono">${esc(o.so)}</td><td class="mono">${esc(o.wo)}</td><td class="mono">${esc(motorMat(o))}</td><td class="num">${o.qty}</td><td class="num">${fmt(r.start)}</td><td class="num"><b>${fmt(r.end)}</b></td>
         <td>${change === 'New' ? '<span class="pill info">New</span>' : change === 'Changed' ? `<span class="pill warn">Changed</span> <span class="muted small">${st.s.end !== r.end ? `FG ${fmt(st.s.end)} → ${fmt(r.end)}` : st.s.start !== r.start ? `Start ${fmt(st.s.start)} → ${fmt(r.start)}` : 'Order details'}</span>` : '<span class="pill ok">Already sent</span>'}</td></tr>`).join('') || '<tr><td colspan="7" class="muted">Nothing new or changed since the last send.</td></tr>'}
     </tbody></table></div>
     <div class="row" style="gap:8px"><button class="btn sm" data-dl="erpjson" ${lines.length ? '' : 'disabled'}>Download payload (JSON)</button><button class="btn sm" data-dl="erpcsv" ${lines.length ? '' : 'disabled'}>Download (CSV)</button><span style="flex:1"></span>
-      ${canSend() ? `<button class="btn primary" data-act="erpsend" ${lines.length ? '' : 'disabled'}>Send ${lines.length} order${lines.length === 1 ? '' : 's'} to ERP</button>` : `<span class="note">🔒 ${esc(curUser().name)} can't send to ERP. Only authorized people can.</span>`}</div>
-    <div style="display:grid;gap:6px"><h3>Recent sends</h3><div class="tablewrap" style="max-height:200px"><table><thead><tr><th>Ref</th><th>Sent</th><th>By</th><th>Orders</th><th>MRP run</th><th>Status</th><th>ERP ref</th></tr></thead><tbody>
+      ${canSend() ? `<button class="btn primary" data-act="erpsend" ${lines.length ? '' : 'disabled'}>${on ? 'Send' : 'Release'} ${lines.length} order${lines.length === 1 ? '' : 's'} ${on ? 'to ERP' : 'to Purchase'}</button>` : `<span class="note">🔒 ${esc(curUser().name)} can't send to ERP. Only authorized people can.</span>`}</div>
+    <div style="display:grid;gap:6px"><h3>${on ? 'Recent sends' : 'Recent sends and releases'}</h3><div class="tablewrap" style="max-height:200px"><table><thead><tr><th>Ref</th><th>Sent</th><th>By</th><th>Orders</th><th>MRP run</th><th>Status</th><th>ERP ref</th></tr></thead><tbody>
       ${S.erpSends.map(t => { const [lab, cls] = txStage(t); return `<tr><td class="mono">${esc(t.id)}</td><td class="num">${fmtAt(t.at)}</td><td>${esc(t.by)}</td><td class="num">${t.n} <span class="muted small">(${t.newN} new, ${t.chgN} changed${t.sameN ? `, ${t.sameN} resent` : ''})</span></td><td class="mono">${esc(t.procKey)}</td><td><span class="pill ${cls}">${lab}</span></td><td class="mono">${lab === 'Sending' ? '—' : esc(t.ref)}</td></tr>`; }).join('') || '<tr><td colspan="7" class="muted">Nothing sent yet.</td></tr>'}
     </tbody></table></div></div></div></div>`;
 }
 function erpCard() {
-  const dis = canEdit() ? '' : 'disabled';
+  const dis = canIntegrate() ? '' : 'disabled';
   const sel = (k, label, opts) => `<label class="field"><span>${label}</span><select data-erp="${k}" ${dis}>${opts.map(([v, l]) => `<option value="${esc(v)}" ${S.erp[k] === v ? 'selected' : ''}>${esc(l)}</option>`).join('')}</select></label>`;
   const last = S.erpSends[0];
   return `<div class="card">
-    <div class="chead"><h3>ERP connection</h3>${info('<div>Set once by an authorized person. <b>Send to ERP</b> on the Orders screen uses it to send the plan and start the MRP run.</div><div>Your SAP team gives the endpoint: an API, an IDoc, or middleware such as SAP Integration Suite. In the live app the APS server makes the call and keeps the sign-in credentials, so they are never typed or stored on this screen. In this prototype the connection is simulated.</div><div><b>MRP run:</b> NETCH plans only materials changed since the last run, NETPL does the same within the planning horizon, NEUPL replans every material.</div>')}
-      <div class="tools">${canEdit() ? '' : '<span class="pill info">View only</span>'}${last ? `<span class="muted small" title="${esc(last.id)} · ${last.n} orders · ${txStage(last)[0]}">Last sent ${fmtAt(last.at).slice(0, 6)}</span>` : ''}<button class="btn sm" data-act="erptest">Test</button></div></div>
-    <label class="field"><span>Endpoint URL</span><input data-erp="url" value="${esc(S.erp.url)}" ${dis} class="mono" style="width:100%" aria-label="ERP endpoint URL"></label>
+    <div class="chead"><h3>ERP connection</h3>${info('<div>Set once by an authorized person. <b>Send to ERP</b> on the Sales orders screen uses it to send the plan and start the MRP run.</div><div>Your SAP team gives the endpoint: an API, an IDoc, or middleware such as SAP Integration Suite. In the live app the APS server makes the call and keeps the sign-in credentials, so they are never typed or stored on this screen. In this prototype the connection is simulated.</div><div><b>MRP run:</b> NETCH plans only materials changed since the last run, NETPL does the same within the planning horizon, NEUPL replans every material.</div>')}
+      <div class="tools">${canIntegrate() ? '' : '<span class="pill info">View only</span>'}${last ? `<span class="muted small" title="${esc(last.id)} · ${last.n} orders · ${txStage(last)[0]}">Last sent ${fmtAt(last.at).slice(0, 6)}</span>` : ''}${erpOn() ? '<button class="btn sm" data-act="erptest">Test</button>' : ''}</div></div>
+    <label class="field"><span>How this customer runs Loadline</span><select data-erp="mode" ${dis} aria-label="ERP mode"><option value="erp" ${erpOn() ? 'selected' : ''} ${erpAllowed() ? '' : 'disabled'}>Connected to ERP: send plan, sync stock, work orders both ways</option><option value="local" ${erpOn() ? '' : 'selected'}>Standalone, no ERP: MRP, POs, stock and work orders in Loadline</option></select></label>
+    ${erpAllowed() ? '' : '<p class="note">This license does not include ERP integration, so Loadline runs standalone. Ask your Loadline vendor to add it.</p>'}
+    ${erpOn() ? '' : '<p class="muted small">Standalone: <b>Release to Purchase</b> runs MRP in Loadline, buyers create POs from <b>To buy</b>, stores post stock moves straight away, and work orders and production orders stay in Loadline. Switch to Connected any time; nothing is lost.</p>'}
+    ${erpOn() ? `<label class="field"><span>Endpoint URL</span><input data-erp="url" value="${esc(S.erp.url)}" ${dis} class="mono" style="width:100%" aria-label="ERP endpoint URL"></label>
     <div class="sub3" style="grid-template-columns:minmax(0,1.25fr) minmax(0,1fr) minmax(0,.75fr)">${sel('system', 'ERP system', [['SAP S/4HANA', 'SAP S/4HANA'], ['SAP ECC 6.0', 'SAP ECC 6.0'], ['Other ERP', 'Other ERP']])}
       ${sel('auth', 'Sign-in', [['OAuth 2.0 (client credentials)', 'OAuth 2.0'], ['Basic (user and password)', 'Basic'], ['API key', 'API key'], ['Client certificate', 'Certificate']])}
       ${sel('format', 'Format', [['JSON', 'JSON'], ['CSV', 'CSV'], ['IDoc (XML)', 'IDoc (XML)']])}</div>
-    <div class="sub3" style="grid-template-columns:minmax(0,1fr) minmax(0,1fr) minmax(0,1fr)">${sel('procKey', 'MRP run', PROC_KEYS)}${sel('scope', 'Send by default', [['changed', 'New and changed'], ['all', 'All scheduled']])}${sel('stockSync', 'Stock sync (WMS)', [['15', 'Every 15 min'], ['30', 'Every 30 min'], ['60', 'Every hour'], ['manual', 'Only on Sync now']])}</div>
+    <div class="sub3" style="grid-template-columns:minmax(0,1fr) minmax(0,1fr) minmax(0,1fr)">${sel('procKey', 'MRP run', PROC_KEYS)}${sel('scope', 'Send by default', [['changed', 'New and changed'], ['all', 'All scheduled']])}${sel('stockSync', 'Stock sync (WMS)', [['15', 'Every 15 min'], ['30', 'Every 30 min'], ['60', 'Every hour'], ['manual', 'Only on Sync now']])}</div>` : ''}
   </div>`;
 }
 
@@ -1187,7 +1240,7 @@ function mrpHead(list) {
   const done = S.erpSends.filter(txDone), run = S.erpSends.filter(t => !txDone(t));
   return `${list.length} work order${list.length === 1 ? '' : 's'} after MRP${done[0] ? ` · last MRP run ${fmtAt(done[0].at)} (${esc(done[0].id)})` : ''}${run.length ? ` · ${run.length} send${run.length > 1 ? 's' : ''} still running` : ''}`;
 }
-const noMrp = () => `<div class="card" style="display:grid;gap:8px;justify-items:start"><h3>No work orders have been through MRP yet</h3><p class="muted">The planner sends the finalised plan from Orders with <b>Send to ERP</b>. Once the MRP run is complete, the BOM of every work order shows here.</p><button class="btn sm" data-tab="orders">Go to Orders</button></div>`;
+const noMrp = () => `<div class="card" style="display:grid;gap:8px;justify-items:start"><h3>No work orders have been through MRP yet</h3><p class="muted">The planner ${erpOn() ? 'sends the finalised plan from Sales orders with <b>Send to ERP</b>' : 'releases the finalised plan from Sales orders with <b>Release to Purchase</b>'}. Once the MRP run is complete, the BOM of every work order shows here.</p><button class="btn sm" data-tab="orders">Go to Sales orders</button></div>`;
 function viewBom() {
   const list = buyOrders();
   if (!list.some(x => x.o.so === UI.selWo)) UI.selWo = list[0] ? list[0].o.so : null;
@@ -1231,7 +1284,7 @@ function viewMatSum() {
   const bsel = canPick ? `<select id="buyerSel" class="sm-sel" aria-label="Show one buyer's parts"><option value="">All buyers</option>${buyers.map(b => { const n = all.filter(r => r.buyer === b && r.status === 'late').length; return `<option value="${esc(b)}" ${bf === b ? 'selected' : ''}>${esc(b)}${n ? ` · ${n} late` : ''}</option>`; }).join('')}</select>` : '';
   const head = pageHead('Material summary', `${bf ? `${rows.length} of ${all.length} purchased components are bought by ${esc(bf)}` : `${rows.length} purchased components`} across ${list.length} work orders${late ? ` · <b style="color:var(--bad)">${late} late to order</b>` : ''}${soon ? ` · ${soon} to order this week` : ''}${polate ? ` · <span style="color:var(--warn)">${polate} with a late PO</span>` : ''}`,
     info('<div>Every purchased component (procurement type F) added up across all work orders that have been through MRP.</div><div>What covers it is given to the work order that needs it first, the way SAP MRP does it: <b>In stores</b> (unrestricted stock), <b>In IQC</b> (received, waiting for inspection), then <b>On order</b> (open purchase orders, by delivery date). <b>To buy</b> is what is left. Blocked stock and scrap don\'t count, so a part rejected in IQC comes back here as To buy, and its buyer gets a notification.</div><div><b>Order by</b> comes from the first work order that isn\'t covered. A part that is fully covered shows <b>In stock</b>, <b>On order</b>, or <b>PO late</b> when a PO arrives after the date it is needed; see Open POs to chase those.</div><div><b>Buyer</b> comes from the product\'s material group. Pick a buyer to see only their parts; the download then holds only those parts. The column filters only narrow what you see on screen.</div><div>Built from the same dummy BOMs as BOM by work order. In the live app the ERP\'s purchase requisitions would drive this.</div>'),
-    (bsel ? bsel : '') + (list.length ? `<button class="btn sm primary" data-dl="matsum">Download${bf ? ' ' + esc(bf) + "'s parts" : ''} (Excel)</button>` : ''));
+    (bsel ? bsel : '') + (list.length && !erpOn() && canBuy() ? '<button class="btn sm" data-act="poraise" title="Standalone: raise POs in Loadline for To buy">Create POs</button>' : '') + (list.length ? `<button class="btn sm primary" data-dl="matsum">Download${bf ? ' ' + esc(bf) + "'s parts" : ''} (Excel)</button>` : ''));
   if (!list.length) return `<section class="panel tight">${head}${noMrp()}</section>`;
   return `<section class="panel tight">${head}<div class="muted row small" data-count-for="tblSum"></div>
   <div class="tablewrap gridfill"><table class="filterable dense" id="tblSum"><thead><tr><th>Component</th><th>Description</th><th>UoM</th><th>Total qty</th><th title="Unrestricted stores stock given to these work orders">In stores</th><th title="Received, waiting for incoming inspection, given to these work orders">In IQC</th><th title="Open purchase orders given to these work orders">On order</th><th>To buy</th><th>Work orders</th><th>Earliest need</th><th>Order by</th><th>Lead time</th><th>Supplier</th><th title="Responsible buyer, from the product's material group">Buyer</th><th>Status</th></tr></thead><tbody>
@@ -1805,7 +1858,7 @@ function expiryCheck() {
       const e = expOf(r); if (!e || e >= today) return true;
       const base = { code:r.code, desc:r.desc, uom:r.uom }, note = `Batch ${r.batch || '—'}${r.grn ? ` · GRN ${r.grn}` : ''} · expired ${fmt(e)}`;
       w.scrap.unshift({ id:'SC' + pad(++w.n, 4), date:today, ...base, qty:r.qty, where:where(r), reason:'Expired shelf life', by, note });
-      w.moves.unshift({ id:'MV' + pad(++w.n, 4), at, by, kind:'expire', mvt, ...base, qty:r.qty, from:from === 'iqc' ? `IQC ${r.grn}` : r.bin, to:'Scrap', reason:'Expired shelf life', note, status:'pending' });
+      w.moves.unshift({ id:'MV' + pad(++w.n, 4), at, by, kind:'expire', mvt, ...base, qty:r.qty, from:from === 'iqc' ? `IQC ${r.grn}` : r.bin, to:'Scrap', reason:'Expired shelf life', note, status:mvSt() });
       if (from === 'iqc') { const gl = grnLine(r); if (gl) gl.rej = +((gl.rej || 0) + +r.qty).toFixed(3); }
       out.push({ r, e }); return false;
     });
@@ -1946,9 +1999,9 @@ const wmsPending = () => W().moves.filter(m => m.status === 'pending');
 function syncStage(sy) { const e = Date.now() - Date.parse(sy.at); return sy.first || e >= 3500 ? ['Done', 'ok'] : e < 1500 ? ['Posting moves', 'info'] : ['Pulling stock', 'warn']; }
 function wmsHead(title, sub, help, tools = '', buy = false) {
   const sy = W().syncs[0], pend = wmsPending().length;
-  const last = sy ? `ERP sync ${fmtAt(sy.at)}${syncStage(sy)[0] !== 'Done' ? ` · ${syncStage(sy)[0].toLowerCase()}` : ''}` : 'Not synced with ERP yet';
+  const last = !erpOn() ? 'Standalone · stock kept in Loadline' : sy ? `ERP sync ${fmtAt(sy.at)}${syncStage(sy)[0] !== 'Done' ? ` · ${syncStage(sy)[0].toLowerCase()}` : ''}` : 'Not synced with ERP yet';
   return pageHead(title, `${sub} · <span title="Automatic sync ${S.erp.stockSync === 'manual' ? 'is off' : `every ${S.erp.stockSync} minutes in the live app`}">${last}</span>`, info(help), tools
-    + (buy && !canWms() ? '' : `<button class="btn sm" data-act="wmssync" title="${buy ? 'Pull the latest open POs and stock from ERP' : 'Send stock moves made here to ERP and pull the latest stock'}">Sync with ERP${pend ? ` <span class="pill warn">${pend} to post</span>` : ''}</button>`));
+    + (buy && !erpOn() && canBuy() ? '<button class="btn sm primary" data-act="poraise" title="Raise POs in Loadline for what stock and open POs don\'t cover">Create POs</button>' : '') + (!erpOn() || buy && !canWms() ? '' : `<button class="btn sm" data-act="wmssync" title="${buy ? 'Pull the latest open POs and stock from ERP' : 'Send stock moves made here to ERP and pull the latest stock'}">Sync with ERP${pend ? ` <span class="pill warn">${pend} to post</span>` : ''}</button>`));
 }
 const chipRow = (act, cur, items) => `<div class="row chips" style="gap:6px">${items.map(([k, label]) => `<button class="seg-chip" data-act="${act}" data-name="${esc(k)}" aria-pressed="${cur === k}">${label}</button>`).join('')}${cur ? `<button class="btn sm" data-act="${act}" data-name="${esc(cur)}">Show all</button>` : ''}</div>`;
 const qtyTxt = (q, uom) => `${+(+q).toFixed(1)}${uom ? ` <span class="muted">${esc(uom)}</span>` : ''}`;
@@ -2081,7 +2134,7 @@ function saveMove(kind, id) {
   if (M.to === 'stores') { const same = r.batch && w.stores.find(b => b.bin === bin && lc(b.code) === lc(r.code) && b.batch === r.batch && grDate(b) === trail.gr && expOf(b) === trail.exp); if (same) same.qty = +(same.qty + qty).toFixed(3); else w.stores.push({ id:nid('ST'), ...base, ...trail, bin, batch:r.batch || `B26${pad(1000 + Math.floor(rnd(r.code + at, 'b') * 9000), 4)}`, qty }); to = bin; }
   if (M.to === 'blocked') { const used = new Set(w.blocked.map(b => b.bin)); let i = 1; while (used.has(`X01-L1-${pad(i, 2)}`) && i < 99) i++; to = `X01-L1-${pad(i, 2)}`; w.blocked.push({ id:nid('BL'), ...base, ...trail, bin:to, home:r.bin || '', batch:r.batch, qty, reason, note, since:localToday(), by }); }
   if (M.to === 'scrap') { to = 'Scrap'; w.scrap.push({ id:nid('SC'), date:localToday(), ...base, qty, where:`Blocked · ${r.bin}`, reason, by, note }); }
-  w.moves.unshift({ id:nid('MV'), at, by, kind, mvt:M.mvt, ...base, qty, from, to, reason:reason || '', note, status:'pending' }); if (w.moves.length > 200) w.moves.length = 200;
+  w.moves.unshift({ id:nid('MV'), at, by, kind, mvt:M.mvt, ...base, qty, from, to, reason:reason || '', note, status:mvSt() }); if (w.moves.length > 200) w.moves.length = 200;
   const b = kind === 'reject' ? notifyBuyer('iqc_reject', r, { qty, reason, note }) : null;
   closeModal(); render();
   const nb = b === null ? '' : ` ${b ? b.buyer : 'Purchase'} notified${(() => { const e = partNeed(r.code); return e && e.buy > 0 ? `: ${e.buy} ${r.uom} to buy now` : ''; })()}.`;
@@ -2328,13 +2381,13 @@ function saveGrn() {
     q.recd = +((q.recd || 0) + qty).toFixed(3);
     g.lines.push({ po:q.po, item:q.item, code:q.code, desc:q.desc, uom:q.uom, poQty:q.qty, dnQty:dn, qty, acc:0, rej:0, batch:b, sexp, exp });
     w.iqc.push({ id:'IQ' + pad(++w.n, 4), grn:no, po:q.po, item:q.item, code:q.code, desc:q.desc, uom:q.uom, sup:q.sup, qty, recv:date, status:'wait', by:'', note:'', batch:b, sexp, exp });
-    w.moves.unshift({ id:'MV' + pad(++w.n, 4), at, by, kind:'gr', mvt:'101', code:q.code, desc:q.desc, uom:q.uom, qty, from:`PO ${q.po}/${q.item}`, to:`IQC ${no}`, reason:'', note:`Delivery note ${g.dn}`, status:'pending' });
+    w.moves.unshift({ id:'MV' + pad(++w.n, 4), at, by, kind:'gr', mvt:'101', code:q.code, desc:q.desc, uom:q.uom, qty, from:`PO ${q.po}/${q.item}`, to:`IQC ${no}`, reason:'', note:`Delivery note ${g.dn}`, status:mvSt() });
   });
   if (w.moves.length > 200) w.moves.length = 200;
   (S.grns || (S.grns = [])).unshift(g); UI.grnDraft = null;
   closeModal(); render(); openGrn(no);
   const np = new Set(L.map(x => x.q.po)).size;
-  toast(`GRN ${no} saved: ${plural(L.length, 'line', 'lines')} from ${plural(np, 'PO', 'POs')} into IQC. It goes to ERP at the next sync (movement 101).`);
+  toast(`GRN ${no} saved: ${plural(L.length, 'line', 'lines')} from ${plural(np, 'PO', 'POs')} into IQC.${erpOn() ? ' It goes to ERP at the next sync (movement 101).' : ''}`);
 }
 /* ---------- ERP stock sync (simulated: posts WMS moves, pulls stock and open POs) ---------- */
 function openSync() {
@@ -2559,6 +2612,7 @@ function buildDownload(kind, arg) {
   if (kind === 'prodlist') return offerFile(`Product_master_${day}.xlsx`, workbook([['Products', sheetOf(S.products.map(x => ({ ...recRow(PROD_COLS, x), 'Group name':(mix().grp.get(lc(x.grp)) || {}).name || '', 'Buyer':(mix().grp.get(lc(x.grp)) || {}).buyer || '', 'Supplier name':(findSupplier(x.sup) || {}).name || '', 'Source':x.src === 'load' ? 'One-time load' : 'Added by hand', 'Added on':x.at ? fmtAt(x.at) : '', 'Added by':x.by || '' })), { 'Description':48, 'Material code':22, 'Supplier name':20 })]]));
   if (kind === 'forecast') { const d = forecastData(), rows = fcRows(); if (!rows.length) { toast('Nothing to download.'); return; }
     return offerFile(`Forecast_safety_stock_${day}.xlsx`, workbook([['Safety stock by part', sheetOf(rows, { 'Description':44, 'Set by':30 })], ['Order volume', sheetOf([...d.months.map((m, i) => ({ 'Month':monTxt(m), 'Kind':'History', 'Motors planned':d.motors[i], 'Motors made':d.made[i], 'Forecast':'', '80% low':'', '80% high':'', 'Order book':'', ...Object.fromEntries(d.byFrame.map(x => [`Frame ${x.frame}`, x.y[i]])) })), ...d.next.map((m, i) => ({ 'Month':monTxt(m), 'Kind':'Forecast', 'Motors planned':'', 'Motors made':'', 'Forecast':Math.round(d.f[i]), '80% low':Math.max(0, Math.round(d.f[i] - 1.28 * d.sd)), '80% high':Math.round(d.f[i] + 1.28 * d.sd), 'Order book':d.book[i], ...Object.fromEntries(d.byFrame.map(x => [`Frame ${x.frame}`, Math.round(x.f[i])])) }))])], ['Settings', sheetOf([{ 'Method':FC_METHODS[d.cfg.method][0], 'Service level':d.cfg.sl + '%', 'Z':d.z, 'Forecast error (MAPE)':+d.mape[d.cfg.method].toFixed(1) + '%', 'History':`${monTxt(d.months[0])} to ${monTxt(d.months[5])}` }])]])); }
+  if (woRows[kind]) { const rows = woRows[kind](), nm = kind === 'wos' ? 'Work orders' : 'Production orders'; if (!rows.length) { toast('Nothing to download.'); return; } return offerFile(`${nm.replace(' ', '_')}_${day}.xlsx`, workbook([[nm, sheetOf(rows)]])); }
   if (wmsRows[kind]) { const rows = wmsRows[kind](); if (!rows.length) { toast('Nothing to download.'); return; } return offerFile(`${WMS_FILE[kind]}_${day}.xlsx`, workbook([[WMS_FILE[kind].replace(/_/g, ' ').slice(0, 31), sheetOf(rows, { 'Description':44, 'Bins':30, 'Note':36, 'Reason':30, 'Where':30, 'Station':26, 'Line':24 })]])); }
   const list = buyOrders(); if (!list.length) return;
   if (kind === 'bomall' || kind === 'bomallcsv') {
@@ -2651,6 +2705,7 @@ function openOrder(so) {
         <label class="field"><span>Changed by</span><input value="${esc(curUser().name)}" disabled></label></div>
       <label class="field"><span>Justification (required)</span><textarea id="ovNote" placeholder="Why the FG date is different from the system date">${o.override ? esc(o.override.note) : ''}</textarea></label>
       <div class="row"><button class="btn primary" id="ovSave" data-ov="${esc(so)}" disabled>Save FG date</button>${o.override ? `<button class="btn" data-clearov="${esc(so)}">Go back to system date</button>` : ''}</div></div>`}
+    ${woLinkCard(so)}
     <div style="display:grid;gap:8px"><h3>Backups (last 3)</h3>
       ${(o.backups || []).length ? `<div class="tablewrap"><table><thead><tr><th>Saved</th><th>Why</th><th>Qty</th><th>Planned date</th><th>FG date then</th><th></th></tr></thead><tbody>${o.backups.map((b, i) => `<tr><td class="num">${fmt(b.at.slice(0, 10))} ${b.at.slice(11, 16)}</td><td class="wrapcell">${esc(b.why)}${b.by ? ' · ' + esc(b.by) : ''}</td><td class="num">${b.data.qty}</td><td class="num">${fmt(b.data.sales)}</td><td class="num">${fmt(b.plantDate)}</td><td>${canEdit() ? `<button class="btn sm" data-restore="${i}" data-so="${esc(so)}">Restore</button>` : ''}</td></tr>`).join('')}</tbody></table></div>` : '<p class="muted">No backups yet. One is saved each time this order is overwritten by an upload or an override.</p>'}
     </div></div></div>`;
@@ -2660,6 +2715,524 @@ function openOrder(so) {
 const closeModal = () => document.getElementById('modalRoot').innerHTML = '';
 function overloadIn(fid, a, b) { let n = 0; for (let d = a; d <= b; d = addDays(d, 1)) if ((R.load[fid + '|' + d] || 0) > capOn(fid, d)) n++; return n; }
 
+/* ---------- sign-in, role access, licensing and admin (hosted site) ----------
+   On the hosted site ../auth.js sets window.LoadlineAuth: each person signs in to one workspace, sees only the tabs
+   their role is given, and their rights follow the account's rights profile. Opened on its own the app has no
+   sign-in and keeps the User picker and every workspace. */
+const AUTH = window.LoadlineAuth && window.LoadlineAuth.session() ? window.LoadlineAuth : null;
+const ADM_ROLES = ['planner', 'purchase', 'wms', 'admin'];
+const wsAllowed = () => ['plan', 'buy', 'wms', 'admin'].filter(w => wsTabs(w).length);
+const initials = n => String(n || '?').split(/\s+/).map(w => w[0]).join('').slice(0, 2).toUpperCase();
+const licDate = d => new Date(d + 'T00:00:00').toLocaleDateString(undefined, { day:'numeric', month:'short', year:'numeric' });
+function authHeader() {
+  const allow = wsAllowed();
+  document.querySelectorAll('#wsSeg button').forEach(b => b.hidden = !allow.includes(b.dataset.ws));
+  document.getElementById('wsSeg').hidden = !allow.length;
+  const box = document.getElementById('acctBox'), us = document.getElementById('userSel'), lb = document.getElementById('licBar');
+  if (!AUTH) { box.hidden = true; lb.hidden = true; return; }
+  const s = AUTH.session();
+  if (!s) { location.replace('../index.html#signin'); return; }
+  box.hidden = false;
+  box.innerHTML = `<span class="who" title="${esc(s.name)} · ${esc(AUTH.ROLES[s.role].label)}"><span class="av">${esc(initials(s.name))}</span><span class="nm">${esc(s.name)}</span></span><button class="btn sm" data-adm="signout">Sign out</button>`;
+  // rights inside the app follow the account's rights profile; only admin can switch profiles to test
+  if (!AUTH.isAdmin()) { const i = S.users.findIndex(u => u.name === s.appUser); if (i >= 0) S.user = i; us.disabled = true; us.title = 'Set by your sign-in'; }
+  else { us.disabled = false; us.title = 'Admin: try the app with another rights profile'; }
+  document.getElementById('coName').textContent = AUTH.cfg().brand.company || '';
+  const L = AUTH.licStatus(), adm = AUTH.isAdmin(), fix = adm ? ' <button class="linkbtn" data-adm="golic">Enter a new key</button>' : ' Ask your admin.';
+  const msg = L.state === 'invalid' ? ['bad', `No valid license on this site. ${esc(L.err || '')}${fix}`]
+    : L.state === 'expired' ? ['bad', `The license expired on ${licDate(L.p.expires)}.${fix}`]
+    : L.state === 'grace' ? ['bad', `The license expired on ${licDate(L.p.expires)}. Sign-in stops in ${L.graceLeft} day${L.graceLeft === 1 ? '' : 's'}.${fix}`]
+    : L.state === 'ok' && L.daysLeft <= 30 && adm ? ['', `The license ends on ${licDate(L.p.expires)} (${L.daysLeft} day${L.daysLeft === 1 ? '' : 's'}). Ask Loadline for a renewal key.${fix}`] : null;
+  lb.hidden = !msg; if (msg) { lb.className = 'licbar ' + msg[0]; lb.innerHTML = `<div class="wrap">${msg[1]}</div>`; }
+}
+// shown instead of the tabs when a role has nothing to open or the license is no longer usable
+function lockView() {
+  const L = AUTH && AUTH.licStatus(), lic = AUTH && !AUTH.licUsable();
+  return `<section class="panel"><div class="card" style="max-width:560px;margin:40px auto;display:grid;gap:10px;text-align:center;padding:28px">
+    <h2 style="margin:0">${lic ? 'License needed' : 'No tabs for your role yet'}</h2>
+    <p class="muted" style="margin:0">${lic ? (L.state === 'expired' ? `Your company's Loadline license expired on ${licDate(L.p.expires)}.` : 'This site has no valid Loadline license.') + ' Your admin can enter a new license key.' : 'Your admin has not given your role any tabs. Ask them to open Admin › Role access.'}</p>
+    <div><button class="btn" data-adm="signout">Sign out</button></div></div></section>`;
+}
+const seatPill = r => { const n = AUTH.seats(r), u = AUTH.activeOf(r).length; return `<span class="pill ${!n ? 'info' : u > n ? 'bad' : u === n ? 'warn' : 'ok'}" title="${u} active of ${n} licensed">${AUTH.ROLES[r].label} ${u}/${n}</span>`; };
+const rightsPills = name => { const u = S.users.find(x => x.name === name); if (!u) return '<span class="pill bad">Missing profile</span>';
+  const p = [u.canEdit && 'FG date', u.canSend && 'ERP send', u.canWo && 'Work orders', u.canBuy && 'Purchase', u.canWms && 'Stock moves'].filter(Boolean);
+  return p.length ? p.map(x => `<span class="pill info">${x}</span>`).join(' ') : '<span class="pill info">View only</span>'; };
+function viewAdmUsers() {
+  const c = AUTH.cfg(), me = AUTH.session();
+  return `<section class="panel tight">
+  ${pageHead('Users & sign-in', '', info('<div>Each person signs in to the workspace of their role and sees only the tabs that role is given (Role access). Admin sees everything.</div><div><b>Rights profile</b> sets what they may change inside the app (edit FG dates, send to ERP, purchase masters, stock moves); edit the profiles in Planner › Masters › Who can do what.</div><div><b>Seats:</b> the license sets how many people per workspace can be active. The first active accounts of a role in this list hold its seats.</div>'),
+    `${ADM_ROLES.map(seatPill).join(' ')}<button class="btn sm primary" data-adm="add">Add person</button>`)}
+  <div class="tablewrap"><table id="tblAdmUsers"><thead><tr><th>Name</th><th>User name</th><th>Workspace (role)</th><th>Rights profile</th><th>Active</th><th>License</th><th>Last sign-in</th><th></th></tr></thead><tbody>
+  ${c.accounts.map((a, i) => { const self = a.u === me.u, seat = a.active && AUTH.hasSeat(a);
+    return `<tr><td><input class="cell" data-admf="name" data-i="${i}" value="${esc(a.name)}" aria-label="Name"> ${self ? '<span class="pill acc">you</span>' : ''}</td>
+    <td class="mono">${esc(a.u)}</td>
+    <td><select class="sm-sel" data-admf="role" data-i="${i}" ${self ? 'disabled title="You can\'t change your own role"' : ''} aria-label="Role">${ADM_ROLES.map(r => `<option value="${r}" ${a.role === r ? 'selected' : ''}>${AUTH.ROLES[r].label}</option>`).join('')}</select></td>
+    <td><div class="row" style="gap:6px;flex-wrap:nowrap"><select class="sm-sel" data-admf="appUser" data-i="${i}" aria-label="Rights profile">${S.users.map(u => `<option ${u.name === a.appUser ? 'selected' : ''}>${esc(u.name)}</option>`).join('')}${S.users.some(u => u.name === a.appUser) ? '' : `<option selected>${esc(a.appUser)}</option>`}</select></div><div style="margin-top:4px">${rightsPills(a.appUser)}</div></td>
+    <td><input type="checkbox" data-admf="active" data-i="${i}" ${a.active ? 'checked' : ''} ${self ? 'disabled' : ''} aria-label="${esc(a.name)} active"></td>
+    <td>${!a.active ? '<span class="pill info">Off</span>' : seat ? '<span class="pill ok">Seat</span>' : AUTH.seats(a.role) ? '<span class="pill bad">No free seat</span>' : '<span class="pill bad">Not licensed</span>'}</td>
+    <td class="num">${a.last ? fmtAt(a.last) : '<span class="muted">Never</span>'}</td>
+    <td><div class="row" style="gap:6px;flex-wrap:nowrap"><button class="btn sm" data-adm="pw" data-i="${i}">Reset password</button>${self ? '' : `<button class="btn sm danger" data-adm="del" data-i="${i}">${UI.admDel === a.u ? 'Click again' : 'Remove'}</button>`}</div></td></tr>`; }).join('')}
+  </tbody></table></div></section>`;
+}
+function viewAdmAccess() {
+  const acc = AUTH.cfg().access, R = ['planner', 'purchase', 'wms'];
+  const cnt = r => Object.values(acc[r] || {}).reduce((n, a) => n + a.length, 0);
+  return `<section class="panel tight">
+  ${pageHead('Role access', '', info('Tick the tabs each role can open. A role sees a workspace in its header only when it has at least one tab there. Admin always sees everything. What people may change inside a tab is set by their rights profile.'),
+    `<button class="btn sm" data-adm="accreset">Back to defaults</button>`)}
+  <div class="tablewrap cmp" style="max-width:900px"><table><thead><tr><th>Tab</th>${R.map(r => `<th style="text-align:center">${AUTH.ROLES[r].label}<div class="muted small" style="font-weight:400">${cnt(r)} tab${cnt(r) === 1 ? '' : 's'}${AUTH.seats(r) ? '' : ' · not licensed'}</div></th>`).join('')}<th style="text-align:center">Admin</th></tr></thead><tbody>
+  ${['plan', 'buy', 'wms'].map(ws => `<tr class="grp"><td colspan="5"><b>${AUTH.WS_LABEL[ws]}</b></td></tr>` + AUTH.TABS[ws].map(([k, l]) => `<tr><td>${esc(l)}</td>${R.map(r => `<td style="text-align:center"><input type="checkbox" data-acc="${r}|${ws}|${k}" ${((acc[r] || {})[ws] || []).includes(k) ? 'checked' : ''} aria-label="${AUTH.ROLES[r].label} can open ${esc(l)}"></td>`).join('')}<td style="text-align:center"><input type="checkbox" checked disabled aria-label="Admin can open ${esc(l)}"></td></tr>`).join('')).join('')}
+  </tbody></table></div></section>`;
+}
+function viewAdmLicense() {
+  const L = AUTH.licStatus(), p = L.p || {}, st = { ok:['ok', 'Active'], grace:['warn', 'Expired · grace period'], expired:['bad', 'Expired'], invalid:['bad', 'Not valid'], checking:['info', 'Checking…'] }[L.state];
+  const row = (k, v) => `<tr><td class="muted">${k}</td><td>${v}</td></tr>`;
+  return `<section class="panel tight">
+  ${pageHead('License', '', info('<div>Loadline is licensed per named user and per workspace. The license key is signed by Loadline, so seats and dates can only change with a new key.</div><div>When a key expires there is a short grace period; after that only admins can sign in, to enter a renewal key.</div>'), `<span class="pill ${st[0]}">${st[1]}</span>`)}
+  <div class="mcols" style="grid-template-columns:repeat(auto-fit,minmax(320px,1fr))"><div class="card" style="display:grid;gap:10px">
+    <div class="chead"><h3>This site's license</h3></div>
+    ${L.p ? `<div class="tablewrap cmp"><table><tbody>${row('Licensed to', `<b>${esc(p.customer)}</b>`)}${row('Edition', esc(p.edition || 'Standard'))}${row('ERP integration', p.erp === false ? 'Not included: Loadline runs standalone' : 'Included: connected or standalone, set in Integrations')}${row('License ID', `<span class="mono">${esc(p.lid)}</span>`)}${row('Issued', licDate(p.issued))}${row('Valid until', `${licDate(p.expires)}${L.state === 'ok' ? ` <span class="muted">· ${L.daysLeft} days left</span>` : ''}`)}${row('Grace period', `${+p.grace || 0} days`)}${row('Site', p.domain ? esc(p.domain) : 'Any site')}</tbody></table></div>` : `<p class="note">${esc(L.err || 'No license key.')}</p>`}
+    <div class="tablewrap cmp"><table><thead><tr><th>Workspace</th><th class="num">Licensed</th><th class="num">Active</th><th class="num">Free</th><th style="width:30%"></th></tr></thead><tbody>
+    ${ADM_ROLES.map(r => { const n = AUTH.seats(r), u = AUTH.activeOf(r).length; return `<tr><td>${AUTH.ROLES[r].label}</td><td class="num">${n}</td><td class="num">${u}</td><td class="num">${u > n ? `<span class="pill bad">${u - n} over</span>` : n - u}</td><td><div class="seatbar"><i style="width:${n ? Math.min(100, u / n * 100) : 0}%;${u > n ? 'background:var(--bad)' : ''}"></i></div></td></tr>`; }).join('')}
+    </tbody></table></div></div>
+  <div class="card" style="display:grid;gap:10px;align-content:start">
+    <div class="chead"><h3>Apply a new license key</h3></div>
+    <p class="muted small" style="margin:0">Paste the key from Loadline (starts with <span class="mono">LL1.</span>). It replaces the current license straight away.</p>
+    <textarea id="admLicKey" rows="6" class="mono" style="width:100%;font-size:12px;padding:8px;border:1px solid var(--line);border-radius:5px;background:var(--surface);color:var(--ink);resize:vertical" placeholder="LL1.…" aria-label="License key">${esc(UI.admLicKey || '')}</textarea>
+    <div class="row" style="gap:8px"><button class="btn primary" data-adm="licapply">Check and apply</button>${UI.admLicMsg ? `<span class="pill ${UI.admLicMsg[0]}" style="white-space:normal">${esc(UI.admLicMsg[1])}</span>` : ''}</div>
+  </div></div></section>`;
+}
+function viewAdmBrand() {
+  const b = AUTH.cfg().brand;
+  return `<section class="panel tight">
+  ${pageHead('Branding', '', info('Applies to the landing page, the sign-in pages and the app in this browser.'))}
+  <div class="card" style="display:grid;gap:14px;max-width:720px">
+    <div class="formgrid">
+      <label class="field"><span>Company name (shown next to the logo)</span><input data-brand="company" value="${esc(b.company)}" maxlength="40" placeholder="e.g. Australia Motors Pty Ltd"></label>
+      <label class="field"><span>Sign-in page message</span><input data-brand="welcome" value="${esc(b.welcome)}" maxlength="90" placeholder="e.g. Use your plant account"></label>
+      <label class="field"><span>Stay signed in for</span><select data-brand="hours">${[1, 4, 8, 12, 24].map(h => `<option value="${h}" ${+b.hours === h ? 'selected' : ''}>${h} hour${h === 1 ? '' : 's'}</option>`).join('')}</select></label>
+    </div>
+    <div class="field"><span>Accent colour</span><div class="row" style="gap:8px">${Object.entries(AUTH.ACCENTS).map(([k, a]) => `<button class="swatch" style="background:${a.light}" data-adm="accent" data-name="${k}" aria-pressed="${b.accent === k}" title="${a.name}" aria-label="${a.name}"></button>`).join('')}</div></div>
+    <div class="row" style="border-top:1px solid var(--line);padding-top:12px"><span class="muted small" style="flex:1">Bring back the demo accounts, role access and look. The license key is kept.</span><button class="btn sm danger" data-adm="authreset">${UI.admReset ? 'Click again to reset' : 'Reset sign-in settings'}</button></div>
+  </div></section>`;
+}
+function viewAdmLog() {
+  const L = AUTH.cfg().log;
+  return `<section class="panel tight">${pageHead('Sign-in log', `Last ${L.length} attempts in this browser`)}
+  <div class="tablewrap"><table><thead><tr><th>When</th><th>User name</th><th>Workspace</th><th>Result</th><th>Why</th></tr></thead><tbody>
+  ${L.map(e => `<tr><td class="num">${fmtAt(e.at)}</td><td class="mono">${esc(e.u)}</td><td>${esc((AUTH.ROLES[e.entry] || {}).label || e.entry || '')}</td><td>${e.ok ? '<span class="pill ok">Signed in</span>' : '<span class="pill bad">Refused</span>'}</td><td>${esc(e.why)}</td></tr>`).join('') || '<tr><td colspan="5" class="muted">No sign-ins yet.</td></tr>'}
+  </tbody></table></div></section>`;
+}
+function admAccountModal(i) {
+  const a = i == null ? null : AUTH.cfg().accounts[i];
+  document.getElementById('modalRoot').innerHTML = `<div class="overlay" data-close="1"><div class="modal" role="dialog" aria-modal="true" aria-label="${a ? 'Reset password' : 'Add person'}" style="width:min(560px,100%)">
+    <div class="spread"><div><div class="eyebrow">Admin</div><h2>${a ? 'Reset password for ' + esc(a.name) : 'Add person'}</h2></div><button class="btn sm" data-close="1">Close</button></div>
+    <div class="formgrid">${a ? '' : `<label class="field"><span>Name</span><input id="ad_name" maxlength="40"></label>
+      <label class="field"><span>User name (to sign in)</span><input id="ad_u" maxlength="30" autocapitalize="none" spellcheck="false"></label>
+      <label class="field"><span>Workspace (role)</span><select id="ad_role">${ADM_ROLES.map(r => { const l = AUTH.seatsLeft(r); return `<option value="${r}" ${l > 0 ? '' : 'disabled'}>${AUTH.ROLES[r].label} · ${l > 0 ? l + ' seat' + (l === 1 ? '' : 's') + ' free' : 'no free seat'}</option>`; }).join('')}</select></label>
+      <label class="field"><span>Rights profile</span><select id="ad_app">${S.users.map(u => `<option>${esc(u.name)}</option>`).join('')}</select></label>`}
+      <label class="field"><span>${a ? 'New password' : 'Password'} (8+ characters)</span><input id="ad_pw" type="text" autocomplete="new-password" spellcheck="false"></label></div>
+    <div id="adErr"></div>
+    <div class="row"><button class="btn primary" data-adm="${a ? 'pwsave' : 'addsave'}" ${a ? `data-i="${i}"` : ''}>${a ? 'Set password' : 'Add person'}</button><button class="btn" data-close="1">Cancel</button></div>
+  </div></div>`;
+  const r = document.getElementById('ad_role'); if (r) { const f = [...r.options].find(o => !o.disabled); if (f) r.value = f.value; }
+  document.querySelector('#modalRoot input').focus();
+}
+const admErr = m => { document.getElementById('adErr').innerHTML = `<p class="note" style="color:var(--bad);border-color:var(--bad)">${esc(m)}</p>`; };
+document.addEventListener('click', ev => {
+  const t = ev.target.closest('[data-adm]'); if (!t || !AUTH) return;
+  const act = t.dataset.adm, c = AUTH.cfg(), i = +t.dataset.i, a = c.accounts[i], me = AUTH.session();
+  if (act === 'signout') { AUTH.logout(); location.href = '../index.html'; return; }
+  if (!AUTH.isAdmin()) return;
+  if (act === 'golic') { UI.ws = 'admin'; UI.tab = 'admLicense'; render(); return; }
+  if (act === 'add') { admAccountModal(null); return; }
+  if (act === 'pw') { admAccountModal(i); return; }
+  if (act === 'pwsave' || act === 'addsave') {
+    const pw = document.getElementById('ad_pw').value;
+    if (act === 'addsave') {
+      const name = document.getElementById('ad_name').value.trim(), u = lc(document.getElementById('ad_u').value), role = document.getElementById('ad_role').value;
+      if (!name) return admErr('Type the person\'s name.');
+      if (!/^[a-z0-9._-]{3,30}$/.test(u)) return admErr('User name: 3 to 30 letters, numbers, dots, dashes or underscores.');
+      if (AUTH.find(u)) return admErr('That user name is taken.');
+      if (AUTH.seatsLeft(role) <= 0) return admErr(`No free ${AUTH.ROLES[role].label} seat. Switch someone off or get more licenses.`);
+      if (pw.length < 8) return admErr('Use a password of 8 or more characters.');
+      c.accounts.push({ u, name, role, appUser:document.getElementById('ad_app').value, pw:AUTH.pwHash(u, pw), active:true, last:null });
+      AUTH.save(); closeModal(); render(); toast(`${name} can now sign in to ${AUTH.ROLES[role].label} as ${u}.`); return;
+    }
+    if (pw.length < 8) return admErr('Use a password of 8 or more characters.');
+    a.pw = AUTH.pwHash(a.u, pw); delete a.demo; AUTH.save(); closeModal(); render(); toast(`Password changed for ${a.name}.`); return;
+  }
+  if (act === 'del') {
+    if (a.u === me.u) return;
+    if (UI.admDel !== a.u) { UI.admDel = a.u; render(); setTimeout(() => { if (UI.admDel === a.u) { UI.admDel = null; render(); } }, 4000); return; }
+    UI.admDel = null; c.accounts.splice(i, 1); AUTH.save(); render(); toast(`${a.name} removed. Their seat is free.`); return;
+  }
+  if (act === 'accreset') { c.access = AUTH.defaultAccess(); AUTH.save(); render(); toast('Role access is back to the defaults.'); return; }
+  if (act === 'accent') { c.brand.accent = t.dataset.name; AUTH.save(); AUTH.applyBrand(); render(); return; }
+  if (act === 'authreset') {
+    if (!UI.admReset) { UI.admReset = true; render(); setTimeout(() => { UI.admReset = false; if (UI.tab === 'admBrand') render(); }, 4000); return; }
+    UI.admReset = false; const key = c.license; AUTH.reset(); AUTH.cfg().license = key; AUTH.save(); AUTH.applyBrand(); toast('Sign-in settings reset. Sign in again with a demo account.'); setTimeout(() => location.href = '../index.html#signin/admin', 900); return;
+  }
+  if (act === 'licapply') {
+    const k = document.getElementById('admLicKey').value; UI.admLicKey = k; UI.admLicMsg = ['info', 'Checking…']; render();
+    AUTH.applyLicense(k).then(r => { UI.admLicMsg = r.ok ? ['ok', `Applied: ${r.status.p.customer}, valid until ${licDate(r.status.p.expires)}.`] : ['bad', r.err]; if (r.ok) UI.admLicKey = ''; render(); });
+    return;
+  }
+});
+document.addEventListener('change', ev => {
+  const t = ev.target; if (!AUTH || !AUTH.isAdmin()) return;
+  const c = AUTH.cfg(), ds = t.dataset;
+  if (ds.admf) {
+    const a = c.accounts[+ds.i], f = ds.admf;
+    const admins = c.accounts.filter(x => x.active && x.role === 'admin');
+    if (f === 'name') { if (t.value.trim()) a.name = t.value.trim(); }
+    else if (f === 'appUser') a.appUser = t.value;
+    else if (f === 'role') {
+      if (a.role === 'admin' && a.active && admins.length < 2) { toast('Keep at least one active admin.'); render(); return; }
+      if (a.active && AUTH.seatsLeft(t.value) <= 0) { toast(`No free ${AUTH.ROLES[t.value].label} seat. Switch someone off or get more licenses.`); render(); return; }
+      a.role = t.value;
+    } else if (f === 'active') {
+      if (t.checked && AUTH.seatsLeft(a.role) <= 0) { toast(`No free ${AUTH.ROLES[a.role].label} seat. Switch someone else off or get more licenses.`); render(); return; }
+      if (!t.checked && a.role === 'admin' && admins.length < 2) { toast('Keep at least one active admin.'); render(); return; }
+      a.active = t.checked;
+    }
+    AUTH.save(); render(); return;
+  }
+  if (ds.acc) {
+    const [r, ws, k] = ds.acc.split('|'), m = c.access[r] || (c.access[r] = {}), l = m[ws] || (m[ws] = []);
+    if (t.checked) { if (!l.includes(k)) l.push(k); } else m[ws] = l.filter(x => x !== k);
+    AUTH.save(); render(); return;
+  }
+  if (ds.brand) { c.brand[ds.brand] = ds.brand === 'hours' ? +t.value : t.value.trim(); AUTH.save(); render(); return; }
+});
+if (AUTH) AUTH.ready.then(() => render());
+
+/* ---------- integrations: marketing / CRM tool as a plan source (alongside the Excel upload) ----------
+   Set up by the admin (Admin › Integrations on the hosted site; Masters & rules when the app runs on its own).
+   In this prototype the pull is simulated with the sample plan; it runs through the same checks as an Excel upload. */
+const MKT_TOOLS = [['salesforce', 'Salesforce', 'Opportunity'], ['hubspot', 'HubSpot', 'Deals'], ['zoho', 'Zoho CRM', 'Deals'], ['dynamics', 'Microsoft Dynamics 365 Sales', 'opportunities'], ['sapcx', 'SAP Sales Cloud', 'Opportunity'], ['pipedrive', 'Pipedrive', 'Deals'], ['rest', 'Other tool (REST API or webhook)', '']];
+const MKT_FIELDS = [['so', 'Sales Order No', 'sales_order_no'], ['wo', 'Work Order No', 'work_order_no'], ['type', 'Type', 'motor_type'], ['frame', 'Frame', 'frame_size'], ['kw', 'KW', 'rated_kw'], ['volts', 'Volts', 'rated_volts'], ['mr', 'MR', 'mr'], ['region', 'Region', 'region'], ['qty', 'Qty', 'quantity'], ['sales', 'Sales Planned Date', 'planned_date'], ['contract', 'Contractual Delivery Date', 'contract_date'], ['exw', 'EXW Promise Date', 'exw_date'], ['remarks', 'Remarks', 'notes']];
+const mktDefault = () => ({ on:false, tool:'salesforce', url:'', auth:'OAuth 2.0', object:'Opportunity', filter:'Stage = Closed Won', sched:'manual', map:Object.fromEntries(MKT_FIELDS.map(f => [f[0], f[2]])), last:null });
+const mktTool = () => MKT_TOOLS.find(t => t[0] === S.mkt.tool) || MKT_TOOLS[MKT_TOOLS.length - 1];
+// connections are an admin job on the hosted site; on its own the app keeps the FG-date editors in charge
+const canIntegrate = () => AUTH ? AUTH.isAdmin() : canEdit();
+function mktCard() {
+  const m = S.mkt, dis = canIntegrate() ? '' : 'disabled', t = mktTool();
+  const sel = (k, label, opts) => `<label class="field"><span>${label}</span><select data-mkt="${k}" ${dis}>${opts.map(([v, l]) => `<option value="${esc(v)}" ${m[k] === v ? 'selected' : ''}>${esc(l)}</option>`).join('')}</select></label>`;
+  return `<div class="card" style="display:grid;gap:10px">
+    <div class="chead"><h3>Marketing / CRM tool</h3>${info('<div>Pull the sales plan straight from the tool marketing already uses, instead of uploading Excel. Planners then click <b>Pull plan now</b> on Upload plan, or it runs on the schedule below.</div><div>Every pull goes through the same checks as an Excel upload before anything is imported.</div><div>In the live app the APS server makes the call and keeps the credentials; nothing secret is typed here. In this prototype the pull is simulated with the sample plan.</div>')}
+      <div class="tools">${canIntegrate() ? '' : '<span class="pill info">View only</span>'}<label class="inline"><input type="checkbox" data-mkt="on" ${m.on ? 'checked' : ''} ${dis}> Connected</label><button class="btn sm" data-act="mkttest">Test</button></div></div>
+    <div class="sub3" style="grid-template-columns:minmax(0,1.4fr) minmax(0,1fr) minmax(0,1fr)">${sel('tool', 'Tool', MKT_TOOLS.map(x => [x[0], x[1]]))}${sel('auth', 'Sign-in', [['OAuth 2.0', 'OAuth 2.0'], ['API key', 'API key'], ['Basic', 'Basic'], ['Webhook (tool pushes to Loadline)', 'Webhook push']])}${sel('sched', 'Pull', [['manual', 'Only when a planner clicks'], ['hourly', 'Every hour'], ['daily', 'Every day 06:00'], ['weekly', 'Every Monday 06:00']])}</div>
+    <div class="sub3" style="grid-template-columns:minmax(0,1.4fr) minmax(0,1fr) minmax(0,1fr)"><label class="field"><span>${t[0] === 'rest' ? 'API address' : 'Instance address'}</span><input data-mkt="url" class="mono" value="${esc(m.url)}" placeholder="https://yourcompany.${t[0] === 'hubspot' ? 'hubspot.com' : t[0] === 'zoho' ? 'zohocrm.com' : t[0] === 'dynamics' ? 'crm.dynamics.com' : 'my.salesforce.com'}" ${dis}></label>
+      <label class="field"><span>Object or report</span><input data-mkt="object" value="${esc(m.object)}" placeholder="${esc(t[2] || 'orders')}" ${dis}></label>
+      <label class="field"><span>Only records where</span><input data-mkt="filter" value="${esc(m.filter)}" ${dis}></label></div>
+    <details><summary class="small" style="cursor:pointer">Field mapping (${MKT_FIELDS.length} Loadline fields)</summary>
+      <div class="tablewrap cmp" style="margin-top:6px"><table><thead><tr><th>Loadline field</th><th>Field in ${esc(t[1])}</th></tr></thead><tbody>${MKT_FIELDS.map(([k, l]) => `<tr><td>${l}${['so', 'type', 'frame', 'qty'].includes(k) ? ' <span class="muted">*</span>' : ''}</td><td><input data-mktmap="${k}" class="mono" value="${esc(m.map[k] || '')}" ${dis} style="width:100%" aria-label="Source field for ${l}"></td></tr>`).join('')}</tbody></table></div></details>
+    ${m.last ? `<div class="muted small">Last pull ${fmtAt(m.last.at)} by ${esc(m.last.by)} · ${m.last.n} records</div>` : ''}
+  </div>`;
+}
+const MKT_URL_OK = u => /^https:\/\/[^\s/?#]+\S*$/.test(String(u || '').trim());
+function mktBar() {
+  const m = S.mkt, t = mktTool();
+  return `<div class="drop bar"><b>From a marketing tool</b>${m.on
+    ? `<span class="muted small">${esc(t[1])}${m.object ? ' · ' + esc(m.object) : ''}${m.sched !== 'manual' ? ' · pulls ' + { hourly:'every hour', daily:'daily', weekly:'weekly' }[m.sched] : ''}${m.last ? ' · last pull ' + fmtAt(m.last.at) : ''}</span><button class="btn sm primary" data-act="mktpull">Pull plan now</button>`
+    : `<span class="muted small">Not connected. ${AUTH ? (AUTH.isAdmin() ? '<button class="linkbtn" data-tab="admInteg">Connect one in Admin › Integrations</button>' : 'Your admin can connect Salesforce, HubSpot, Zoho, Dynamics 365, SAP or any REST API.') : 'Connect Salesforce, HubSpot, Zoho, Dynamics 365, SAP or any REST API in Masters &amp; rules.'}</span>`}</div>`;
+}
+function mktPull() {
+  const m = S.mkt, t = mktTool();
+  if (!m.on) { toast('No marketing tool is connected.'); return; }
+  if (!MKT_URL_OK(m.url)) { toast(`Set a full https:// address for ${t[1]} first.`); return; }
+  const at = new Date().toISOString();
+  UI.preview = buildPreview(SAMPLE_ROWS.map(sampleToSheetRow), `${t[1]}${m.object ? ' · ' + m.object : ''} (pulled ${fmtAt(at)})`);
+  m.last = { at, by:curUser().name, n:UI.preview.rows.length };
+  UI.ws = 'plan'; UI.tab = 'upload'; render(); toast(`Pulled ${UI.preview.rows.length} records from ${t[1]}. Check them, then import.`);
+}
+function viewAdmInteg() {
+  return `<section class="panel tight">${pageHead('Integrations', '', info('Connections to other systems. Only admins change them; planners and buyers use them (Send to ERP, Pull plan now) if their rights allow.'))}
+  <div class="mcols" style="grid-template-columns:repeat(auto-fit,minmax(380px,1fr))"><div class="mcol">${erpCard()}</div><div class="mcol">${mktCard()}</div></div></section>`;
+}
+
+document.addEventListener('change', ev => {
+  const t = ev.target, ds = t.dataset || {};
+  if (ds.mkt === undefined && ds.mktmap === undefined) return;
+  if (!canIntegrate()) return;
+  if (ds.mktmap !== undefined) S.mkt.map[ds.mktmap] = t.value.trim();
+  else if (ds.mkt === 'on') S.mkt.on = t.checked;
+  else { S.mkt[ds.mkt] = t.value.trim(); if (ds.mkt === 'tool') S.mkt.object = mktTool()[2]; }
+  render();
+});
+document.addEventListener('click', ev => {
+  const t = ev.target.closest('[data-act="mktpull"],[data-act="mkttest"]'); if (!t) return;
+  if (t.dataset.act === 'mktpull') mktPull();
+  else toast(MKT_URL_OK(S.mkt.url) ? `Prototype: the ${mktTool()[1]} address looks valid. A real test is run by the Loadline server, which holds the credentials.` : `Enter a full https:// address for ${mktTool()[1]}.`);
+});
+
+/* ---------- AI assistant: one panel on every screen ----------
+   Built-in agent: quick tasks and troubleshooting checks that read the live plan, purchase and stock data and
+   answer with tables and one-click actions. Optional: an admin connects Claude (Admin › AI assistant), and free-text
+   questions go to Claude, which calls the same tools. The assistant only reads data; anything that changes the plan
+   stays a button the person clicks. */
+const AI_KEY = 'loadline-ai-v1';
+const aiCfg = () => { try { return Object.assign({ provider:'builtin', key:'', model:'claude-sonnet-5-5', on:true }, JSON.parse(localStorage.getItem(AI_KEY)) || {}); } catch (e) { return { provider:'builtin', key:'', model:'claude-sonnet-5-5', on:true }; } };
+const aiSave = c => { try { localStorage.setItem(AI_KEY, JSON.stringify(c)); } catch (e) {} };
+const AI = { open:false, msgs:[], busy:false, hist:[] };
+const today0 = () => localToday();
+const daysBetween = (a, b) => Math.round((D(b) - D(a)) / 864e5);
+const tabLabel = (ws, tab) => { const t = wsTabsAll(ws).find(x => x[0] === tab); return t ? t[1].replace(/<span class="mx">.*?<\/span>/g, '').replace(/<[^>]+>/g, '').replace(/&amp;/g, '&') : tab; };
+const canSee = (ws, tab) => wsTabs(ws).some(x => x[0] === tab);
+const go = (ws, tab, extra = '') => canSee(ws, tab) ? `<button class="btn sm" data-aigo="${ws}|${tab}${extra ? '|' + esc(extra) : ''}">Open ${esc(tabLabel(ws, tab))}</button>` : '';
+const aTable = (head, rows, more = 0) => rows.length ? `<div class="tablewrap cmp ai-t"><table><thead><tr>${head.map(h => `<th>${h}</th>`).join('')}</tr></thead><tbody>${rows.join('')}</tbody></table></div>${more > 0 ? `<div class="muted small">and ${more} more</div>` : ''}` : '';
+
+// facts the tools share
+function lateOrders() {
+  return planOrders().map(o => ({ o, r:R.res[o.so] })).filter(x => x.r && !x.r.error && x.o.sales && x.r.end > x.o.sales)
+    .map(x => ({ ...x, d:daysBetween(x.o.sales, x.r.end) })).sort((a, b) => b.d - a.d);
+}
+function overDays(horizon = 60) {
+  const out = [], t = today0(), end = addDays(t, horizon);
+  plantIds().forEach(fid => Object.entries(R.load).forEach(([k, n]) => { const [f, d] = k.split('|'); if (f !== fid || d < t || d > end) return; const c = capOn(fid, d); if (n > c) out.push({ fid, d, n, c }); }));
+  return out.sort((a, b) => a.d.localeCompare(b.d));
+}
+const plantName = fid => (S.factories.find(f => f.id === fid) || {}).name || fid;
+function expiringBatches(days = 30) { const t = today0(), lim = addDays(t, days); return [...W().stores, ...W().iqc].filter(r => { const e = expOf(r); return e && e <= lim; }).map(r => ({ r, e:expOf(r) })).sort((a, b) => a.e.localeCompare(b.e)); }
+
+/* tools: id, workspace + tab they belong to, a label for the chip, and run() → { text (for Claude), html, ok } */
+const AI_TOOLS = [
+  { id:'late_orders', ws:'plan', tab:'orders', also:['dashboard', 'upload', 'calendar'], label:'Which orders are late?', desc:'Orders whose system FG date is after the marketing planned date, worst first.', run() {
+    const L = lateOrders(), top = L.slice(0, 8);
+    return { ok:!L.length, text:L.length ? `${L.length} orders finish after the marketing date. Worst: ${top.map(x => `${x.o.so} +${x.d}d (FG ${x.r.end}, marketing ${x.o.sales})`).join('; ')}` : 'No order finishes after its marketing date.',
+      html:L.length ? `<p><b>${L.length} order${L.length > 1 ? 's' : ''}</b> finish after the marketing date. Open one to see how its date was worked out.</p>${aTable(['Sales order', 'Marketing', 'FG (system)', 'Late'], top.map(x => `<tr class="click" data-open="${esc(x.o.so)}"><td class="mono">${esc(x.o.so)}</td><td class="num">${fmt(x.o.sales)}</td><td class="num">${fmt(x.r.end)}</td><td class="num"><span class="pill bad">+${x.d} d</span></td></tr>`), L.length - top.length)}<p class="muted small">To pull them in: add capacity on busy days (Factory calendar), check machine breakdowns (Shop floor), or ask marketing to move the date.</p><div class="row">${go('plan', 'calendar')}${go('plan', 'shop')}</div>`
+        : '<p>Every scheduled order finishes on or before its marketing date.</p>' }; } },
+  { id:'unscheduled', ws:'plan', tab:'orders', also:['upload', 'masters'], label:'Why can\'t some orders be scheduled?', desc:'Orders the scheduler could not place, with the reason and the fix.', run() {
+    const L = S.orders.filter(o => R.res[o.so] && R.res[o.so].error);
+    return { ok:!L.length, text:L.length ? L.map(o => `${o.so}: ${R.res[o.so].error}`).join('; ') : 'All orders are scheduled.',
+      html:L.length ? `<p><b>${L.length}</b> order${L.length > 1 ? 's' : ''} can't be scheduled. Usually a missing master: add the frame to Lead time by frame, or map the type to a plant.</p>${aTable(['Sales order', 'Reason'], L.slice(0, 8).map(o => `<tr class="click" data-open="${esc(o.so)}"><td class="mono">${esc(o.so)}</td><td>${esc(R.res[o.so].error)}</td></tr>`), L.length - 8)}<div class="row">${go('plan', 'masters')}</div>` : '<p>All orders are scheduled.</p>' }; } },
+  { id:'overloads', ws:'plan', tab:'dashboard', also:['calendar', 'shop'], label:'Find overloaded days', desc:'Days in the next 60 where planned load is above usable capacity.', run() {
+    const O = overDays();
+    return { ok:!O.length, text:O.length ? `${O.length} overloaded days: ${O.slice(0, 10).map(x => `${x.d} ${x.n}/${x.c}`).join(', ')}` : 'No day in the next 60 is above usable capacity.',
+      html:O.length ? `<p><b>${O.length}</b> day${O.length > 1 ? 's are' : ' is'} loaded above usable capacity in the next 60 days. Options: an extra working day or overtime in the Factory calendar, fix a machine breakdown, or move the latest orders.</p>${aTable(['Day', 'Plant', 'Load', 'Usable'], O.slice(0, 8).map(x => `<tr><td class="num">${fmt(x.d)}</td><td>${esc(plantName(x.fid))}</td><td class="num"><b>${x.n}</b></td><td class="num">${x.c}</td></tr>`), O.length - 8)}<div class="row">${go('plan', 'calendar')}${go('plan', 'shop')}</div>`
+        : '<p>No day in the next 60 is loaded above usable capacity.</p>' }; } },
+  { id:'week', ws:'plan', tab:'dashboard', also:['orders'], label:'Summarise the next two weeks', desc:'Orders and motors finishing in the next 14 days and how full the plant is.', run() {
+    const t = today0(), e = addDays(t, 14), L = planOrders().filter(o => { const r = R.res[o.so]; return r && !r.error && r.end >= t && r.end <= e; });
+    let load = 0, cap = 0; plantIds().forEach(fid => { for (let d = t; d <= e; d = addDays(d, 1)) { load += R.load[fid + '|' + d] || 0; cap += capOn(fid, d); } });
+    const u = cap ? Math.round(load / cap * 100) : 0, m = L.reduce((a, o) => a + o.qty, 0);
+    return { ok:true, text:`Next 14 days: ${L.length} orders (${m} motors) reach FG; plant loading ${u}% of usable capacity.`,
+      html:`<p>In the next 14 days <b>${L.length} orders</b> (${m} motors) reach their FG date, and the plant is loaded at <b>${u}%</b> of usable capacity.</p>${aTable(['Sales order', 'Qty', 'FG date'], L.slice(0, 8).map(o => `<tr class="click" data-open="${esc(o.so)}"><td class="mono">${esc(o.so)}</td><td class="num">${o.qty}</td><td class="num">${fmt(R.res[o.so].end)}</td></tr>`), L.length - 8)}` }; } },
+  { id:'erp_pending', ws:'plan', tab:'orders', also:['upload'], label:'What still needs to go to ERP?', desc:'New or changed orders that have not been sent to ERP for MRP.', run() {
+    const L = planOrders().filter(o => ['new', 'changed'].includes(erpState(o).k)), ch = L.filter(o => erpState(o).k === 'changed').length;
+    return { ok:!L.length, text:L.length ? `${L.length} orders to send to ERP (${ch} changed since last send).` : 'Everything scheduled has been sent to ERP.',
+      html:L.length ? `<p><b>${L.length}</b> order${L.length > 1 ? 's' : ''} to send (${L.length - ch} new, ${ch} changed). Purchase only sees their BOMs after the MRP run.</p><div class="row">${canSend() && canSee('plan', 'orders') ? '<button class="btn sm primary" data-act="erpopen">Review and send to ERP</button>' : '<span class="muted small">Someone with the Send to ERP right has to send them.</span>'}</div>` : '<p>Everything scheduled has been sent to ERP.</p>' }; } },
+  { id:'breakdowns', ws:'plan', tab:'shop', also:['dashboard'], label:'Which machines are down?', desc:'Machines in breakdown today and when they are expected back.', run() {
+    const t = today0(), L = S.machines.filter(m => isDown(m, t));
+    return { ok:!L.length, text:L.length ? L.map(m => `${m.name} (${m.area}) down since ${m.from}${m.to ? ', back ' + m.to : ', no return date'}`).join('; ') : 'All machines are running.',
+      html:L.length ? `<p><b>${L.length}</b> machine${L.length > 1 ? 's are' : ' is'} down, which lowers usable capacity.</p>${aTable(['Machine', 'Area', 'Since', 'Back'], L.map(m => `<tr><td>${esc(m.name)}</td><td>${esc(m.area)}</td><td class="num">${fmt(m.from)}</td><td class="num">${m.to ? fmt(m.to) : '<span class="pill warn">No date</span>'}</td></tr>`))}<div class="row">${go('plan', 'shop')}</div>` : '<p>All machines are running.</p>' }; } },
+  { id:'order_now', ws:'buy', tab:'matsum', also:['bom', 'pos'], label:'What must be ordered this week?', desc:'Parts whose order-by date has passed or falls in the next 7 days, by buyer.', run() {
+    const L = matSummary(buyOrders()).filter(e => e.status === 'late' || e.status === 'soon').sort((a, b) => (a.orderBy || '').localeCompare(b.orderBy || ''));
+    return { ok:!L.length, text:L.length ? `${L.length} parts to order now: ${L.slice(0, 10).map(e => `${e.code} ${e.buy} ${e.uom} by ${e.orderBy} (${e.buyer || 'no buyer'})`).join('; ')}` : 'Nothing has to be ordered this week.',
+      html:L.length ? `<p><b>${L.length}</b> part${L.length > 1 ? 's' : ''} to order now (${L.filter(e => e.status === 'late').length} already late).</p>${aTable(['Part', 'To buy', 'Order by', 'Buyer'], L.slice(0, 8).map(e => `<tr><td class="mono">${esc(e.code)}</td><td class="num">${+(+e.buy).toFixed(2)} ${esc(e.uom)}</td><td class="num">${e.status === 'late' ? `<span class="pill bad">${fmt(e.orderBy)}</span>` : fmt(e.orderBy)}</td><td>${esc(e.buyer || '—')}</td></tr>`), L.length - 8)}<div class="row">${go('buy', 'matsum')}</div>` : '<p>Nothing has to be ordered this week.</p>' }; } },
+  { id:'po_late', ws:'buy', tab:'pos', also:['matsum'], label:'Which purchase orders are late?', desc:'Open PO lines past their due date, or arriving after the part is needed.', run() {
+    const t = today0(), L = openPos().filter(q => q.due && q.due < t);
+    return { ok:!L.length, text:L.length ? `${L.length} open PO lines are overdue: ${L.slice(0, 8).map(q => `${q.po} ${q.code} due ${q.due}`).join('; ')}` : 'No open PO line is overdue.',
+      html:L.length ? `<p><b>${L.length}</b> open PO line${L.length > 1 ? 's are' : ' is'} overdue. Chase the supplier or expedite.</p>${aTable(['PO', 'Part', 'Supplier', 'Due'], L.slice(0, 8).map(q => `<tr><td class="mono">${esc(q.po)}</td><td class="mono">${esc(q.code)}</td><td>${esc(q.supName || q.sup || '')}</td><td class="num"><span class="pill bad">${fmt(q.due)}</span></td></tr>`), L.length - 8)}<div class="row">${canSee('buy', 'pos') ? '<button class="btn sm" data-act="polate">Open late PO lines</button>' : ''}</div>` : '<p>No open PO line is overdue.</p>' }; } },
+  { id:'safety', ws:'buy', tab:'forecast', also:['matsum'], label:'Set safety stock from the forecast', desc:'How many parts have no safety stock set yet, with a one-click apply of the suggested values.', run() {
+    const rows = forecastData().rows.filter(r => r.avg > 0), unset = rows.filter(r => !r.set);
+    return { ok:!unset.length, text:`${rows.length} parts have usage history; ${unset.length} have no safety stock set.`,
+      html:`<p>${rows.length} parts have usage history; <b>${unset.length}</b> have no safety stock set yet.</p><div class="row">${canBuy() && canSee('buy', 'forecast') && unset.length ? '<button class="btn sm primary" data-act="ssapply">Apply suggested safety stock</button>' : ''}${go('buy', 'forecast')}</div>` }; } },
+  { id:'short_parts', ws:'wms', tab:'stock', also:['stores', 'grn'], label:'Which parts are short?', desc:'Parts where stock and open POs do not cover the work orders after MRP.', run() {
+    const L = stockRows().filter(r => r.state === 'short');
+    return { ok:!L.length, text:L.length ? `${L.length} parts short: ${L.slice(0, 10).map(r => `${r.code} short ${r.buy} ${r.uom}`).join('; ')}` : 'No part is short.',
+      html:L.length ? `<p><b>${L.length}</b> part${L.length > 1 ? 's are' : ' is'} short for the work orders after MRP.</p>${aTable(['Part', 'Need', 'In stores', 'Short'], L.slice(0, 8).map(r => `<tr><td class="mono">${esc(r.code)}</td><td class="num">${r.need}</td><td class="num">${+(+r.stores).toFixed(2)}</td><td class="num"><span class="pill bad">${r.buy}</span></td></tr>`), L.length - 8)}<div class="row">${go('wms', 'stock')}</div>` : '<p>No part is short.</p>' }; } },
+  { id:'expiring', ws:'wms', tab:'stores', also:['iqc', 'stock'], label:'What expires in the next 30 days?', desc:'Batches in stores or IQC that expire within 30 days (FEFO items).', run() {
+    const L = expiringBatches();
+    return { ok:!L.length, text:L.length ? `${L.length} batches expire within 30 days: ${L.slice(0, 8).map(x => `${x.r.code} ${x.r.qty} ${x.r.uom} on ${x.e}`).join('; ')}` : 'Nothing expires in the next 30 days.',
+      html:L.length ? `<p><b>${L.length}</b> batch${L.length > 1 ? 'es expire' : ' expires'} within 30 days. Issue these first.</p>${aTable(['Part', 'Qty', 'Where', 'Expires'], L.slice(0, 8).map(x => `<tr><td class="mono">${esc(x.r.code)}</td><td class="num">${x.r.qty} ${esc(x.r.uom)}</td><td class="mono">${esc(x.r.bin || 'IQC ' + (x.r.grn || ''))}</td><td class="num"><span class="pill warn">${fmt(x.e)}</span></td></tr>`), L.length - 8)}<div class="row">${go('wms', 'stores')}</div>` : '<p>Nothing expires in the next 30 days.</p>' }; } },
+  { id:'iqc_queue', ws:'wms', tab:'iqc', also:['grn'], label:'What is waiting in IQC?', desc:'Receipts waiting for inspection or on hold, oldest first.', run() {
+    const t = today0(), L = W().iqc.slice().sort((a, b) => a.recv.localeCompare(b.recv)), hold = L.filter(r => r.status === 'hold');
+    return { ok:!L.length, text:`${L.length} receipts in IQC, ${hold.length} on hold. Oldest: ${L.slice(0, 5).map(r => `${r.code} since ${r.recv}`).join('; ')}`,
+      html:L.length ? `<p><b>${L.length}</b> receipt${L.length > 1 ? 's' : ''} in IQC, ${hold.length} on hold. Planning already counts them, but stores can't issue them.</p>${aTable(['Part', 'GRN', 'Received', 'Days'], L.slice(0, 8).map(r => `<tr><td class="mono">${esc(r.code)}</td><td class="mono">${esc(r.grn)}</td><td class="num">${fmt(r.recv.slice(0, 10))}</td><td class="num">${daysBetween(r.recv.slice(0, 10), t)}</td></tr>`), L.length - 8)}<div class="row">${go('wms', 'iqc')}</div>` : '<p>IQC is empty.</p>' }; } },
+  { id:'unsynced', ws:'wms', tab:'stock', also:['stores', 'iqc', 'blocked', 'scrap'], label:'Sync stock moves with ERP', desc:'Stock moves recorded here that are not yet posted to ERP.', run() {
+    const n = wmsPending().length;
+    return { ok:!n, text:n ? `${n} stock moves are waiting to be posted to ERP.` : 'All stock moves are posted to ERP.',
+      html:n ? `<p><b>${n}</b> stock move${n > 1 ? 's are' : ' is'} waiting to be posted to ERP. Until then ERP stock differs from Loadline.</p><div class="row">${canWms() ? '<button class="btn sm primary" data-act="wmssync">Sync with ERP now</button>' : '<span class="muted small">Someone with the WMS right has to sync.</span>'}</div>` : '<p>All stock moves are posted to ERP.</p>' }; } },
+  { id:'seats', ws:'admin', tab:'admUsers', also:['admLicense', 'admLog'], label:'Check licenses and sign-ins', desc:'Seat use per workspace, people without a seat, failed sign-ins in the last 24 hours.', run() {
+    const c = AUTH.cfg(), L = AUTH.licStatus(), noSeat = c.accounts.filter(a => a.active && !AUTH.hasSeat(a)), fail = c.log.filter(e => !e.ok && Date.now() - Date.parse(e.at) < 864e5);
+    return { ok:!noSeat.length && !fail.length && L.state === 'ok', text:`License ${L.state}${L.p ? ', valid until ' + L.p.expires : ''}. Seats: ${ADM_ROLES.map(r => `${AUTH.ROLES[r].label} ${AUTH.activeOf(r).length}/${AUTH.seats(r)}`).join(', ')}. ${noSeat.length} active people without a seat. ${fail.length} failed sign-ins in 24 h.`,
+      html:`<p>License <b>${L.state === 'ok' ? 'active' : L.state}</b>${L.p ? ` until ${fmt(L.p.expires)}` : ''}. ${ADM_ROLES.map(seatPill).join(' ')}</p>${noSeat.length ? `<p><b>${noSeat.length}</b> active ${noSeat.length > 1 ? 'people have' : 'person has'} no seat and can't sign in: ${noSeat.map(a => esc(a.name)).join(', ')}.</p>` : ''}${fail.length ? `<p><b>${fail.length}</b> failed sign-in${fail.length > 1 ? 's' : ''} in the last 24 hours.</p>` : ''}<div class="row">${go('admin', 'admUsers')}${go('admin', 'admLog')}</div>` }; } },
+  { id:'wo_ready', ws:'plan', tab:'wos', also:['orders', 'prods'], label:'Which sales orders are ready for a work order?', desc:'Sales orders through MRP with no work order yet, and which parts are still missing.', run() {
+    const q = woQueue().sort((a, b) => b.rd.ready - a.rd.ready || a.s.start.localeCompare(b.s.start)), r = q.filter(x => x.rd.ready), top = q.slice(0, 8);
+    return { ok:!q.length, text:q.length ? `${q.length} sales orders are through MRP without a work order; ${r.length} have every part in stores. ${top.map(x => `${x.o.so}: ${x.rd.ok}/${x.rd.n} parts in stores, start ${x.s.start}`).join('; ')}` : 'Every sales order through MRP has a work order.',
+      html:q.length ? `<p><b>${r.length}</b> ready (all parts in stores), <b>${q.length - r.length}</b> still waiting for parts.</p>${aTable(['Sales order', 'Start', 'Parts', 'Missing', ''], top.map(x => `<tr><td class="mono">${esc(x.o.so)}</td><td class="num">${fmt(x.s.start)}</td><td class="num">${partsTxt(x.rd)}</td><td>${missTxt(x.rd)}</td><td>${canWo() ? `<button class="btn sm" data-act="wonew" data-name="${esc(x.o.so)}">Create</button>` : ''}</td></tr>`), q.length - top.length)}<p class="muted small">Parts in IQC become usable once inspection accepts them; parts to buy need a PO first.</p><div class="row">${go('plan', 'wos')}</div>`
+        : '<p>Every sales order through MRP has a work order.</p>' }; } },
+  { id:'prod_due', ws:'plan', tab:'prods', also:['wos', 'shop'], label:'What production orders need attention?', desc:'Work orders without production orders, line orders past their finish date, and anything not in ERP.', run() {
+    const today = today0(), no = woList().filter(w => w.status !== 'Completed' && !prodsOf(w.no).length), late = prodList().filter(p => p.status !== 'Completed' && p.end < today), un = unsentOf([...woList(), ...prodList()]);
+    const ok = !no.length && !late.length && !un.length;
+    return { ok, text:ok ? 'Production orders are in order.' : `${no.length} work orders without production orders (${no.map(w => w.no).join(', ')}); ${late.length} production orders past finish (${late.slice(0, 8).map(p => p.no).join(', ')}); ${un.length} not in ERP or changed.`,
+      html:ok ? '<p>Every open work order has production orders, none is past its finish date' + (erpOn() ? ', and ERP has them all' : '') + '.</p>'
+        : `${no.length ? `<p><b>${no.length}</b> work order${no.length > 1 ? 's have' : ' has'} no production orders.</p>${aTable(['Work order', 'Start', ''], no.slice(0, 6).map(w => `<tr><td class="mono">${esc(w.no)}</td><td class="num">${fmt(w.start)}</td><td>${canWo() ? `<button class="btn sm" data-act="prodnew" data-name="${esc(w.no)}">Create by line</button>` : ''}</td></tr>`), no.length - 6)}` : ''}
+        ${late.length ? `<p><b>${late.length}</b> production order${late.length > 1 ? 's are' : ' is'} past the finish date and not completed. Complete them if done, or check the line on Shop floor.</p>${aTable(['Production order', 'Line', 'Finish', 'Status'], late.slice(0, 6).map(p => `<tr><td class="mono">${esc(p.no)}</td><td>${esc(p.line)}</td><td class="num">${fmt(p.end)}</td><td>${woPill(p.status)}</td></tr>`), late.length - 6)}` : ''}
+        ${un.length ? `<p><b>${un.length}</b> not in ERP or changed since sent.</p>${canWo() ? '<div class="row"><button class="btn sm primary" data-act="wosend" data-kind="all">Send all to ERP</button></div>' : ''}` : ''}<div class="row">${go('plan', 'prods')}</div>` }; } },
+];
+
+/* troubleshooting: checks per workspace, each { level, msg, fix } */
+function aiChecks(ws) {
+  const out = [], add = (level, msg, fix = '') => out.push({ level, msg, fix });
+  if (ws === 'plan') {
+    const un = S.orders.filter(o => R.res[o.so] && R.res[o.so].error).length; if (un) add('bad', `${un} order${un > 1 ? 's' : ''} can't be scheduled (missing lead-time rule or plant mapping).`, go('plan', 'masters'));
+    const nd = S.orders.filter(o => !o.sales).length; if (nd) add('warn', `${nd} order${nd > 1 ? 's have' : ' has'} no marketing date, so ${nd > 1 ? 'they are' : 'it is'} planned as soon as possible.`, go('plan', 'orders'));
+    const lu = S.lastUpload; if (lu && lu.dup && lu.dup.length) add('warn', `The last upload had ${lu.dup.length} duplicate sales order${lu.dup.length > 1 ? 's' : ''}; only the first row was kept.`, go('plan', 'upload'));
+    const O = overDays(); if (O.length) add('warn', `${O.length} day${O.length > 1 ? 's' : ''} in the next 60 are loaded above usable capacity.`, go('plan', 'calendar'));
+    const dn = S.machines.filter(m => isDown(m, today0()) && !m.to).length; if (dn) add('warn', `${dn} machine${dn > 1 ? 's are' : ' is'} down with no expected return date, so capacity stays reduced.`, go('plan', 'shop'));
+    if (erpOn() && !ERP_URL_OK(S.erp.url)) add('bad', 'The ERP endpoint is not a valid https address, so Send to ERP is blocked.', canIntegrate() && AUTH ? go('admin', 'admInteg') : canIntegrate() ? go('plan', 'masters') : 'Ask your admin.');
+    if (S.mkt.on && !MKT_URL_OK(S.mkt.url)) add('bad', `The ${mktTool()[1]} connection has no valid address, so Pull plan now fails.`, canIntegrate() && AUTH ? go('admin', 'admInteg') : 'Ask your admin.');
+    const wq = woQueue(), wr = wq.filter(x => x.rd.ready).length; if (wr) add('info', `${wr} sales order${wr > 1 ? 's have' : ' has'} every part in stores and no work order yet.`, canWo() && canSee('plan', 'wos') ? '<button class="btn sm" data-aigo="plan|wos">Create work orders</button>' : '');
+    const np = woList().filter(w => w.status !== 'Completed' && !prodsOf(w.no).length && w.start <= addDays(today0(), 7)).length; if (np) add('warn', `${np} work order${np > 1 ? 's start' : ' starts'} within 7 days with no production orders.`, go('plan', 'prods'));
+    const uw = unsentOf([...woList(), ...prodList()]).length; if (uw) add('warn', `${uw} work or production order${uw > 1 ? 's are' : ' is'} not in ERP or changed since sent.`, canWo() ? '<button class="btn sm" data-act="wosend" data-kind="all">Send to ERP</button>' : '');
+    const pend = planOrders().filter(o => erpState(o).k === 'changed').length; if (pend) add('info', `${pend} order${pend > 1 ? 's changed' : ' changed'} since the last ${erpOn() ? 'ERP send' : 'release'}; Purchase still sees the old dates.`, canSend() ? '<button class="btn sm" data-act="erpopen">Send to ERP</button>' : '');
+  }
+  if (ws === 'buy') {
+    const ms = matSummary(buyOrders()), late = ms.filter(e => e.status === 'late').length; if (late) add('bad', `${late} part${late > 1 ? 's are' : ' is'} past the order-by date.`, go('buy', 'matsum'));
+    const nopm = ms.filter(e => !e.pm).length; if (nopm) add('warn', `${nopm} bought part${nopm > 1 ? 's are' : ' is'} not in the Product master, so lead times are defaults.`, go('buy', 'products'));
+    const nog = ms.filter(e => e.pm && !e.grp).length; if (nog) add('warn', `${nog} part${nog > 1 ? 's have' : ' has'} no material group, so no buyer is responsible.`, go('buy', 'groups'));
+    const pl = openPos().filter(q => q.due && q.due < today0()).length; if (pl) add('warn', `${pl} open PO line${pl > 1 ? 's are' : ' is'} overdue.`, canSee('buy', 'pos') ? '<button class="btn sm" data-act="polate">Late PO lines</button>' : '');
+    if (!buyOrders().filter(x => x.s).length) add('info', 'No work order has been through an MRP run yet, so BOMs are empty. The planner sends the plan to ERP first.');
+  }
+  if (ws === 'wms') {
+    const ex = expiringBatches(7).length; if (ex) add('warn', `${ex} batch${ex > 1 ? 'es expire' : ' expires'} within 7 days.`, go('wms', 'stores'));
+    const p = wmsPending().length; if (p) add('warn', `${p} stock move${p > 1 ? 's are' : ' is'} not posted to ERP yet.`, canWms() ? '<button class="btn sm" data-act="wmssync">Sync now</button>' : '');
+    const h = W().iqc.filter(r => r.status === 'hold' && daysBetween(r.recv.slice(0, 10), today0()) > 3).length; if (h) add('warn', `${h} IQC receipt${h > 1 ? 's have' : ' has'} been on hold for more than 3 days.`, go('wms', 'iqc'));
+    const sh = stockRows().filter(r => r.state === 'short').length; if (sh) add('info', `${sh} part${sh > 1 ? 's are' : ' is'} short for released work orders.`, go('wms', 'stock'));
+  }
+  if (ws === 'admin' && AUTH) {
+    const L = AUTH.licStatus(); if (L.state !== 'ok') add('bad', `The license is ${L.state}.`, go('admin', 'admLicense')); else if (L.daysLeft <= 30) add('warn', `The license ends in ${L.daysLeft} days.`, go('admin', 'admLicense'));
+    const ns = AUTH.cfg().accounts.filter(a => a.active && !AUTH.hasSeat(a)).length; if (ns) add('bad', `${ns} active ${ns > 1 ? 'people have' : 'person has'} no license seat and can't sign in.`, go('admin', 'admUsers'));
+    const demo = AUTH.cfg().accounts.filter(a => a.active && a.demo && a.pw === AUTH.pwHash(a.u, (AUTH.DEMO.find(d => d.u === a.u) || {}).pw || '')).length; if (demo) add('warn', `${demo} account${demo > 1 ? 's still use' : ' still uses'} the published demo password.`, go('admin', 'admUsers'));
+    const empty = ['planner', 'purchase', 'wms'].filter(r => !Object.values(AUTH.cfg().access[r] || {}).some(a => a.length)); if (empty.length) add('warn', `${empty.map(r => AUTH.ROLES[r].label).join(', ')} ${empty.length > 1 ? 'have' : 'has'} no tabs and see an empty app.`, go('admin', 'admAccess'));
+    if (!ERP_URL_OK(S.erp.url)) add('warn', 'The ERP endpoint is not set, so planners cannot send to ERP.', go('admin', 'admInteg'));
+  }
+  return out;
+}
+function aiTroubleshoot() {
+  const ws = UI.ws, L = aiChecks(ws), name = ws === 'admin' ? 'Admin' : AUTH ? AUTH.WS_LABEL[ws] : { plan:'Planner', buy:'Purchase', wms:'WMS' }[ws];
+  return { ok:!L.length, text:L.length ? L.map(x => `[${x.level}] ${x.msg}`).join(' ') : `No problems found in ${name}.`,
+    html:L.length ? `<p>I checked ${name} and found <b>${L.length}</b> thing${L.length > 1 ? 's' : ''} to look at:</p><div class="ai-checks">${L.map(x => `<div class="ai-chk"><span class="pill ${x.level === 'info' ? 'info' : x.level}">${{ bad:'Fix', warn:'Check', info:'Note' }[x.level]}</span><div><div>${esc(x.msg)}</div>${x.fix ? `<div class="row" style="margin-top:4px">${x.fix}</div>` : ''}</div></div>`).join('')}</div>` : `<p>I checked ${name}: masters, dates, capacity and connections all look fine.</p>` };
+}
+const aiToolsHere = () => AI_TOOLS.filter(t => (t.ws === UI.ws && (t.tab === UI.tab || (t.also || []).includes(UI.tab))) && canSee(t.ws, t.tab) && (t.ws !== 'admin' || AUTH));
+const aiToolsAll = () => AI_TOOLS.filter(t => canSee(t.ws, t.tab) && (t.ws !== 'admin' || AUTH));
+const GLOSSARY = [[/\bmrp\b/i, 'MRP (material requirements planning) is the ERP run that turns the planned work orders into part requirements and purchase requisitions. Loadline sends the plan; Purchase sees the BOMs once MRP is complete.'],
+  [/fg date|finish/i, 'The FG (finished goods) date is calculated by Loadline: each order is scheduled backward from the marketing date within plant slots, machine availability and manpower, and moves later when the shop floor is full.'],
+  [/netch|netpl|neupl/i, 'NETCH plans only materials changed since the last MRP run, NETPL does the same within the planning horizon, NEUPL replans every material.'],
+  [/fefo|fifo|expir|shelf/i, 'Parts with a shelf life are issued FEFO (first expiry, first out); the rest FIFO. Expiry counts from the GRN date, or the supplier label if earlier. Expired stock is scrapped automatically and the buyer is told.'],
+  [/\bgrn\b|receiv/i, 'A GRN records one truck from one vendor against its open PO lines. Each line goes into IQC and is posted to ERP as movement 101.'],
+  [/\biqc\b|inspect/i, 'IQC is incoming quality inspection. Accept moves it into a stores bin (321), Hold keeps it in IQC with a reason, Reject returns it (350). Planning already counts IQC stock.'],
+  [/safety stock|forecast/i, 'Safety stock = Z × variation of monthly usage × √(lead time / 30.4). The forecast uses 6 months of history (Holt by default); set safety stock in Purchase › Forecast & safety stock.'],
+  [/licen|seat/i, 'Loadline is licensed per named user per workspace. The admin sees seat use in Admin › License and pastes renewal keys there.']];
+function aiBuiltinAnswer(q) {
+  const s = q.toLowerCase(), all = aiToolsAll();
+  if (/troubl|wrong|error|problem|issue|check|broken|not work|fail/.test(s)) return aiTroubleshoot();
+  const kw = [['late_orders', /late|delay|behind/], ['unscheduled', /unschedul|can.?t schedul|not schedul/], ['overloads', /overload|capacity|bottleneck|full/], ['week', /summar|next (two )?week|overview|status/], ['erp_pending', /erp|send|mrp/], ['breakdowns', /machine|breakdown|down/],
+    ['order_now', /order now|to buy|purchase now|buy|shortage/], ['po_late', /\bpo\b|purchase order|supplier/], ['safety', /safety|forecast/], ['short_parts', /short|stock out|missing part/], ['expiring', /expir|shelf/], ['iqc_queue', /iqc|inspect|hold/], ['unsynced', /sync|post/], ['seats', /seat|licen|sign.?in|user/]];
+  const hit = kw.find(([id, re]) => re.test(s) && all.some(t => t.id === id));
+  const g = GLOSSARY.find(([re]) => re.test(s));
+  if (g && /what|how|why|explain|mean/.test(s)) return { html:`<p>${esc(g[1])}</p>`, text:g[1] };
+  if (hit) return all.find(t => t.id === hit[0]).run();
+  if (g) return { html:`<p>${esc(g[1])}</p>`, text:g[1] };
+  return { html:`<p>I can run these for you here:</p><div class="ai-chips">${aiToolsHere().concat(all.filter(t => !aiToolsHere().includes(t)).slice(0, 4)).map(t => `<button class="ai-chip" data-ai="${t.id}">${esc(t.label)}</button>`).join('')}<button class="ai-chip" data-ai="troubleshoot">Troubleshoot this screen</button></div>${aiCfg().provider === 'claude' ? '' : `<p class="muted small">For free-form questions ${AUTH && AUTH.isAdmin() ? 'connect Claude in Admin › AI assistant' : 'your admin can connect Claude'}.</p>`}` };
+}
+
+/* Claude (optional): same tools, called by the model; the key stays in this browser, so this is for trials only */
+async function aiClaude(q) {
+  const c = aiCfg(), tools = aiToolsAll().map(t => ({ name:t.id, description:t.desc, input_schema:{ type:'object', properties:{} } })).concat([{ name:'troubleshoot', description:'Run the troubleshooting checks for the current workspace.', input_schema:{ type:'object', properties:{} } }]);
+  const sys = `You are the Loadline APS assistant inside a planning and scheduling app for a motor manufacturer. The person is ${AUTH ? AUTH.session().name + ' (' + AUTH.ROLES[AUTH.session().role].label + ')' : curUser().name}, on the ${tabLabel(UI.ws, UI.tab)} screen. Use the tools to read live data before answering; never invent numbers. Answer in short plain sentences. You cannot change data yourself; tell the person which button or screen to use. Background: ${GLOSSARY.map(g => g[1]).join(' ')}`;
+  const msgs = AI.hist.concat([{ role:'user', content:q }]), htmls = [];
+  for (let step = 0; step < 5; step++) {
+    const r = await fetch('https://api.anthropic.com/v1/messages', { method:'POST', headers:{ 'content-type':'application/json', 'x-api-key':c.key, 'anthropic-version':'2023-06-01', 'anthropic-dangerous-direct-browser-access':'true' },
+      body:JSON.stringify({ model:c.model, max_tokens:1024, system:sys, tools, messages:msgs }) });
+    const j = await r.json();
+    if (!r.ok) throw new Error((j.error && j.error.message) || 'HTTP ' + r.status);
+    msgs.push({ role:'assistant', content:j.content });
+    const uses = j.content.filter(b => b.type === 'tool_use');
+    if (j.stop_reason !== 'tool_use' || !uses.length) {
+      const txt = j.content.filter(b => b.type === 'text').map(b => b.text).join('\n');
+      AI.hist = msgs.slice(-12).filter((m, i, a) => !(i === 0 && m.role !== 'user'));
+      return { html:`<p>${esc(txt).replace(/\*\*(.+?)\*\*/g, '<b>$1</b>').replace(/\n+/g, '</p><p>')}</p>${htmls.join('')}`, text:txt };
+    }
+    msgs.push({ role:'user', content:uses.map(u => { const t = u.name === 'troubleshoot' ? { run:aiTroubleshoot } : AI_TOOLS.find(x => x.id === u.name); let res;
+      try { res = t ? t.run() : { text:'Unknown tool.' }; } catch (e) { res = { text:'The tool failed: ' + e.message }; }
+      if (res.html) htmls.push(`<details class="ai-src"><summary>Data: ${esc(u.name === 'troubleshoot' ? 'troubleshooting' : t ? t.label : u.name)}</summary>${res.html}</details>`);
+      return { type:'tool_result', tool_use_id:u.id, content:res.text || '' }; }) });
+  }
+  return { html:'<p>That took too many steps. Try a narrower question.</p>', text:'' };
+}
+
+/* panel */
+function aiPush(role, html) { AI.msgs.push({ role, html, at:Date.now() }); if (AI.msgs.length > 60) AI.msgs.splice(0, AI.msgs.length - 60); aiRender(true); }
+async function aiAsk(q, toolId) {
+  if (AI.busy) return;
+  if (toolId) {
+    const t = toolId === 'troubleshoot' ? { label:'Troubleshoot this screen', run:aiTroubleshoot } : AI_TOOLS.find(x => x.id === toolId);
+    if (!t) return; aiPush('me', esc(t.label));
+    try { aiPush('ai', t.run().html); } catch (e) { aiPush('ai', `<p>Something went wrong running that: ${esc(e.message)}</p>`); }
+    return;
+  }
+  q = q.trim(); if (!q) return; aiPush('me', esc(q));
+  const c = aiCfg();
+  if (c.provider === 'claude' && c.key) {
+    AI.busy = true; aiRender(true);
+    try { aiPush('ai', (await aiClaude(q)).html); }
+    catch (e) { const b = aiBuiltinAnswer(q); aiPush('ai', `<p class="muted small">Claude didn't answer (${esc(e.message)}), so here is the built-in answer.</p>${b.html}`); }
+    finally { AI.busy = false; aiRender(true); }
+  } else { try { aiPush('ai', aiBuiltinAnswer(q).html); } catch (e) { aiPush('ai', `<p>Something went wrong: ${esc(e.message)}</p>`); } }
+}
+function aiRender(scroll) {
+  let fab = document.getElementById('aiFab'), p = document.getElementById('aiPanel');
+  if (!fab) {
+    document.body.insertAdjacentHTML('beforeend', `<button id="aiFab" class="ai-fab" aria-label="Open the AI assistant" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.8 4.7L18.5 9.5l-4.7 1.8L12 16l-1.8-4.7L5.5 9.5l4.7-1.8z"/><path d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8z"/></svg><span>Assistant</span></button>
+      <aside id="aiPanel" class="ai-panel" hidden aria-label="AI assistant"><div class="ai-head"><div><b>Loadline assistant</b><div class="muted small" id="aiWhere"></div></div><span class="pill info" id="aiMode"></span><button class="btn sm" data-aiclose="1" aria-label="Close assistant">✕</button></div>
+      <div class="ai-body" id="aiBody"></div><div class="ai-quick" id="aiQuick"></div>
+      <form class="ai-in" id="aiForm"><input id="aiQ" placeholder="Ask, e.g. which orders are late?" autocomplete="off" aria-label="Ask the assistant"><button class="btn sm primary" type="submit">Ask</button></form></aside>`);
+    fab = document.getElementById('aiFab'); p = document.getElementById('aiPanel');
+    document.getElementById('aiForm').addEventListener('submit', e => { e.preventDefault(); const i = document.getElementById('aiQ'); const v = i.value; i.value = ''; aiAsk(v); });
+  }
+  const c = aiCfg(), allowed = !AUTH || c.on !== false;
+  fab.hidden = !allowed || AI.open; p.hidden = !allowed || !AI.open; fab.setAttribute('aria-expanded', AI.open);
+  if (!AI.open || !allowed) return;
+  document.getElementById('aiWhere').textContent = `${{ plan:'Planner', buy:'Purchase', wms:'WMS', admin:'Admin' }[UI.ws]} · ${tabLabel(UI.ws, UI.tab)}`;
+  document.getElementById('aiMode').textContent = c.provider === 'claude' && c.key ? 'Claude' : 'Built-in';
+  const here = aiToolsHere();
+  document.getElementById('aiQuick').innerHTML = `<div class="ai-chips">${here.map(t => `<button class="ai-chip" data-ai="${t.id}">${esc(t.label)}</button>`).join('')}<button class="ai-chip warn" data-ai="troubleshoot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.5 2.5-2.4-.6-.6-2.4z"/></svg>Troubleshoot this screen</button></div>`;
+  const b = document.getElementById('aiBody');
+  b.innerHTML = AI.msgs.length ? AI.msgs.map(m => `<div class="ai-msg ${m.role}">${m.html}</div>`).join('') + (AI.busy ? '<div class="ai-msg ai"><span class="ai-dots"><i></i><i></i><i></i></span></div>' : '')
+    : `<div class="ai-msg ai"><p>Hi${AUTH ? ' ' + esc(AUTH.session().name.split(' ')[0]) : ''}. I read the live plan, purchase and stock data. Pick a task below, ask a question, or let me troubleshoot this screen.</p></div>`;
+  if (scroll) b.scrollTop = b.scrollHeight;
+}
+document.addEventListener('click', ev => {
+  const t = ev.target.closest('#aiFab,[data-ai],[data-aiclose],[data-aigo]'); if (!t) return;
+  if (t.id === 'aiFab') { AI.open = true; aiRender(true); setTimeout(() => document.getElementById('aiQ').focus(), 30); return; }
+  if (t.dataset.aiclose) { AI.open = false; aiRender(); document.getElementById('aiFab').focus(); return; }
+  if (t.dataset.ai) { aiAsk('', t.dataset.ai); return; }
+  if (t.dataset.aigo) { const [ws, tab] = t.dataset.aigo.split('|'); UI.ws = ws; UI.tab = tab; UI.rescroll = true; render(); window.scrollTo(0, 0); }
+});
+document.addEventListener('keydown', ev => { if (ev.key === 'Escape' && AI.open && !document.querySelector('#modalRoot .overlay')) { AI.open = false; aiRender(); } });
+
+function viewAdmAi() {
+  const c = aiCfg();
+  return `<section class="panel tight">${pageHead('AI assistant', '', info('<div>Every screen has an assistant (bottom right). The built-in assistant runs quick tasks and troubleshooting on the live data with no outside service.</div><div>Connect Claude to also answer free-form questions. Claude reads the same data through the same tools and cannot change anything; changes stay buttons people click.</div>'))}
+  <div class="card" style="display:grid;gap:12px;max-width:760px">
+    <label class="inline"><input type="checkbox" data-aic="on" ${c.on !== false ? 'checked' : ''}> Show the assistant to everyone</label>
+    <div class="formgrid">
+      <label class="field"><span>Answers free-form questions with</span><select data-aic="provider"><option value="builtin" ${c.provider !== 'claude' ? 'selected' : ''}>Built-in only (no outside service)</option><option value="claude" ${c.provider === 'claude' ? 'selected' : ''}>Claude (Anthropic API)</option></select></label>
+      <label class="field"><span>Claude model</span><select data-aic="model" ${c.provider === 'claude' ? '' : 'disabled'}>${[['claude-sonnet-5-5', 'Claude Sonnet 5.5 (balanced)'], ['claude-opus-5-5', 'Claude Opus 5.5 (most capable)'], ['claude-haiku-5-5', 'Claude Haiku 5.5 (fastest)']].map(([v, l]) => `<option value="${v}" ${c.model === v ? 'selected' : ''}>${l}</option>`).join('')}</select></label>
+      <label class="field"><span>Anthropic API key</span><input type="password" data-aic="key" value="${esc(c.key)}" placeholder="sk-ant-…" autocomplete="off" ${c.provider === 'claude' ? '' : 'disabled'}></label>
+    </div>
+    <p class="note">In this demo the key is kept in this browser, so use a trial key with a spending limit. In the live app the key sits on the Loadline server and the assistant calls Claude through it.</p>
+    <div><b class="small">Tasks the assistant can run</b><div class="tablewrap cmp" style="margin-top:6px"><table><thead><tr><th>Workspace</th><th>Task</th><th>What it does</th></tr></thead><tbody>${AI_TOOLS.map(t => `<tr><td>${{ plan:'Planner', buy:'Purchase', wms:'WMS', admin:'Admin' }[t.ws]}</td><td>${esc(t.label)}</td><td class="muted">${esc(t.desc)}</td></tr>`).join('')}<tr><td>Every screen</td><td>Troubleshoot this screen</td><td class="muted">Checks masters, dates, capacity, connections, stock and licenses for the workspace and links to the fix.</td></tr></tbody></table></div></div>
+  </div></section>`;
+}
+document.addEventListener('change', ev => {
+  const t = ev.target; if (!t.dataset || t.dataset.aic === undefined || !AUTH || !AUTH.isAdmin()) return;
+  const c = aiCfg(), k = t.dataset.aic; c[k] = t.type === 'checkbox' ? t.checked : t.value.trim(); aiSave(c); AI.hist = []; render();
+});
+
 /* ---------- events ---------- */
 document.addEventListener('click', ev => {
   const t = ev.target.closest('[data-clearcolf],[data-tab],[data-zoom],[data-filter],[data-day],[data-open],[data-act],[data-close],[data-ov],[data-clearov],[data-restore],[data-cal],[data-dellead],[data-actsave],[data-actdel],[data-actday],[data-mdel],[data-ws],[data-erpscope],[data-wo],[data-dl],[data-medit]');
@@ -2668,7 +3241,7 @@ document.addEventListener('click', ev => {
   if (ds.close !== undefined && ev.target !== t && !ev.target.closest('button[data-close]')) return;
   if (ds.clearcolf) { UI.colf[ds.clearcolf] = {}; render(); return; }
   if (ds.ws) { if (ds.ws !== UI.ws) { UI.ws = ds.ws; UI.tab = UI.wsTab[ds.ws] || wsTabs(ds.ws)[0][0]; UI.rescroll = true; render(); window.scrollTo(0, 0); } return; }
-  if (ds.tab) { if (ds.close !== undefined) closeModal(); if (!wsTabs(UI.ws).some(([k]) => k === ds.tab)) UI.ws = ['plan', 'buy', 'wms'].find(w => wsTabs(w).some(([k]) => k === ds.tab)) || 'plan'; UI.tab = ds.tab; UI.rescroll = true; render(); window.scrollTo(0, 0); return; }
+  if (ds.tab) { if (ds.close !== undefined) closeModal(); if (!wsTabs(UI.ws).some(([k]) => k === ds.tab)) UI.ws = ['plan', 'buy', 'wms', 'admin'].find(w => wsTabs(w).some(([k]) => k === ds.tab)) || 'plan'; UI.tab = ds.tab; UI.rescroll = true; render(); window.scrollTo(0, 0); return; }
   if (ds.erpscope) { UI.erpScope = ds.erpscope; openErp(); return; }
   if (ds.wo) { UI.selWo = ds.wo; render(); if (matchMedia('(max-width:1000px)').matches) document.getElementById('bomCard')?.scrollIntoView({ block:'start', behavior:'smooth' }); return; }
   if (ds.dl) { download(ds.dl, ds.arg); return; }
@@ -2708,7 +3281,7 @@ document.addEventListener('click', ev => {
     render(); openOrder(o.so); toast('Backup restored.'); return;
   }
   const act = ds.act;
-  const flt = { stockf:'stockF', zonef:'zoneF', agef:'ageF', shopf:'shopF', scrf:'scrF', blkf:'blkF', pof:'poF', pohf:'pohF', grnf:'grnF' }[act];
+  const flt = { stockf:'stockF', zonef:'zoneF', agef:'ageF', shopf:'shopF', scrf:'scrF', blkf:'blkF', pof:'poF', pohf:'pohF', grnf:'grnF', wof:'woF', prodf:'prodF' }[act];
   if (flt) { UI[flt] = UI[flt] === ds.name ? '' : ds.name; render(); return; }
   if (act === 'fcf') { UI.fcF = UI.fcF === ds.name ? '' : ds.name; render(); return; }
   if (act === 'fcm') { if (!canBuy()) return; fcCfg().method = ds.name; render(); return; }
@@ -2726,6 +3299,33 @@ document.addEventListener('click', ev => {
   if (act === 'polate') { UI.ws = 'buy'; UI.tab = 'pos'; UI.poView = 'lines'; UI.poF = 'late'; UI.rescroll = true; render(); window.scrollTo(0, 0); return; }
   if (act === 'mvsave') { saveMove(ds.kind, ds.id); return; }
   if (act === 'wmssync') { openSync(); return; }
+  if (act === 'wonew') { openWoNew(ds.name); return; }
+  if (act === 'wosave') { saveWoNew(ds.name); return; }
+  if (act === 'woopen') { openWo(ds.name); return; }
+  if (act === 'prodnew') { openProdNew(ds.name); return; }
+  if (act === 'prodsave') { saveProdNew(ds.name); return; }
+  if (act === 'wosend') { woSend(ds.kind, ds.name); return; }
+  if (act === 'wosync') { woSync(); return; }
+  if (act === 'poraise') { openPoRaise(); return; }
+  if (act === 'posave') { savePoRaise(); return; }
+  if (act === 'wost') {
+    const w = woByNo(ds.name); if (!w || !canWo()) return;
+    w.status = ds.kind; touch(w);
+    prodsOf(w.no).forEach(p => { const ns = ds.kind === 'Completed' ? 'Completed' : p.status === 'Created' ? 'Released' : p.status; if (ns !== p.status) { p.status = ns; touch(p); } });
+    render(); openWo(w.no); toast(`${w.no} is now ${ds.kind.toLowerCase()}${w.erp && erpOn() ? '. Send to ERP to update it there' : ''}.`); return;
+  }
+  if (act === 'prodst') {
+    const p = prodList().find(x => x.no === ds.name); if (!p || !canWo()) return;
+    p.status = ds.kind; touch(p); const w = woByNo(p.wo);
+    if (w) { if (w.status === 'Created') { w.status = 'Released'; touch(w); } rollUp(w); }
+    render(); if (document.getElementById('woModal')) openWo(p.wo); toast(`${p.no} (${p.line}) is now ${ds.kind.toLowerCase()}.`); return;
+  }
+  if (act === 'wodel') {
+    const w = woByNo(ds.name); if (!w || !canWo() || w.erp) return;
+    if (UI.woDelArm !== w.no) { UI.woDelArm = w.no; openWo(w.no); setTimeout(() => { if (UI.woDelArm === w.no) { UI.woDelArm = null; if (document.getElementById('woModal')) openWo(w.no); } }, 4000); return; }
+    UI.woDelArm = null; S.wos = woList().filter(x => x !== w); S.prods = prodList().filter(p => p.wo !== w.no);
+    closeModal(); render(); toast(`Work order ${w.no} and its production orders deleted. ${w.so} is back in the list waiting for a work order.`); return;
+  }
   if (act === 'wmssyncnow') { doSync(); return; }
   if (act === 'notes') { openNotes(); return; }
   if (act === 'noteread') { const n = (S.notes || []).find(x => x.id === ds.id), tw = document.querySelector('#noteModal .tablewrap'), sl = tw ? [tw.scrollLeft, tw.scrollTop] : [0, 0]; if (n) n.read = true; save(); render(); openNotes(); const t2 = document.querySelector('#noteModal .tablewrap'); if (t2) [t2.scrollLeft, t2.scrollTop] = sl; return; }
@@ -2760,10 +3360,10 @@ document.addEventListener('click', ev => {
   if (act === 'erpopen') { UI.erpScope = S.erp.scope; openErp(); return; }
   if (act === 'erpsend') {
     if (!canSend()) return;
-    if (!ERP_URL_OK(S.erp.url)) { toast('Set a full https:// ERP endpoint in Masters & rules before sending.'); return; }
+    if (erpOn() && !ERP_URL_OK(S.erp.url)) { toast(AUTH ? 'The ERP endpoint is not set. An admin sets it in Admin › Integrations.' : 'Set a full https:// ERP endpoint in Masters & rules before sending.'); return; }
     const lines = erpLines(UI.erpScope); if (!lines.length) return;
-    const tx = recordSend(lines, { at:new Date().toISOString(), by:curUser().name, scope:UI.erpScope });
-    render(); openErp(); toast(`${tx.id}: ${lines.length} order${lines.length > 1 ? 's' : ''} sent to ${S.erp.system}. MRP run requested.`);
+    const tx = recordSend(lines, { at:new Date().toISOString(), by:curUser().name, scope:UI.erpScope, ...(erpOn() ? {} : { local:true }) });
+    render(); openErp(); toast(tx.local ? `${tx.id}: ${lines.length} order${lines.length > 1 ? 's' : ''} released. MRP is running in Loadline; Purchase sees the BOMs in a moment.` : `${tx.id}: ${lines.length} order${lines.length > 1 ? 's' : ''} sent to ${S.erp.system}. MRP run requested.`);
     [1600, 4700].forEach(ms => setTimeout(() => { render(); if (document.getElementById('erpModal')) openErp(); }, ms)); return;
   }
   if (act === 'erptest') { toast(ERP_URL_OK(S.erp.url) ? 'Prototype: the address looks valid. A real test is run by the APS server, which holds the credentials.' : 'Enter a full https:// address for the ERP endpoint.'); return; }
@@ -2790,19 +3390,26 @@ document.addEventListener('click', ev => {
   }
   if (act === 'addplant') { const id = 'PL' + String(S.factories.length + 1).padStart(2, '0'); S.factories.push({ id, name:'New plant ' + (S.factories.length + 1), capacity:8 }); S.calendar[id] = {}; render(); return; }
   if (act === 'addtype') { const t2 = document.getElementById('newType').value.trim().toUpperCase(); if (t2 && !S.typeMap[t2]) { S.typeMap[t2] = S.factories[0].id; render(); } return; }
-  if (act === 'reset') { if (!UI.resetArm) { UI.resetArm = true; render(); setTimeout(() => { UI.resetArm = false; if (UI.tab === 'masters') render(); }, 4000); return; } UI.resetArm = false; S = seedState(); seedErpSend(); addDemoActual(); UI.selDay = null; UI.actDate = null; UI.supImport = null; UI.prodImport = null; render(); toast('Sample data restored.'); return; }
+  if (act === 'reset') { if (!UI.resetArm) { UI.resetArm = true; render(); setTimeout(() => { UI.resetArm = false; if (UI.tab === 'masters') render(); }, 4000); return; } UI.resetArm = false; S = seedState(); seedErpSend(); addDemoActual(); seedWos(); UI.selDay = null; UI.actDate = null; UI.supImport = null; UI.prodImport = null; render(); toast('Sample data restored.'); return; }
 });
 document.addEventListener('change', ev => {
   const t = ev.target, ds = t.dataset;
-  if (t.id === 'userSel') { S.user = +t.value; const h = curUser().home; if (h && h !== UI.ws) { UI.ws = h; UI.tab = UI.wsTab[h] || wsTabs(h)[0][0]; } render(); toast(`User: ${curUser().name}${canEdit() ? ', can edit FG dates' : canSend() || canBuy() || canWms() ? '' : ', view only'}${canSend() ? ', can send to ERP' : ''}${canBuy() ? ', can edit purchase masters' : ''}${canWms() ? ', can move stock' : ''}.`); return; }
+  if (t.id === 'userSel') { S.user = +t.value; const h = curUser().home; if (h && h !== UI.ws) { UI.ws = h; UI.tab = UI.wsTab[h] || wsTabs(h)[0][0]; } render(); toast(`User: ${curUser().name}${canEdit() ? ', can edit FG dates' : canSend() || canBuy() || canWms() ? '' : ', view only'}${canSend() ? ', can send to ERP' : ''}${canBuy() ? ', can edit purchase masters' : ''}${canWms() ? ', can move stock' : ''}${canWo() ? ', can make work orders' : ''}.`); return; }
   if (t.id === 'fcSl') { if (canBuy()) fcCfg().sl = +t.value; render(); return; }
   if (ds.ss !== undefined) { if (!canBuy()) return; const v = t.value.trim(); S.safety = S.safety || {};
     if (v === '') delete S.safety[ds.ss]; else if (!(+v >= 0) || +v > 1e7) { toast('Type a quantity of 0 or more.'); render(); return; } else S.safety[ds.ss] = { qty:+(+v).toFixed(3), src:'manual', by:curUser().name, at:new Date().toISOString() };
     render(); toast(v === '' ? `Safety stock removed for ${ds.ss}.` : `Safety stock for ${ds.ss} set to ${+v}.`); return; }
   if (ds.usend !== undefined) { if (canEdit()) S.users[+ds.usend].canSend = t.checked; render(); return; }
   if (ds.ubuy !== undefined) { if (canEdit()) S.users[+ds.ubuy].canBuy = t.checked; render(); return; }
+  if (ds.uwo !== undefined) { if (canEdit()) S.users[+ds.uwo].canWo = t.checked; render(); return; }
   if (ds.uwms !== undefined) { if (canEdit()) S.users[+ds.uwms].canWms = t.checked; render(); return; }
-  if (ds.erp) { if (!canEdit()) return; S.erp[ds.erp] = t.value.trim(); save(); return; }
+  if (ds.erp === 'mode') {
+    if (!canIntegrate()) return;
+    if (t.value === 'erp' && !erpAllowed()) { render(); toast('This license does not include ERP integration.'); return; }
+    S.erp.mode = t.value; if (t.value === 'local') wmsPending().forEach(m => m.status = 'local');
+    render(); toast(t.value === 'local' ? 'Standalone: Loadline now runs without ERP. MRP, POs, stock and work orders are kept here.' : `Connected to ${S.erp.system}. Send to ERP and the syncs are back on.`); return;
+  }
+  if (ds.erp) { if (!canIntegrate()) return; S.erp[ds.erp] = t.value.trim(); save(); return; }
   if (ds.sap !== undefined) { S.factories[+ds.sap].sapPlant = t.value.trim(); render(); return; }
   if (ds.ucan !== undefined) { if (canEdit()) { S.users[+ds.ucan].canEdit = t.checked; if (!S.users.some(u => u.canEdit)) { S.users[+ds.ucan].canEdit = true; toast('At least one person must keep edit rights.'); } } render(); return; }
   if (ds.mstat !== undefined) {
@@ -2948,6 +3555,266 @@ function readFile(file) {
   };
   fr.readAsArrayBuffer(file);
 }
+/* ---------- Work orders and production orders: sales order → work order → production orders by line ---------- */
+// A work order is made per sales order once its BOM has been through MRP and the parts are in stores. Production orders split it by line.
+// With ERP connected either side can create them: made here and sent to ERP, or made in ERP (SAP CO01) and pulled in by Sync from ERP.
+// Standalone (no ERP), they live only in Loadline. The ERP side is simulated in the prototype.
+const PROD_LINES = [['WND', 'Winding', .3], ['MCH', 'Machining', .2], ['VPI', 'VPI', .15], ['ASM', 'Assembly', .25], ['TST', 'Testing', .1]];
+const WO_ST = { Created:'info', Released:'acc', 'In production':'warn', Completed:'ok' };
+const canWo = () => !!curUser().canWo;
+const woList = () => S.wos || (S.wos = []);
+const prodList = () => S.prods || (S.prods = []);
+const woOf = so => woList().find(w => w.so === so) || null;
+const woByNo = no => woList().find(w => w.no === no) || null;
+const prodsOf = no => prodList().filter(p => p.wo === no);
+const woPill = st => `<span class="pill ${WO_ST[st] || 'info'}">${esc(st)}</span>`;
+const srcCell = x => x.src === 'ERP' ? `<span class="pill info" title="Created in ${esc(S.erp.system)} and pulled into Loadline">ERP</span>` : '<span class="muted small">Loadline</span>';
+const nextRef = kind => { const n = S.woN || (S.woN = { wo:51300, prod:83600 }); return (kind === 'wo' ? '1004' : '2004') + pad(++n[kind], 6); };
+const unsentOf = list => erpOn() ? list.filter(x => !x.erp || x.erp.dirty) : [];
+// where a work order or production order stands with ERP
+function erpOf(x) {
+  if (!x.erp) return ['Not in ERP', 'info'];
+  if (Date.now() - Date.parse(x.erp.at) < 1500) return ['Sending', 'warn'];
+  return x.erp.dirty ? ['Changed', 'warn'] : ['In ERP', 'ok'];
+}
+const erpCell = x => { const [l, c] = erpOf(x); return `<span class="pill ${c}"${x.erp ? ` title="${esc(S.erp.system)} order ${esc(x.erp.ref)} · ${fmtAt(x.erp.at)}${x.erp.dirty ? ' · changed in Loadline since, send again' : ''}"` : ''}>${l}</span>${l === 'In ERP' ? ` <span class="mono small muted">${esc(x.erp.ref)}</span>` : ''}`; };
+// a change made in Loadline to something ERP already has goes to ERP with the next send
+const touch = x => { if (x.erp) x.erp.dirty = true; };
+// the BOM after MRP tells if every bought part is in stores
+function woReady(x) {
+  const f = bomLines(x).filter(l => l.proc === 'F'), short = f.filter(l => l.stores + 1e-9 < l.qty);
+  return { n:f.length, ok:f.length - short.length, short, ready:!short.length, iqc:short.filter(l => l.stores + l.iqc + 1e-9 >= l.qty).length, buy:short.filter(l => l.buy > 0).length };
+}
+// sales orders through MRP that have no work order yet
+const woQueue = () => buyOrders().filter(x => !woOf(x.o.so)).map(x => ({ ...x, rd:woReady(x) }));
+const partsTxt = rd => `${rd.ok}/${rd.n} in stores`;
+const missTxt = rd => rd.ready ? '<span class="pill ok">All parts in stores</span>' : [rd.iqc && `<span class="pill info" title="Received, waiting for quality inspection">${rd.iqc} in IQC</span>`, rd.short.length - rd.iqc - rd.buy > 0 && `<span class="pill warn" title="On an open purchase order">${rd.short.length - rd.iqc - rd.buy} on PO</span>`, rd.buy && `<span class="pill bad" title="Not covered by stock or open POs">${rd.buy} to buy</span>`].filter(Boolean).join(' ');
+// production order dates: the work order window split over the lines in routing order
+function lineDates(start, end) {
+  const span = Math.max(1, diffDays(start, end) + 1); let acc = 0;
+  return PROD_LINES.map(([c, nm, w]) => { const s = addDays(start, Math.min(span - 1, Math.floor(acc * span))); acc += w; const e = addDays(start, Math.max(0, Math.ceil(acc * span) - 1)); return { c, nm, s, e:e < s ? s : e }; });
+}
+function makeProds(w, src, at, lines) {
+  (lines || lineDates(w.start, w.end).map(l => ({ ...l, qty:w.qty }))).forEach(l => prodList().push({ no:`${w.no}/${l.c}`, wo:w.no, so:w.so, line:l.nm, qty:l.qty, start:l.s, end:l.e, status:w.status === 'Created' ? 'Created' : 'Released', src, by:src === 'ERP' ? `${S.erp.system} user` : curUser().name, at, ...(src === 'ERP' ? { erp:{ at, ref:nextRef('prod') } } : {}) }));
+}
+// a work order follows its production orders
+function rollUp(w) {
+  const ps = prodsOf(w.no); if (!ps.length) return;
+  const ns = ps.every(p => p.status === 'Completed') ? 'Completed' : ps.some(p => p.status === 'In production' || p.status === 'Completed') ? 'In production' : w.status;
+  if (ns !== w.status) { w.status = ns; touch(w); }
+}
+// Example for the prototype: the jobs already on the floor have work orders and production orders in ERP.
+function seedWos() {
+  schedule(); const today = localToday(); S.wos = []; S.prods = []; S.woSyncs = []; S.woN = { wo:51200, prod:83400 };
+  S.running.forEach((j, i) => {
+    const r = R.res['RUN:' + j.so]; if (!r) return;
+    const at = new Date(Math.min(Date.parse(j.start + 'T08:00:00') - 864e5, Date.now() - 2 * 864e5)).toISOString(), src = i % 3 ? 'Loadline' : 'ERP', by = src === 'ERP' ? `${S.erp.system} user` : 'Production planner';
+    const w = { no:j.wo, so:j.so, qty:j.qty, mat:motorMat(j), fid:r.fid, start:r.start, end:r.end, status:'Released', src, by, at, erp:{ at, ref:nextRef('wo') }, short:0 };
+    S.wos.push(w);
+    lineDates(w.start, w.end).forEach(l => S.prods.push({ no:`${w.no}/${l.c}`, wo:w.no, so:w.so, line:l.nm, qty:w.qty, start:l.s, end:l.e, status:l.e < today ? 'Completed' : l.s <= today ? 'In production' : 'Released', src, by, at, erp:{ at, ref:nextRef('prod') } }));
+    rollUp(w); delete w.erp.dirty;
+  });
+}
+
+function viewWos() {
+  const ed = canWo(), on = erpOn(), q = woQueue().sort((a, b) => b.rd.ready - a.rd.ready || a.s.start.localeCompare(b.s.start)), f = UI.woF || '';
+  const mrp = new Set(buyOrders(true).map(x => x.o.so)), waitMrp = planOrders().filter(o => R.res[o.so] && !R.res[o.so].error && !mrp.has(o.so)).length;
+  const all = woList().slice().sort((a, b) => (a.status === 'Completed') - (b.status === 'Completed') || a.start.localeCompare(b.start) || a.no.localeCompare(b.no)), wos = all.filter(w => !f || w.status === f), uns = unsentOf(all), ready = q.filter(x => x.rd.ready).length, sy = (S.woSyncs || [])[0];
+  const help = `<div>One work order per sales order. It can be made once the sales order has been through MRP${on ? ' (Send to ERP on Sales orders)' : ' (Release to Purchase on Sales orders)'} and is best made when every bought part is in stores. A planner with the work order right can still make it with parts short, with a tick to confirm.</div>`
+    + (on ? `<div><b>Two ways:</b> make it here and <b>Send to ERP</b>, or make it in ${esc(S.erp.system)} and <b>Sync from ERP</b> pulls it in, with status updates from the shop floor. Each order shows where it was made.</div><div class="muted">In this prototype the ERP side is simulated.</div>` : '<div><b>Standalone:</b> no ERP is connected, so work orders live only in Loadline. An admin can connect an ERP in Integrations.</div>');
+  const tools = (on && ed ? `<button class="btn sm" data-act="wosync" title="Pull work orders made in ERP and the latest status">Sync from ERP</button><button class="btn sm primary" data-act="wosend" data-kind="wo" ${uns.length ? '' : 'disabled'}>Send ${uns.length} to ERP</button>` : '') + (ed ? '' : '<span class="pill info">View only</span>') + `<button class="btn sm" data-dl="wos" ${all.length ? '' : 'disabled'}>Download</button>`;
+  return `<section class="panel tight">${pageHead('Work orders', `${plural(all.length, 'work order', 'work orders')} · ${q.length} sales order${q.length === 1 ? '' : 's'} waiting for one${on ? ` · ${sy ? `last ERP sync ${fmtAt(sy.at)}` : 'not synced with ERP yet'}` : ' · standalone, no ERP'}`, info(help), tools)}
+  <div class="kpis">
+    <div class="kpi ${ready ? 'ok' : ''}"><b>${ready}</b><span>Ready for a work order · all parts in stores</span></div>
+    <div class="kpi ${q.length - ready ? 'warn' : ''}"><b>${q.length - ready}</b><span>Through MRP, waiting for parts</span></div>
+    <div class="kpi"><b>${waitMrp}</b><span>Scheduled, not through MRP yet</span></div>
+    <div class="kpi"><b>${all.filter(w => w.status !== 'Completed').length}</b><span>Open work orders · ${all.filter(w => w.status === 'In production').length} in production</span></div>
+    ${on ? `<div class="kpi ${uns.length ? 'warn' : ''}"><b>${uns.length}</b><span>Not in ERP or changed since sent</span></div>` : ''}
+  </div>
+  <div class="card" style="display:grid;gap:8px"><div class="chead"><h3>Sales orders waiting for a work order</h3>${info('Sales orders whose BOM has been through MRP. Parts in stores counts bought parts that are already in unrestricted stock for this order (stock is shared out by start date).')}</div>
+    <div class="tablewrap" style="max-height:min(340px,46vh)"><table class="dense" id="tblWoQ"><thead><tr><th>Sales order</th><th>Work order</th><th>Material</th><th>Qty</th><th>Start</th><th>FG date</th><th>Parts</th><th>Not in stores yet</th>${ed ? '<th></th>' : ''}</tr></thead><tbody>
+    ${q.map(x => `<tr><td class="mono"><button class="lnk mono" data-open="${esc(x.o.so)}">${esc(x.o.so)}</button></td><td class="mono">${esc(x.o.wo || '—')}</td><td class="mono clip" title="${esc(motorMat(x.o))}">${esc(motorMat(x.o))}</td><td class="num">${x.o.qty}</td><td class="num">${fmt(x.s.start)}</td><td class="num">${fmt(x.s.end)}</td><td class="num">${x.rd.ready ? `<b style="color:var(--ok)">${partsTxt(x.rd)}</b>` : partsTxt(x.rd)}</td><td>${missTxt(x.rd)}</td>
+      ${ed ? `<td><button class="btn sm ${x.rd.ready ? 'primary' : ''}" data-act="wonew" data-name="${esc(x.o.so)}">Create work order</button></td>` : ''}</tr>`).join('') || `<tr><td colspan="${ed ? 9 : 8}" class="muted">No sales order is waiting. ${waitMrp ? `${waitMrp} scheduled order${waitMrp > 1 ? 's have' : ' has'} not been through MRP yet.` : ''}</td></tr>`}
+    </tbody></table></div></div>
+  <div class="card" style="display:grid;gap:8px"><div class="chead"><h3>Work orders</h3><div class="tools">${chipRow('wof', f, Object.keys(WO_ST).map(k => [k, `<b>${k}</b> ${all.filter(w => w.status === k).length}`]))}</div></div>
+    <div class="tablewrap gridfill"><table class="filterable dense" id="tblWos"><thead><tr><th>Work order</th><th>Sales order</th><th>Material</th><th>Qty</th><th>Start</th><th>Finish</th><th>Status</th><th>Production orders</th><th>Made in</th>${on ? '<th>ERP</th>' : ''}<th>Created</th></tr></thead><tbody>
+    ${wos.map(w => { const ps = prodsOf(w.no), dn = ps.filter(p => p.status === 'Completed').length; return `<tr class="click" data-act="woopen" data-name="${esc(w.no)}"><td class="mono"><b>${esc(w.no)}</b></td><td class="mono">${esc(w.so)}</td><td class="mono clip" title="${esc(w.mat)}">${esc(w.mat)}</td><td class="num">${w.qty}</td><td class="num">${fmt(w.start)}</td><td class="num">${fmt(w.end)}</td><td>${woPill(w.status)}${w.short ? ` <span class="pill warn" title="Created with ${w.short} part${w.short > 1 ? 's' : ''} not in stores">${w.short} short</span>` : ''}</td>
+      <td>${ps.length ? `${dn}/${ps.length} done` : '<span class="pill warn">None yet</span>'}</td><td>${srcCell(w)}</td>${on ? `<td>${erpCell(w)}</td>` : ''}<td class="num">${fmtAt(w.at)}</td></tr>`; }).join('') || `<tr><td colspan="${on ? 11 : 10}" class="muted">No work orders${f ? ' with this status' : ''}.</td></tr>`}
+    </tbody></table></div></div></section>`;
+}
+function viewProds() {
+  const ed = canWo(), on = erpOn(), f = UI.prodF || '', today = localToday(), all = prodList().slice().sort((a, b) => (a.status === 'Completed') - (b.status === 'Completed') || a.start.localeCompare(b.start) || a.no.localeCompare(b.no)), rows = all.filter(p => !f || p.line === f);
+  const need = woList().filter(w => w.status !== 'Completed' && !prodsOf(w.no).length).sort((a, b) => a.start.localeCompare(b.start)), uns = unsentOf(all), soon = all.filter(p => ['Created', 'Released'].includes(p.status) && p.start <= addDays(today, 7)).length;
+  const help = '<div>Each work order is split into one production order per line in routing order: Winding, Machining, VPI, Assembly and Testing, with dates spread over the work order window. Dates and quantities can be changed when they are made.</div>'
+    + (on ? `<div>Make them here and <b>Send to ERP</b>, or let ${esc(S.erp.system)} make them (for work orders created there) and <b>Sync from ERP</b> pulls them in with shop floor confirmations.</div><div class="muted">In this prototype the ERP side is simulated.</div>` : '<div><b>Standalone:</b> production orders live only in Loadline. Start and Complete them here as the shop floor reports.</div>');
+  const tools = (on && ed ? `<button class="btn sm" data-act="wosync">Sync from ERP</button><button class="btn sm primary" data-act="wosend" data-kind="prod" ${uns.length ? '' : 'disabled'}>Send ${uns.length} to ERP</button>` : '') + (ed ? '' : '<span class="pill info">View only</span>') + `<button class="btn sm" data-dl="prods" ${all.length ? '' : 'disabled'}>Download</button>`;
+  return `<section class="panel tight">${pageHead('Production orders', `${plural(all.length, 'production order', 'production orders')} on ${new Set(all.map(p => p.wo)).size} work orders${on ? '' : ' · standalone, no ERP'}`, info(help), tools)}
+  <div class="kpis">
+    <div class="kpi"><b>${all.filter(p => p.status === 'In production').length}</b><span>In production</span></div>
+    <div class="kpi ${soon ? 'warn' : ''}"><b>${soon}</b><span>Start within 7 days, not started</span></div>
+    <div class="kpi"><b>${all.filter(p => p.status === 'Completed').length}</b><span>Completed</span></div>
+    <div class="kpi ${need.length ? 'warn' : ''}"><b>${need.length}</b><span>Work orders without production orders</span></div>
+    ${on ? `<div class="kpi ${uns.length ? 'warn' : ''}"><b>${uns.length}</b><span>Not in ERP or changed since sent</span></div>` : ''}
+  </div>
+  ${need.length ? `<div class="card" style="display:grid;gap:8px"><div class="chead"><h3>Work orders without production orders</h3></div><div class="row" style="gap:8px">${need.map(w => `<span class="row" style="gap:6px;border:1px solid var(--line);border-radius:6px;padding:4px 8px"><button class="lnk mono" data-act="woopen" data-name="${esc(w.no)}">${esc(w.no)}</button><span class="muted small">${esc(w.so)} · start ${fmt(w.start)}</span>${ed ? `<button class="btn sm primary" data-act="prodnew" data-name="${esc(w.no)}">Create by line</button>` : ''}</span>`).join('')}</div></div>` : ''}
+  ${chipRow('prodf', f, PROD_LINES.map(([, nm]) => [nm, `<b>${nm}</b> ${all.filter(p => p.line === nm).length}`]))}
+  <div class="muted row small" data-count-for="tblProds"></div>
+  <div class="tablewrap gridfill"><table class="filterable dense" id="tblProds"><thead><tr><th>Production order</th><th>Line</th><th>Work order</th><th>Sales order</th><th>Qty</th><th>Start</th><th>Finish</th><th>Status</th><th>Made in</th>${on ? '<th>ERP</th>' : ''}${ed ? '<th></th>' : ''}</tr></thead><tbody>
+  ${rows.map(p => `<tr><td class="mono"><b>${esc(p.no)}</b></td><td>${esc(p.line)}</td><td class="mono"><button class="lnk mono" data-act="woopen" data-name="${esc(p.wo)}">${esc(p.wo)}</button></td><td class="mono">${esc(p.so)}</td><td class="num">${p.qty}</td><td class="num">${fmt(p.start)}</td><td class="num">${p.end < today && p.status !== 'Completed' ? `<b style="color:var(--bad)" title="Past its finish date">${fmt(p.end)}</b>` : fmt(p.end)}</td><td>${woPill(p.status)}</td><td>${srcCell(p)}</td>${on ? `<td>${erpCell(p)}</td>` : ''}
+    ${ed ? `<td>${prodBtns(p)}</td>` : ''}</tr>`).join('') || `<tr><td colspan="${9 + on + ed}" class="muted">No production orders${f ? ' on this line' : ''} yet. Create them from a work order.</td></tr>`}
+  </tbody></table></div></section>`;
+}
+const PROD_NEXT = { Created:['Released', 'Release'], Released:['In production', 'Start'], 'In production':['Completed', 'Complete'] };
+const prodBtns = p => `<div class="row" style="gap:4px;flex-wrap:nowrap">${PROD_NEXT[p.status] ? `<button class="btn sm" data-act="prodst" data-name="${esc(p.no)}" data-kind="${PROD_NEXT[p.status][0]}">${PROD_NEXT[p.status][1]}</button>` : ''}${erpOn() && (!p.erp || p.erp.dirty) ? `<button class="btn sm" data-act="wosend" data-kind="prod" data-name="${esc(p.no)}">Send</button>` : ''}</div>`;
+// on the sales order: its work order and production orders
+function woLinkCard(so) {
+  const w = woOf(so), x = !w && buyOrders(true).find(y => y.o.so === so);
+  if (!w) return `<div class="card" style="display:grid;gap:8px;background:var(--surface-2)"><div class="chead"><h3>Work order</h3></div><p class="muted">${x ? `No work order yet. ${partsTxt(woReady(x))} for this order.` : `No work order yet. It can be made once this order has been through MRP${erpOn() ? ' (Send to ERP)' : ' (Release to Purchase)'}.`}</p>${x && canWo() ? `<div class="row"><button class="btn sm primary" data-act="wonew" data-name="${esc(so)}">Create work order</button></div>` : ''}</div>`;
+  const ps = prodsOf(w.no);
+  return `<div class="card" style="display:grid;gap:8px;background:var(--surface-2)"><div class="chead"><h3>Work order <span class="mono">${esc(w.no)}</span></h3><div class="tools">${woPill(w.status)}${erpOn() ? erpCell(w) : ''}<button class="btn sm" data-act="woopen" data-name="${esc(w.no)}">Open</button></div></div>
+    <div class="tablewrap"><table class="dense"><thead><tr><th>Production order</th><th>Line</th><th>Qty</th><th>Start</th><th>Finish</th><th>Status</th></tr></thead><tbody>${ps.map(p => `<tr><td class="mono">${esc(p.no)}</td><td>${esc(p.line)}</td><td class="num">${p.qty}</td><td class="num">${fmt(p.start)}</td><td class="num">${fmt(p.end)}</td><td>${woPill(p.status)}</td></tr>`).join('') || '<tr><td colspan="6" class="muted">No production orders yet.</td></tr>'}</tbody></table></div></div>`;
+}
+function openWo(no) {
+  const w = woByNo(no); if (!w) return;
+  const ed = canWo(), on = erpOn(), ps = prodsOf(no), inPlan = !!orderBySo(w.so), can = (S.erp.url && ERP_URL_OK(S.erp.url));
+  document.getElementById('modalRoot').innerHTML = `<div class="overlay" data-close="1"><div class="modal" id="woModal" role="dialog" aria-modal="true" aria-label="Work order ${esc(no)}" style="width:min(960px,100%)">
+    <div class="spread"><div><div class="eyebrow">Work order</div><h2 class="mono" style="font-family:var(--mono);font-size:20px">${esc(no)}</h2></div><button class="btn sm" data-close="1">Close</button></div>
+    <div class="row" style="gap:6px;align-items:center"><span class="pill info">Sales order</span>${inPlan ? `<button class="lnk mono" data-open="${esc(w.so)}">${esc(w.so)}</button>` : `<span class="mono">${esc(w.so)}</span>`}<span class="muted">→</span><span class="pill acc">Work order</span><span class="mono">${esc(no)}</span><span class="muted">→</span><span class="pill info">${plural(ps.length, 'production order', 'production orders')}</span></div>
+    <div class="kv">${[['Material', w.mat], ['Qty', w.qty], ['Plant', factoryName(w.fid)], ['Start', fmt(w.start)], ['Finish', fmt(w.end)], ['Status', w.status], ['Made in', w.src], ['Created by', w.by], ['Created', fmtAt(w.at)], ...(on ? [['ERP order', w.erp ? w.erp.ref : 'Not in ERP']] : []), ...(w.short ? [['Parts short when made', w.short]] : [])].map(([k, v]) => `<div><span>${k}</span><b class="${typeof v === 'number' ? 'num' : ''}">${esc(v)}</b></div>`).join('')}</div>
+    <div style="display:grid;gap:6px"><h3>Production orders by line</h3><div class="tablewrap" style="max-height:min(280px,40vh)"><table class="dense"><thead><tr><th>Production order</th><th>Line</th><th>Qty</th><th>Start</th><th>Finish</th><th>Status</th><th>Made in</th>${on ? '<th>ERP</th>' : ''}${ed ? '<th></th>' : ''}</tr></thead><tbody>
+      ${ps.map(p => `<tr><td class="mono">${esc(p.no)}</td><td>${esc(p.line)}</td><td class="num">${p.qty}</td><td class="num">${fmt(p.start)}</td><td class="num">${fmt(p.end)}</td><td>${woPill(p.status)}</td><td>${srcCell(p)}</td>${on ? `<td>${erpCell(p)}</td>` : ''}${ed ? `<td>${prodBtns(p)}</td>` : ''}</tr>`).join('') || `<tr><td colspan="${7 + on + ed}" class="muted">No production orders yet.</td></tr>`}
+    </tbody></table></div></div>
+    ${ed ? `<div class="row" style="gap:8px">${w.status === 'Created' ? `<button class="btn" data-act="wost" data-name="${esc(no)}" data-kind="Released">Release</button>` : ''}${w.status !== 'Completed' ? `<button class="btn" data-act="wost" data-name="${esc(no)}" data-kind="Completed">Mark completed</button>` : ''}${!ps.length ? `<button class="btn primary" data-act="prodnew" data-name="${esc(no)}">Create production orders by line</button>` : ''}
+      ${on && unsentOf([w, ...ps]).length ? `<button class="btn ${ps.length ? 'primary' : ''}" data-act="wosend" data-kind="wo" data-name="${esc(no)}" ${can ? '' : 'disabled title="The ERP endpoint is not set"'}>Send to ERP</button>` : ''}<span style="flex:1"></span>
+      ${!w.erp && w.src === 'Loadline' ? `<button class="btn" data-act="wodel" data-name="${esc(no)}">${UI.woDelArm === no ? 'Click again to delete' : 'Delete'}</button>` : ''}</div>` : `<p class="note">🔒 ${esc(curUser().name)} can't change work orders. Only people with the work order right can.</p>`}
+    ${on && w.erp ? '<p class="muted small">Already in ERP, so it is not deleted here. Cancel it in ERP (technically complete) and the next sync brings the status in.</p>' : ''}</div></div>`;
+}
+function openWoNew(so) {
+  const x = buyOrders(true).find(y => y.o.so === so); if (!x || !canWo()) return;
+  const rd = woReady(x), on = erpOn(), o = x.o;
+  document.getElementById('modalRoot').innerHTML = `<div class="overlay" data-close="1"><div class="modal" id="woNew" role="dialog" aria-modal="true" aria-label="Create work order" style="width:min(860px,100%)">
+    <div class="spread"><div><div class="eyebrow">New work order · sales order <span class="mono">${esc(so)}</span></div><h2>Create work order</h2></div><button class="btn sm" data-close="1">Close</button></div>
+    <div class="row" style="gap:6px">${rd.ready ? '<span class="pill ok">All bought parts are in stores</span>' : `<span class="pill warn">${rd.short.length} of ${rd.n} bought parts are not in stores yet</span>`}${missTxt(rd) && !rd.ready ? missTxt(rd) : ''}</div>
+    ${rd.short.length ? `<div class="tablewrap" style="max-height:min(200px,30vh)"><table class="dense"><thead><tr><th>Part</th><th>Description</th><th>Needed</th><th>In stores</th><th>In IQC</th><th>On PO</th><th>To buy</th><th>UoM</th></tr></thead><tbody>${rd.short.map(l => `<tr><td class="mono">${esc(l.code)}</td><td class="clip" title="${esc(l.desc)}">${esc(l.desc)}</td><td class="num">${+l.qty.toFixed(1)}</td><td class="num">${l.stores}</td><td class="num">${l.iqc}</td><td class="num">${l.po}</td><td class="num">${l.buy > 0 ? `<b style="color:var(--bad)">${l.buy}</b>` : 0}</td><td>${esc(l.uom)}</td></tr>`).join('')}</tbody></table></div>` : ''}
+    <div class="formgrid"><label class="field"><span>Work order number</span><input id="wn_no" class="mono" value="${esc(o.wo || so)}" autocomplete="off"></label>
+      <label class="field"><span>Quantity (max ${o.qty})</span><input id="wn_qty" type="number" min="1" max="${o.qty}" step="1" value="${o.qty}"></label>
+      <label class="field"><span>Material</span><input value="${esc(motorMat(o))}" class="mono" disabled></label>
+      <label class="field"><span>Start (from MRP)</span><input id="wn_start" type="date" value="${x.s.start}"></label>
+      <label class="field"><span>Finish (FG date)</span><input id="wn_end" type="date" value="${x.s.end}"></label>
+      <label class="field"><span>Status</span><select id="wn_st"><option>Created</option><option ${rd.ready ? 'selected' : ''}>Released</option></select></label></div>
+    <label class="row" style="gap:8px"><input type="checkbox" id="wn_prods" checked> Also create the production orders by line (Winding, Machining, VPI, Assembly, Testing)</label>
+    ${on ? `<label class="row" style="gap:8px"><input type="checkbox" id="wn_send" checked> Send to ${esc(S.erp.system)} now</label>` : '<p class="muted small">Standalone: the work order is kept in Loadline only.</p>'}
+    ${rd.ready ? '' : `<label class="row" style="gap:8px"><input type="checkbox" id="wn_short"> Create it although ${rd.short.length} part${rd.short.length > 1 ? 's are' : ' is'} not in stores yet</label>`}
+    <div id="mErr"></div>
+    <div class="row"><button class="btn primary" data-act="wosave" data-name="${esc(so)}">Create work order</button><button class="btn" data-close="1">Cancel</button></div></div></div>`;
+}
+function saveWoNew(so) {
+  const x = buyOrders(true).find(y => y.o.so === so); if (!x || !canWo()) return;
+  const v = id => (document.getElementById(id) || {}).value, ck = id => !!(document.getElementById(id) || {}).checked, rd = woReady(x);
+  const no = String(v('wn_no') || '').trim(), qty = +v('wn_qty'), start = v('wn_start'), end = v('wn_end'), err = [];
+  if (!no) err.push('Enter the work order number'); else if (woByNo(no)) err.push(`Work order ${no} already exists`);
+  if (!Number.isInteger(qty) || qty < 1 || qty > +x.o.qty) err.push(`Quantity must be a whole number from 1 to ${x.o.qty}`);
+  if (!start || !end || end < start) err.push('The finish date must be on or after the start date');
+  if (!rd.ready && !ck('wn_short')) err.push('Tick the box to create it with parts short');
+  if (err.length) { document.getElementById('mErr').innerHTML = `<p class="note" style="border-color:var(--bad)">${err.map(esc).join('. ')}.</p>`; return; }
+  const at = new Date().toISOString(), r = R.res[so] || {};
+  const w = { no, so, qty, mat:motorMat(x.o), fid:(x.s.spec || {}).fid || r.fid || S.factories[0].id, start, end, status:v('wn_st'), src:'Loadline', by:curUser().name, at, short:rd.short.length };
+  woList().push(w); if (ck('wn_prods')) makeProds(w, 'Loadline', at);
+  const send = erpOn() && ck('wn_send');
+  closeModal(); if (send) woSend('wo', no, true); render(); openWo(no);
+  toast(`Work order ${no} created for ${so}${ck('wn_prods') ? ' with 5 production orders' : ''}${send ? `, sent to ${S.erp.system}` : erpOn() ? '. Send it to ERP when ready' : ''}.`);
+}
+function openProdNew(no) {
+  const w = woByNo(no); if (!w || !canWo()) return;
+  const on = erpOn(), L = lineDates(w.start, w.end);
+  document.getElementById('modalRoot').innerHTML = `<div class="overlay" data-close="1"><div class="modal" id="prodNew" role="dialog" aria-modal="true" aria-label="Create production orders" style="width:min(820px,100%)">
+    <div class="spread"><div><div class="eyebrow">Work order <span class="mono">${esc(no)}</span> · sales order <span class="mono">${esc(w.so)}</span></div><h2>Create production orders by line</h2></div><button class="btn sm" data-close="1">Close</button></div>
+    <p class="muted small">Dates are spread over the work order window (${fmt(w.start)} to ${fmt(w.end)}) in routing order. Change any line, or untick a line it doesn't go through.</p>
+    <div class="tablewrap"><table class="dense"><thead><tr><th></th><th>Production order</th><th>Line</th><th>Qty</th><th>Start</th><th>Finish</th></tr></thead><tbody>
+      ${L.map(l => `<tr data-pl="${l.c}"><td><input type="checkbox" data-f="on" checked aria-label="Include ${l.nm}"></td><td class="mono">${esc(no)}/${l.c}</td><td>${l.nm}</td><td><input data-f="qty" type="number" min="1" max="${w.qty}" step="1" value="${w.qty}" style="width:70px"></td><td><input data-f="s" type="date" value="${l.s}"></td><td><input data-f="e" type="date" value="${l.e}"></td></tr>`).join('')}
+    </tbody></table></div>
+    ${on ? `<label class="row" style="gap:8px"><input type="checkbox" id="pn_send" checked> Send to ${esc(S.erp.system)} now</label>` : ''}
+    <div id="mErr"></div>
+    <div class="row"><button class="btn primary" data-act="prodsave" data-name="${esc(no)}">Create production orders</button><button class="btn" data-close="1">Cancel</button></div></div></div>`;
+}
+function saveProdNew(no) {
+  const w = woByNo(no); if (!w || !canWo()) return;
+  const lines = [], err = [];
+  document.querySelectorAll('#prodNew [data-pl]').forEach(tr => {
+    const g = f => tr.querySelector(`[data-f="${f}"]`), c = tr.dataset.pl, nm = PROD_LINES.find(l => l[0] === c)[1];
+    if (!g('on').checked) return;
+    const qty = +g('qty').value, s = g('s').value, e = g('e').value;
+    if (!Number.isInteger(qty) || qty < 1 || qty > w.qty) err.push(`${nm}: quantity 1 to ${w.qty}`);
+    if (!s || !e || e < s) err.push(`${nm}: finish must be on or after start`);
+    lines.push({ c, nm, qty, s, e });
+  });
+  if (!lines.length) err.push('Tick at least one line');
+  if (err.length) { document.getElementById('mErr').innerHTML = `<p class="note" style="border-color:var(--bad)">${err.map(esc).join('. ')}.</p>`; return; }
+  makeProds(w, 'Loadline', new Date().toISOString(), lines);
+  const send = erpOn() && (document.getElementById('pn_send') || {}).checked;
+  closeModal(); if (send) woSend('wo', no, true); render(); openWo(no);
+  toast(`${plural(lines.length, 'production order', 'production orders')} created for ${no}${send ? `, sent to ${S.erp.system}` : ''}.`);
+}
+// send to ERP: work orders (with their production orders) or production orders (with their work order, which ERP needs first)
+function woSend(kind, only, quiet) {
+  if (!canWo() || !erpOn()) return;
+  if (!ERP_URL_OK(S.erp.url)) { toast(AUTH ? 'The ERP endpoint is not set. An admin sets it in Admin › Integrations.' : 'Set a full https:// ERP endpoint in Masters & rules first.'); return; }
+  const at = new Date().toISOString(), pick = new Set();
+  if (kind !== 'prod') woList().filter(w => !only || w.no === only).forEach(w => { pick.add(w); if (only) prodsOf(w.no).forEach(p => pick.add(p)); });
+  if (kind !== 'wo') prodList().filter(p => !only || p.no === only).forEach(p => { pick.add(p); const w = woByNo(p.wo); if (w && !w.erp) pick.add(w); });
+  const list = unsentOf([...pick]); if (!list.length) return;
+  list.forEach(x => { x.erp = { at, ref:x.erp ? x.erp.ref : nextRef(woList().includes(x) ? 'wo' : 'prod') }; });
+  const nw = list.filter(x => woList().includes(x)).length, np = list.length - nw;
+  if (!quiet) { render(); if (document.getElementById('woModal') && only) openWo(kind === 'wo' ? only : (prodList().find(p => p.no === only) || {}).wo); toast(`Sent to ${S.erp.system}: ${[nw && plural(nw, 'work order', 'work orders'), np && plural(np, 'production order', 'production orders')].filter(Boolean).join(' and ')}.`); }
+  setTimeout(() => { render(); const m = document.getElementById('woModal'); if (m) openWo(m.getAttribute('aria-label').slice(11)); }, 1600);
+}
+// Sync from ERP (simulated): pulls a work order the planning team made in SAP, the line orders ERP made for it, and shop floor confirmations
+function woSync() {
+  if (!canWo() || !erpOn()) return;
+  if (!ERP_URL_OK(S.erp.url)) { toast(AUTH ? 'The ERP endpoint is not set. An admin sets it in Admin › Integrations.' : 'Set a full https:// ERP endpoint in Masters & rules first.'); return; }
+  const at = new Date().toISOString(), today = localToday(), q = woQueue().sort((a, b) => b.rd.ready - a.rd.ready || a.s.start.localeCompare(b.s.start))[0], pulled = [];
+  if (q && !woByNo(q.o.wo || q.o.so)) { const w = { no:q.o.wo || q.o.so, so:q.o.so, qty:+q.o.qty, mat:motorMat(q.o), fid:(q.s.spec || {}).fid || (q.r || {}).fid || S.factories[0].id, start:q.s.start, end:q.s.end, status:'Released', src:'ERP', by:`${S.erp.system} user`, at, erp:{ at, ref:nextRef('wo') }, short:q.rd.short.length }; woList().push(w); pulled.push(w.no); }
+  let np = 0, upd = 0;
+  woList().filter(w => w.src === 'ERP' && w.status !== 'Created' && !prodsOf(w.no).length).forEach(w => { makeProds(w, 'ERP', at); np += PROD_LINES.length; });
+  prodList().filter(p => p.erp && !p.erp.dirty).forEach(p => { const ns = p.status === 'Released' && p.start <= today ? 'In production' : p.status === 'In production' && p.end < today ? 'Completed' : p.status; if (ns !== p.status) { p.status = ns; upd++; } });
+  woList().forEach(w => { const was = w.status, d = w.erp && w.erp.dirty; rollUp(w); if (w.erp && !d) delete w.erp.dirty; if (was !== w.status) upd++; });
+  const num = ((S.woSyncs || [])[0] ? parseInt(S.woSyncs[0].id.slice(3), 10) : 0) + 1;
+  (S.woSyncs || (S.woSyncs = [])).unshift({ id:'WS-' + pad(num, 4), at, by:curUser().name, pulled, prods:np, upd }); if (S.woSyncs.length > 20) S.woSyncs.length = 20;
+  render(); toast(`Synced with ${S.erp.system}: ${pulled.length ? `work order ${pulled.join(', ')} made in ERP pulled in` : 'no new work orders in ERP'}${np ? `, ${np} production orders` : ''}, ${plural(upd, 'status update', 'status updates')}.`);
+}
+const woRows = {
+  wos:() => woList().map(w => ({ 'Work order':w.no, 'Sales order':w.so, 'Material':w.mat, 'Qty':w.qty, 'Plant':sapPlantOf(w.fid), 'Start':w.start, 'Finish':w.end, 'Status':w.status, 'Production orders':prodsOf(w.no).length, 'Made in':w.src, ...(erpOn() ? { 'ERP':erpOf(w)[0], 'ERP order':w.erp ? w.erp.ref : '' } : {}), 'Parts short when made':w.short || 0, 'Created by':w.by, 'Created':w.at.slice(0, 16).replace('T', ' ') })),
+  prods:() => prodList().map(p => ({ 'Production order':p.no, 'Line':p.line, 'Work order':p.wo, 'Sales order':p.so, 'Qty':p.qty, 'Start':p.start, 'Finish':p.end, 'Status':p.status, 'Made in':p.src, ...(erpOn() ? { 'ERP':erpOf(p)[0], 'ERP order':p.erp ? p.erp.ref : '' } : {}), 'Created by':p.by }))
+};
+/* ---------- Standalone purchasing: without ERP, buyers raise POs here from what MRP says to buy ---------- */
+function openPoRaise() {
+  if (!canBuy()) return;
+  const rows = matSummary(buyOrders(true)).filter(e => e.buy > 0), today = localToday();
+  document.getElementById('modalRoot').innerHTML = `<div class="overlay" data-close="1"><div class="modal" id="poRaise" role="dialog" aria-modal="true" aria-label="Create purchase orders" style="width:min(980px,100%)">
+    <div class="spread"><div><div class="eyebrow">Standalone · no ERP</div><h2>Create purchase orders from To buy</h2></div><button class="btn sm" data-close="1">Close</button></div>
+    <p class="muted small">Every part that stock and open POs don't cover. One PO is made per supplier. Change the quantity or delivery date, or untick a part.</p>
+    <div class="tablewrap" style="max-height:min(420px,55vh)"><table class="dense"><thead><tr><th></th><th>Part</th><th>Description</th><th>Supplier</th><th>To buy</th><th>UoM</th><th>Needed by</th><th>Delivery date</th></tr></thead><tbody>
+      ${rows.map(e => `<tr data-pr="${esc(e.code)}"><td><input type="checkbox" data-f="on" checked aria-label="Order ${esc(e.code)}"></td><td class="mono">${esc(e.code)}</td><td class="clip" title="${esc(e.desc)}">${esc(e.desc)}</td><td><input data-f="sup" value="${esc(e.sup || '')}" list="supList" style="width:150px"></td><td><input data-f="qty" type="number" min="0" step="any" value="${e.buy}" style="width:80px"></td><td>${esc(e.uom)}</td><td class="num">${fmt(e.need)}</td><td><input data-f="due" type="date" min="${today}" value="${e.need > today ? e.need : addDays(today, e.lt || 14)}"></td></tr>`).join('') || '<tr><td colspan="8" class="muted">Nothing to buy: stock and open POs cover every work order after MRP.</td></tr>'}
+    </tbody></table></div><datalist id="supList">${S.suppliers.map(s => `<option value="${esc(s.name)}">`).join('')}</datalist>
+    <div id="mErr"></div>
+    <div class="row"><button class="btn primary" data-act="posave" ${rows.length ? '' : 'disabled'}>Create purchase orders</button><button class="btn" data-close="1">Cancel</button></div></div></div>`;
+}
+function savePoRaise() {
+  if (!canBuy()) return;
+  const rows = matSummary(buyOrders(true)), today = localToday(), by = new Map(), err = [];
+  document.querySelectorAll('#poRaise [data-pr]').forEach(tr => {
+    const g = f => tr.querySelector(`[data-f="${f}"]`), e = rows.find(r => r.code === tr.dataset.pr); if (!e || !g('on').checked) return;
+    const qty = +g('qty').value, sup = g('sup').value.trim(), due = g('due').value;
+    if (!(qty > 0)) return; if (!sup) err.push(`${e.code}: enter a supplier`); if (!due) err.push(`${e.code}: enter a delivery date`);
+    (by.get(sup) || by.set(sup, []).get(sup)).push({ e, qty, due });
+  });
+  if (!by.size && !err.length) err.push('Tick at least one part with a quantity');
+  if (err.length) { document.getElementById('mErr').innerHTML = `<p class="note" style="border-color:var(--bad)">${err.map(esc).join('. ')}.</p>`; return; }
+  const P = S.pos || (S.pos = []), made = [];
+  let n = P.reduce((m, q) => Math.max(m, parseInt(q.id.slice(2), 10) || 0), 0), pn = P.filter(q => q.po.startsWith('4600')).reduce((m, q) => Math.max(m, +q.po.slice(4) || 0), 0);
+  by.forEach((ls, sup) => { const po = '4600' + pad(++pn, 6); made.push(po); ls.forEach(({ e, qty, due }, i) => P.push({ id:'PO' + pad(++n, 4), po, item:pad((i + 1) * 10, 5), code:e.code, desc:e.desc, uom:e.uom, sup, qty, recd:0, due, created:today, local:true })); });
+  closeModal(); render(); toast(`${plural(made.length, 'purchase order', 'purchase orders')} created in Loadline: ${made.join(', ')}. Stores receive them with a GRN.`);
+}
 try { S = JSON.parse(localStorage.getItem(STORE_KEY)); } catch (e) { S = null; }
 // Example for the prototype: orders due in November went to ERP yesterday afternoon and MRP has run.
 function seedErpSend() {
@@ -2976,5 +3843,11 @@ if (!S || S.v !== 11) { S = seedState(); seedErpSend(); addDemoActual(); }
 S.machines = S.machines || []; S.actuals = S.actuals || {}; S.suppliers = S.suppliers || []; S.products = S.products || []; S.groups = S.groups || [];
 if (!S.wms) S.wms = seedWms(S); ['stores', 'wip', 'iqc', 'scrap', 'blocked', 'moves', 'syncs'].forEach(k => S.wms[k] = S.wms[k] || []); S.wms.n = S.wms.n || 0; S.erp.stockSync = S.erp.stockSync || '15'; S.pos = S.pos || []; S.notes = S.notes || []; S.grns = S.grns || []; S.safety = S.safety || {}; fcCfg();
 MIX = null; freezeExp();
+S.mkt = Object.assign(mktDefault(), S.mkt || {});
+S.erp.mode = S.erp.mode || 'erp';
+S.users.forEach(u => { if (u.canWo === undefined) u.canWo = /planning head|production planner/i.test(u.name); });
+if (!S.wos) seedWos(); S.prods = S.prods || []; S.woSyncs = S.woSyncs || [];
+// open the workspace picked on the landing page
+if (AUTH) { const i = S.users.findIndex(u => u.name === AUTH.session().appUser); if (i >= 0) S.user = i; const e = AUTH.takeEntry(); if (e && wsAllowed().includes(e)) { UI.ws = e; UI.tab = wsTabs(e)[0][0]; } }
 render();
 </script>

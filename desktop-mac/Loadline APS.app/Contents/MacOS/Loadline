@@ -1,0 +1,22 @@
+#!/bin/bash
+# Opens Loadline APS: starts the local server if it isn't running, opens the app window, then checks GitHub for updates.
+RES="$(cd "$(dirname "$0")/../Resources" && pwd)"
+DATA="$HOME/Library/Application Support/Loadline"
+PORT=8765
+ver() { sed -n 's/.*"version" *: *"\([^"]*\)".*/\1/p' "$1" 2>/dev/null | head -1; }
+mkdir -p "$DATA"
+# first run, or this app is newer than the copy in Application Support: use the files inside the app
+HAVE="$(ver "$DATA/site/version.json")"; SHIP="$(ver "$RES/site/version.json")"
+if [ -z "$HAVE" ] || [[ "$SHIP" > "$HAVE" ]]; then rm -rf "$DATA/site"; cp -R "$RES/site" "$DATA/site"; fi
+up() { [ "$(curl -s -m 1 "http://localhost:$PORT/__ping")" = "loadline" ]; }
+if ! up; then
+  nohup /usr/bin/perl "$RES/server.pl" "$DATA/site" "$PORT" >"$DATA/server.log" 2>&1 &
+  for i in $(seq 1 40); do up && break; sleep 0.25; done
+fi
+URL="http://localhost:$PORT/index.html"
+# --app opens Loadline in its own window, without tabs or an address bar, like a desktop program
+if [ -d "/Applications/Google Chrome.app" ]; then open -na "Google Chrome" --args --app="$URL"
+elif [ -d "/Applications/Microsoft Edge.app" ]; then open -na "Microsoft Edge" --args --app="$URL"
+else open "$URL"; fi
+"$RES/update.sh" "$DATA" >/dev/null 2>&1 &
+exit 0
