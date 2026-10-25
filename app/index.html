@@ -4,7 +4,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Loadline APS</title>
 <link rel="icon" href="../favicon.svg" type="image/svg+xml">
-<script src="../auth.js" data-gate="../#signin"></script>
+<script src="../auth.js" data-gate="../index.html#signin"></script>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Manrope:wght@600;700;800&display=swap">
@@ -2701,7 +2701,7 @@ function authHeader() {
   const box = document.getElementById('acctBox'), us = document.getElementById('userSel'), lb = document.getElementById('licBar');
   if (!AUTH) { box.hidden = true; lb.hidden = true; return; }
   const s = AUTH.session();
-  if (!s) { location.replace('../#signin'); return; }
+  if (!s) { location.replace('../index.html#signin'); return; }
   box.hidden = false;
   box.innerHTML = `<span class="who" title="${esc(s.name)} · ${esc(AUTH.ROLES[s.role].label)}"><span class="av">${esc(initials(s.name))}</span><span class="nm">${esc(s.name)}</span></span><button class="btn sm" data-adm="signout">Sign out</button>`;
   // rights inside the app follow the account's rights profile; only admin can switch profiles to test
@@ -2812,7 +2812,7 @@ const admErr = m => { document.getElementById('adErr').innerHTML = `<p class="no
 document.addEventListener('click', ev => {
   const t = ev.target.closest('[data-adm]'); if (!t || !AUTH) return;
   const act = t.dataset.adm, c = AUTH.cfg(), i = +t.dataset.i, a = c.accounts[i], me = AUTH.session();
-  if (act === 'signout') { AUTH.logout(); location.href = '../'; return; }
+  if (act === 'signout') { AUTH.logout(); location.href = '../index.html'; return; }
   if (!AUTH.isAdmin()) return;
   if (act === 'golic') { UI.ws = 'admin'; UI.tab = 'admLicense'; render(); return; }
   if (act === 'add') { admAccountModal(null); return; }
@@ -2841,7 +2841,7 @@ document.addEventListener('click', ev => {
   if (act === 'accent') { c.brand.accent = t.dataset.name; AUTH.save(); AUTH.applyBrand(); render(); return; }
   if (act === 'authreset') {
     if (!UI.admReset) { UI.admReset = true; render(); setTimeout(() => { UI.admReset = false; if (UI.tab === 'admBrand') render(); }, 4000); return; }
-    UI.admReset = false; const key = c.license; AUTH.reset(); AUTH.cfg().license = key; AUTH.save(); AUTH.applyBrand(); toast('Sign-in settings reset. Sign in again with a demo account.'); setTimeout(() => location.href = '../#signin/admin', 900); return;
+    UI.admReset = false; const key = c.license; AUTH.reset(); AUTH.cfg().license = key; AUTH.save(); AUTH.applyBrand(); toast('Sign-in settings reset. Sign in again with a demo account.'); setTimeout(() => location.href = '../index.html#signin/admin', 900); return;
   }
   if (act === 'licapply') {
     const k = document.getElementById('admLicKey').value; UI.admLicKey = k; UI.admLicMsg = ['info', 'Checking…']; render();

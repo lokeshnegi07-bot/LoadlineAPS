@@ -168,8 +168,8 @@
   window.LoadlineAuth = { ready, licStatus, licUsable, seats, seatsLeft, hasSeat, activeOf, applyLicense, verifyLicense, DEMO_LICENSE, ROLES, TABS, WS_LABEL, ACCENTS, DEMO, cfg, save, find, login, session, logout, isAdmin, canTab, takeEntry, applyBrand, pwHash, defaultAccess,
     reset() { CFG = defaults(); save(); } };
 
-  // <script src="../auth.js" data-gate="../#signin"> sends anyone without a session back to sign in
+  // <script src="../auth.js" data-gate="../index.html#signin"> sends anyone without a session back to sign in
   const me = document.currentScript;
-  if (me && me.dataset.gate !== undefined && !session()) { location.replace(me.dataset.gate || '../#signin'); return; }
+  if (me && me.dataset.gate !== undefined && !session()) { location.replace(me.dataset.gate || '../index.html#signin'); return; }
   applyBrand();
 })();

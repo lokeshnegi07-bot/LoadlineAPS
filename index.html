@@ -291,7 +291,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
 <body>
 <nav class="nav" aria-label="Main">
   <div class="wrap">
-    <a class="brand" href="./" aria-label="Loadline APS home"><svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7" fill="#1d5bd6"/><rect x="7" y="17" width="4" height="8" rx="1.2" fill="#fff" opacity=".7"/><rect x="14" y="12" width="4" height="13" rx="1.2" fill="#fff" opacity=".85"/><rect x="21" y="8" width="4" height="17" rx="1.2" fill="#fff"/><path d="M4.5 14.5H27.5" stroke="#ffb020" stroke-width="2.2" stroke-linecap="round"/><circle cx="27.5" cy="14.5" r="2.1" fill="#ffb020"/></svg>Loadline <small>APS</small><span class="co" id="navCo"></span></a>
+    <a class="brand" href="index.html" aria-label="Loadline APS home"><svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7" fill="#1d5bd6"/><rect x="7" y="17" width="4" height="8" rx="1.2" fill="#fff" opacity=".7"/><rect x="14" y="12" width="4" height="13" rx="1.2" fill="#fff" opacity=".85"/><rect x="21" y="8" width="4" height="17" rx="1.2" fill="#fff"/><path d="M4.5 14.5H27.5" stroke="#ffb020" stroke-width="2.2" stroke-linecap="round"/><circle cx="27.5" cy="14.5" r="2.1" fill="#ffb020"/></svg>Loadline <small>APS</small><span class="co" id="navCo"></span></a>
     <div class="links"><a href="#modules">Workspaces</a><a href="#flow">How it works</a><a href="#tour">Tour</a></div>
     <div class="acct" id="acct"></div>
   </div>
@@ -450,7 +450,7 @@ function renderAcct() {
   const s = A.session(), co = A.cfg().brand.company;
   document.getElementById('navCo').textContent = co ? '· ' + co : '';
   document.getElementById('acct').innerHTML = s
-    ? `<span class="chip"><span class="av" style="--c:${MOD[s.role].c}">${esc(initials(s.name))}</span><span class="nm"><b>${esc(s.name)}</b> · ${MOD[s.role].name}</span></span><a class="btn signal sm" href="app/">Open workspace</a><button class="btn ghost sm" id="navOut">Sign out</button>`
+    ? `<span class="chip"><span class="av" style="--c:${MOD[s.role].c}">${esc(initials(s.name))}</span><span class="nm"><b>${esc(s.name)}</b> · ${MOD[s.role].name}</span></span><a class="btn signal sm" href="app/index.html">Open workspace</a><button class="btn ghost sm" id="navOut">Sign out</button>`
     : `<a class="btn ghost sm" href="#signin">Sign in</a>`;
   const o = document.getElementById('navOut'); if (o) o.onclick = () => { A.logout(); renderAcct(); renderSignin(); };
 }
@@ -462,7 +462,7 @@ function renderSignin() {
   const box = document.getElementById('si');
   box.style.setProperty('--rc', m.c);
   const side = document.getElementById('siSide'); side.style.setProperty('--c', m.c);
-  side.innerHTML = `<a class="brand" href="./"><svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7" fill="#1d5bd6"/><rect x="7" y="17" width="4" height="8" rx="1.2" fill="#fff" opacity=".7"/><rect x="14" y="12" width="4" height="13" rx="1.2" fill="#fff" opacity=".85"/><rect x="21" y="8" width="4" height="17" rx="1.2" fill="#fff"/><path d="M4.5 14.5H27.5" stroke="#ffb020" stroke-width="2.2" stroke-linecap="round"/><circle cx="27.5" cy="14.5" r="2.1" fill="#ffb020"/></svg>Loadline <small>APS</small>${b.company ? `<span class="co">· ${esc(b.company)}</span>` : ''}</a>
+  side.innerHTML = `<a class="brand" href="index.html"><svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7" fill="#1d5bd6"/><rect x="7" y="17" width="4" height="8" rx="1.2" fill="#fff" opacity=".7"/><rect x="14" y="12" width="4" height="13" rx="1.2" fill="#fff" opacity=".85"/><rect x="21" y="8" width="4" height="17" rx="1.2" fill="#fff"/><path d="M4.5 14.5H27.5" stroke="#ffb020" stroke-width="2.2" stroke-linecap="round"/><circle cx="27.5" cy="14.5" r="2.1" fill="#ffb020"/></svg>Loadline <small>APS</small>${b.company ? `<span class="co">· ${esc(b.company)}</span>` : ''}</a>
     <div class="big"><span class="bigico">${ICON[r]}</span><h2>${m.name} workspace</h2><p>${m.line}</p>
       <ul>${tabsOf(r).map((t, i) => `<li style="animation-delay:${.15 + i * .07}s">${CHECK}${esc(t)}</li>`).join('') || '<li>No tabs given to this role yet. The admin can add them.</li>'}</ul></div>
     <div class="foot">${r === 'admin' ? 'Admin can also sign in from any other workspace.' : 'You only see the tabs your admin gave this role.'}</div>`;
@@ -471,7 +471,7 @@ function renderSignin() {
   document.getElementById('siSub').textContent = b.welcome || (r === 'admin' ? 'Full access to every workspace and the admin settings.' : `For ${m.who.toLowerCase()}.`);
   const sg = document.getElementById('siSigned');
   sg.classList.toggle('on', !!s);
-  sg.innerHTML = s ? `<span class="av" style="--c:${MOD[s.role].c}">${esc(initials(s.name))}</span><span class="t"><b>Signed in as ${esc(s.name)}</b>${MOD[s.role].name}${s.role === r || s.role === 'admin' ? '' : ' · sign out to switch'}</span>${s.role === r || s.role === 'admin' ? `<a class="btn sm" style="background:var(--rc);color:#fff" href="app/" data-enter="${r}">Open</a>` : ''}<button class="btn sm" style="border-color:var(--line);color:var(--ink);background:var(--surface)" id="siOut" type="button">Sign out</button>` : '';
+  sg.innerHTML = s ? `<span class="av" style="--c:${MOD[s.role].c}">${esc(initials(s.name))}</span><span class="t"><b>Signed in as ${esc(s.name)}</b>${MOD[s.role].name}${s.role === r || s.role === 'admin' ? '' : ' · sign out to switch'}</span>${s.role === r || s.role === 'admin' ? `<a class="btn sm" style="background:var(--rc);color:#fff" href="app/index.html" data-enter="${r}">Open</a>` : ''}<button class="btn sm" style="border-color:var(--line);color:var(--ink);background:var(--surface)" id="siOut" type="button">Sign out</button>` : '';
   document.getElementById('siDemo').innerHTML = demo && acc && acc.active && acc.pw === A.pwHash(demo.u, demo.pw)
     ? `<span>Demo account <code>${demo.u}</code> / <code>${demo.pw}</code></span><button type="button" id="siFill">Use it</button>`
     : `<span>Ask your admin for a ${m.name} account.</span>`;
@@ -510,7 +510,7 @@ document.getElementById('siForm').addEventListener('submit', e => {
     document.getElementById('wlName').textContent = 'Welcome, ' + r.account.name.split(' ')[0];
     document.getElementById('wlWs').textContent = `Opening ${MOD[SI].name}…`;
     document.getElementById('welcome').classList.add('on');
-    setTimeout(() => location.href = 'app/', matchMedia('(prefers-reduced-motion:reduce)').matches ? 200 : 1500);
+    setTimeout(() => location.href = 'app/index.html', matchMedia('(prefers-reduced-motion:reduce)').matches ? 200 : 1500);
   });
 });
 window.addEventListener('hashchange', route);
