@@ -405,7 +405,7 @@ const MOD = {
     viz:'<div class="adm"><div><span class="a" style="--c2:var(--plan)"></span><em>Planner · Orders</em><span class="tg"></span></div><div><span class="a" style="--c2:var(--buy)"></span><em>Purchase · Forecast</em><span class="tg"></span></div><div><span class="a" style="--c2:var(--wms)"></span><em>WMS · Scrap</em><span class="tg"></span></div></div>' }
 };
 const ROLE_KEYS = ['planner', 'purchase', 'wms', 'admin'];
-const tabsOf = r => r === 'admin' ? ['Everything in Planner, Purchase and WMS', 'Users & sign-in', 'Role access', 'Branding', 'Sign-in log']
+const tabsOf = r => r === 'admin' ? ['Everything in Planner, Purchase and WMS', 'Users & sign-in', 'Role access', 'License', 'Integrations', 'AI assistant', 'Branding']
   : (A.cfg().access[r] && Object.entries(A.cfg().access[r]).flatMap(([ws, ks]) => (A.TABS[ws] || []).filter(t => ks.includes(t[0])).map(t => t[1]))) || [];
 const initials = n => String(n || '?').split(/\s+/).map(w => w[0]).join('').slice(0, 2).toUpperCase();
 

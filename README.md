@@ -3,7 +3,7 @@
 Public website for Loadline, advanced planning and scheduling for make-to-order manufacturers.
 
 - `index.html`: animated landing page with one widget per workspace (Planner, Purchase, WMS, Admin), a sign-in page for each (`#signin/planner`, `#signin/purchase`, `#signin/wms`, `#signin/admin`) and the product tour video
-- `app/index.html`: the Loadline APS app. Opens only after sign-in and shows only the tabs the person's role is given; Admin sees everything plus Users & sign-in, Role access, License, Branding and Sign-in log
+- `app/index.html`: the Loadline APS app. Opens only after sign-in and shows only the tabs the person's role is given; Admin sees everything plus Users & sign-in, Role access, License, Integrations (ERP and marketing/CRM tool), AI assistant, Branding and Sign-in log. Every screen has an AI assistant with quick tasks and troubleshooting
 - `auth.js`: shared sign-in, role access, branding and license check
 - `media/`: tour video, captions and cover image
 
